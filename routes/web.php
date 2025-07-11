@@ -1,12 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VisitController;
+
+// welcome page
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// dashboard and profile routes
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -19,6 +24,22 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/newPatient', function () {
-    return 'figgj e bucchin';
-})->name('newPatient');
+/**------------------------------------------------------- PATIENTS CRUD -------------------------------------------------------------- */
+
+Route::get('/patients', [PatientController::class, 'showPatients'])->name('showPatients'); // List all patients
+Route::get('/showPatient', [PatientController::class, 'showPatient'])->name('showPatient'); // Show information about a specific patient
+Route::post('/createPatient', [PatientController::class, 'newPatient'])->name('newPatient'); // Create a new patient
+Route::put('/editPatient', [PatientController::class, 'editPatient'])->name('editPatient'); // Edit an existing patient
+Route::delete('/deletePatient', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
+
+Route::get('/newPatient', [PatientController::class, 'newPatientForm'])->name('newPatientForm'); // Show form to create a new patient
+
+/**--------------------------------------------------------- VISITS CRUD -------------------------------------------------------------- */
+
+Route::get('/visits', [VisitController::class, 'showVisits'])->name('showVisits'); // List all visits
+Route::get('/showVisits/{visitId}', [VisitController::class, 'showVisit'])->name('showVisit');  // Show information about a specific visit
+Route::post('/createVisit/{visitId}', [VisitController::class, 'newVisit'])->name('newVisit'); // Create a new visit for a patient
+Route::put('/editVisit/{visitId}', [VisitController::class, 'editVisit'])->name('editVisit');  // Edit an existing visit
+Route::delete('/deleteVisit/{visitId}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
+
+Route::get('/newVisit/{patientId}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient

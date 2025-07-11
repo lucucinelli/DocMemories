@@ -25,14 +25,11 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('newPatientForm')">
                                 {{ __('Nuovo paziente') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('newPatient')">
+                            <x-dropdown-link :href="route('showPatients')">
                                 {{ __('Elenco pazienti') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('newPatient')">
-                                {{ __('Trova paziente') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -56,9 +53,6 @@
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('newPatient')">
                                 {{ __('Elenco visite') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('newPatient')">
-                                {{ __('Trova visita') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -156,14 +150,11 @@
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ __('Paziente') }}</div>
             </div>
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('newPatientForm')">
                     {{ __('Nuovo paziente') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('newPatient')">
+                <x-responsive-nav-link :href="route('showPatients')">
                     {{ __('Elenco pazienti') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('newPatient')">
-                    {{ __('Trova paziente') }}
                 </x-responsive-nav-link>
             </div>
         </div>
@@ -172,14 +163,11 @@
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ __('Visite') }}</div>
             </div>
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('newVisitForm', ['patientId' => 0])">
                     {{ __('Nuova visita') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('newPatient')">
+                <x-responsive-nav-link :href="route('showVisits')">
                     {{ __('Elenco visite') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('newPatient')">
-                    {{ __('Trova visita') }}
                 </x-responsive-nav-link>
             </div>
         </div>
