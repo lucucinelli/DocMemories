@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VisitController;
+use App\Http\Controllers\TherapyController;
+use App\Http\Controllers\MedicineController;
 
 // welcome page
 
@@ -43,3 +45,18 @@ Route::put('/editVisit/{visitId}', [VisitController::class, 'editVisit'])->name(
 Route::delete('/deleteVisit/{visitId}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
 
 Route::get('/newVisit/{patientId}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
+
+
+/**--------------------------------------------------------- THERAPIES CRUD-------------------------------------------------------------- */
+
+Route::get('/therapies', [TherapyController::class, 'showTherapies'])->name('showTherapies'); // List all therapies
+Route::get('/showTherapy/{therapyId}', [TherapyController::class, 'showTherapy'])->name('showTherapy'); // Show information about a specific therapy
+
+
+/**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
+
+Route::get('/medicinals', [MedicineController::class, 'showMedicinals'])->name('showMedicinals'); // List all medicinals
+Route::get('/showMedicinal/{medicinalId}', [MedicineController::class, 'showMedicinal'])->name('showMedicinal'); // Show information about a specific medicinal
+Route::post('/createMedicinal', [MedicineController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
+Route::put('/editMedicinal/{medicinalId}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
+Route::delete('/deleteMedicinal/{medicinalId}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal

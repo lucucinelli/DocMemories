@@ -48,14 +48,24 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('newVisitForm', ['patientId' => 0])">
                                 {{ __('Nuova visita') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('newPatient')">
+                            <x-dropdown-link :href="route('showVisits')">
                                 {{ __('Elenco visite') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('showTherapies')" :active="request()->routeIs('showTherapies')">
+                        {{ __('Terapie') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('showMedicinals')" :active="request()->routeIs('showMedicinals')">
+                        {{ __('Medicine') }}
+                    </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('newPatient')" :active="request()->routeIs('newPatient')">
@@ -90,7 +100,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profilo') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -130,7 +140,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Profilo') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -171,7 +181,13 @@
                 </x-responsive-nav-link>
             </div>
         </div>
-         <div class="pt-2 pb-3 space-y-1">
+        <div class="pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-600">
+            <x-responsive-nav-link :href="route('showTherapies')" :active="request()->routeIs('showTherapies')">
+                {{ __('Terapie') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('showMedicinals')" :active="request()->routeIs('showMedicinals')">
+                {{ __('Medicine') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('newPatient')" :active="request()->routeIs('newPatient')">
                 {{ __('Statistiche') }}
             </x-responsive-nav-link>
