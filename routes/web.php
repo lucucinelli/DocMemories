@@ -31,6 +31,7 @@ require __DIR__.'/auth.php';
 Route::get('/patients', [PatientController::class, 'showPatients'])->name('showPatients'); // List all patients
 Route::get('/showPatient/{patient}', [PatientController::class, 'showPatient'])->name('showPatient'); // Show information about a specific patient
 Route::post('/createPatient', [PatientController::class, 'newPatient'])->name('newPatient'); // Create a new patient
+Route::post('/searchPatient/{patient}', [PatientController::class, 'searchPatient'])->name('searchPatient'); // Search a new patient
 Route::put('/editPatient/{patient}', [PatientController::class, 'editPatient'])->name('editPatient'); // Edit an existing patient
 Route::delete('/deletePatient/{patient}', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
 
