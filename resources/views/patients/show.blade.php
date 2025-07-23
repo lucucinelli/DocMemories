@@ -15,6 +15,7 @@
                             @include('patients.partials.anagraphic-information')
                         </div>
                     </div>
+                    <!-- sezione riguardante la storia clinica -->
                 </div>
             </div>
         </div>
