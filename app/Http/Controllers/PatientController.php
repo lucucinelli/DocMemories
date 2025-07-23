@@ -6,6 +6,8 @@ use App\Models\Patient;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PatientController extends Controller
 {
     // CRUD operations for patients
@@ -51,11 +53,11 @@ class PatientController extends Controller
     public function searchPatient(Request $request)
     {
         $incomingData = $request->validate([
-            'search' => ['string', 'max:255'],
+            'search' => ['string', 'nullable', 'max:255'],
         ]);
         $searchTerm = $incomingData['search'];
-        if ($searchTerm == "") {
-            $patients = Patient::all(); // If search term is empty, return all patients
+        if ($searchTerm === null || $searchTerm === '') {
+            return redirect()->route('showPatients'); // If search term is empty, redirect to show all patients
         } else {
             $searchTerm = trim($searchTerm); // Trim whitespace from the search term
             $patients = Patient::whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
