@@ -10,9 +10,9 @@
             <div class="hidden sm:block">
                 <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white dark:bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 bg-white dark:bg-gray-200 border-b border-gray-200 dark:border-gray-200">
-                            <table class="min-w-full table-auto dark:bg-gray-200">
-                                <thead  class="bg-gray-100 dark:bg-gray-700">
+                        <div class="p-6 bg-white dark:bg-gray-300 border-b border-gray-200 dark:border-gray-200">
+                            <table class="min-w-full table-auto dark:bg-gray-300">
+                                <thead  class="bg-gray-300 dark:bg-gray-700">
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
                                             {{ __('Nome') }}
@@ -40,7 +40,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white dark:bg-gray-200 divide-y">
+                                <tbody class="bg-white dark:bg-gray-300 divide-y">
                                     @foreach($patients as $patient)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
@@ -78,7 +78,7 @@
             {{-- Mobile view --}}
             <div class= "block sm:hidden  mt-2 space-y-6">
                 @foreach($patients as $patient)
-                    <div class="ml-4 mr-4 bg-gray-200 dark:bg-gray-200 p-4 rounded-lg shadow-sm">
+                    <div class="ml-4 mr-4 bg-gray-300 dark:bg-gray-200 p-4 rounded-lg shadow-sm">
                         <h3 class="text-lg font-semibold">{{ $patient->name }} {{ $patient->surname }}</h3>
                         <p>{{ __('Data di nascita: ') . $patient->birthdate->format('d/m/Y') }}</p>
                         <p>{{ __('Genere: ') . ($patient->gender === 'M' ? 'Maschio' : 'Femmina') }}</p>
