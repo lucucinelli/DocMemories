@@ -48,6 +48,25 @@ class PatientController extends Controller
         return view('patients.show', ['patient' => $patient]);
     }
 
+    public function searchPatient(Request $request)
+    {
+        $incomingData = $request->validate([
+            'search' => ['string', 'max:255'],
+        ]);
+        $searchTerm = $incomingData['search'];
+        if ($searchTerm == "") {
+            $patients = Patient::all(); // If search term is empty, return all patients
+        } else {
+            $searchTerm = trim($searchTerm); // Trim whitespace from the search term
+            $patients = Patient::whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
+            ->get();
+        }
+        return view('patients.find', ['patients' => $patients]);
+    }
+
     public function editPatient(Patient $patient, Request $request)
     {
         $incomingData = $request->validate([
