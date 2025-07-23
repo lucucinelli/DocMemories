@@ -27,15 +27,21 @@
                             <x-input-label for="gender" :value="__('Genere')" />
                             <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" />
                             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                            <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
+                            <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" :value="old('birthplace', $patient->birthplace)" required />
+                            <x-input-error :messages="$errors->get('birthplace')" class="mt-2" />
+                            <x-input-label for="marital_status" :value="__('Stato civile')" />
+                            <x-text-input id="marital_status" class="block mt-1 w-full" type="text" name="marital_status" :value="old('marital_status', $patient->marital_status)" required />
+                            <x-input-error :messages="$errors->get('marital_status')" class="mt-2" />
                         </div>
                         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
                             <x-input-label for="nationality" :value="__('Nazionalità')" />
                             <x-text-input id="nationality" class="block mt-1 w-full" type="text" name="nationality" required />
                             <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
-                            <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
-                            <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" required />
-                            <x-input-error :messages="$errors->get('birthplace')" class="mt-2" />
-                            <x-input-label for="province" :value="__('Provincia di nascita')" />
+                            <x-input-label for="city" :value="__('Città')" />
+                            <x-text-input id="city" class="block mt-1 w-full" type="text" name="city" required />
+                            <x-input-error :messages="$errors->get('city')" class="mt-2" />
+                            <x-input-label for="province" :value="__('Provincia')" />
                             <x-text-input id="province" class="block mt-1 w-full" type="text" name="province" required />
                             <x-input-error :messages="$errors->get('province')" class="mt-2" />
                             <x-input-label for="address" :value="__('Indirizzo')" />

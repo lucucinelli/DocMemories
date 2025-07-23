@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('surname');
             $table->date('birthdate');
             $table->string('gender');
-            $table->string('nationality');
             $table->string('birthplace');
+            $table->string('marital_status')->nullable();
+            $table->string('nationality');
+            $table->string('city');
             $table->string('province');
             $table->string('address');
             $table->string('street_number');
