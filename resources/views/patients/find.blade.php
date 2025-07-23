@@ -10,11 +10,11 @@
         </x-slot> 
     
         <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <table class="min-w-full table-auto border-separate border-spacing-x-6 divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                        <thead class="bg-gray-100 dark:bg-gray-700">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                     {{ __('Nome') }}
@@ -34,6 +34,12 @@
                                 <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                     {{ __('Email') }}
                                 </th>
+                                <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-gray-300 uppercase tracking-wider">
+                                    {{ __('Modifica') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-gray-300 uppercase tracking-wider">
+                                    {{ __('Elimina') }}
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -47,6 +53,15 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $patient->birthdate->format('d/m/Y') }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $patient->gender === 'M' ? 'Maschio' : 'Femmina' }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $patient->telephone }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $patient->email }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <a href="{{ route('editPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-600">{{ __('Modifica') }}</a>

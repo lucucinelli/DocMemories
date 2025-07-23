@@ -24,4 +24,8 @@ class Patient extends Model
         'occupation'
         
     ];
+
+    protected $casts = [
+        'birthdate' => 'date', // Dopo aver recuperato la data dal db la converte in un oggetto carbon per il quale è possibile utilizzare il metodo format()
+    ];
 }
