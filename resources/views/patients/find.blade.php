@@ -53,13 +53,13 @@
                                 <thead  class="bg-gray-300 dark:bg-gray-700">
                                     <tr>
                                         <th scope="col"  data-index="0" data-sort="text" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
-                                            {{ __('Nome') }} <i class="bi bi-caret-down-fill ml-3"></i>
+                                            {{ __('Nome') }} <i class="bi bi-arrow-down-up ml-3"></i>
                                         </th>
                                         <th scope="col" data-index="1" data-sort="text" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
-                                            {{ __('Cognome') }} <i class="bi bi-caret-down-fill ml-3"></i>
+                                            {{ __('Cognome') }} <i class="bi bi-arrow-down-up ml-3"></i>
                                         </th>
                                         <th scope="col" data-index="2" data-sort="date"class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
-                                            {{ __('Data di nascita') }} <i class="bi bi-caret-down-fill ml-3"></i>
+                                            {{ __('Data di nascita') }} <i class="bi bi-arrow-down-up ml-3"></i>
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
                                             {{ __('Genere') }}
