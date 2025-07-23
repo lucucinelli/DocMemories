@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -34,5 +35,10 @@ class PatientController extends Controller
 
         $patient = Patient::create($incomingData);
         return redirect()->route('dashboard');
+    }
+
+    public function showPatient(Patient $patient)
+    {
+        return view('patients.show', ['patient' => $patient]);
     }
 }
