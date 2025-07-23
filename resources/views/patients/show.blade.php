@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <!-- information about the patient -->
                     <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                        <div class="max-w-xl">
+                        <div>
                             @include('patients.partials.anagraphic-information')
                         </div>
                     </div>
