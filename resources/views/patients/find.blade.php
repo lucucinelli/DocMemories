@@ -64,11 +64,11 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap ">
-                                            <form action="{{ route('deletePatient', $patient->id) }}" method="POST" class="" onsubmit="return confirm('{{ __('Sei sicuro di voler eliminare questo paziente?') }}');">
+                                        <td class="px-6 py-4 whitespace-nowrap align-middle">
+                                            <form action="{{ route('deletePatient', $patient->id) }}" method="POST" class="inline" onsubmit="return confirm('{{ __('Sei sicuro di voler eliminare questo paziente?') }}');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</button>
+                                                <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</button>
                                             </form>
                                         </td>
                                     </tr>
