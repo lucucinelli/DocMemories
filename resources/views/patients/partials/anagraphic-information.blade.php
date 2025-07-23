@@ -35,7 +35,7 @@
                         {{ __('Data di nascita') }}
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                        {{ $patient->birthdate }}
+                        {{ $patient->birthdate->format('d/m/Y') }}
                     </dd>
                 </div>
 
