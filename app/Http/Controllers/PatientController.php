@@ -37,6 +37,12 @@ class PatientController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function showPatients()
+    {
+        $patients = Patient::all(); // Retrieve all patients from the database
+        return view('patients.find', ['patients' => $patients]); // Return the view with the list of patients
+    }
+
     public function showPatient(Patient $patient)
     {
         return view('patients.show', ['patient' => $patient]);
