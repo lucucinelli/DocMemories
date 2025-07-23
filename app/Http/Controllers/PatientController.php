@@ -34,7 +34,7 @@ class PatientController extends Controller
         ]);
 
         $patient = Patient::create($incomingData);
-        return redirect()->route('dashboard');
+        return redirect()->route('showPatient', $patient->id);
     }
 
     public function showPatients()

@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Aggiorna le informazioni anagrafiche del tuo account.") }}
+            {{ __("Aggiorna le informazioni anagrafiche del paziente.") }}
         </p>
     </header>
 
@@ -24,7 +24,7 @@
             <x-text-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" :value="old('birthdate', $patient->birthdate->format('Y-m-d'))" required /> 
             <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
             <x-input-label for="gender" :value="__('Genere')" />
-            <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" :value="old('gender', $patient->gender)" />
+            <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" :selected="old('gender', $patient->gender)" />
             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
         </div>
 
