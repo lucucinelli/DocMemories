@@ -64,8 +64,12 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <a href="{{ route('deletePatient', $patient->id) }}" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</a>
+                                        <td class="px-6 py-4 whitespace-nowrap ">
+                                            <form action="{{ route('deletePatient', $patient->id) }}" method="POST" class="" onsubmit="return confirm('{{ __('Sei sicuro di voler eliminare questo paziente?') }}');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -86,7 +90,11 @@
                         <p>{{ __('Email: ') . $patient->email }}</p>
                         <div class="mt-4 flex space-x-4">
                             <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                            <a href="{{ route('deletePatient', $patient->id) }}" class="text-red-600 hover:text-gray-600 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</a>
+                            <form action="{{ route('deletePatient', $patient->id) }}" method="POST" class="" onsubmit="return confirm('{{ __('Sei sicuro di voler eliminare questo paziente?') }}');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
