@@ -8,7 +8,7 @@
         </x-slot> 
         
 
-        <div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
             <form class="max-w-lg mx-auto">
                 <div class="flex">
                     <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </form>
+        </div>
 
 
         <div class="py-12">
