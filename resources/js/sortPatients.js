@@ -1,3 +1,6 @@
+console.log("sortPatients.js loaded");
+
+
 function compareText(a, b, ascending = true) {
     const valA = a.toLowerCase();
     const valB = b.toLowerCase();
