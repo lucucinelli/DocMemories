@@ -28,10 +28,10 @@
                             <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" />
                             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
-                            <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" :value="old('birthplace', $patient->birthplace)" required />
+                            <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" required />
                             <x-input-error :messages="$errors->get('birthplace')" class="mt-2" />
                             <x-input-label for="marital_status" :value="__('Stato civile')" />
-                            <x-text-input id="marital_status" class="block mt-1 w-full" type="text" name="marital_status" :value="old('marital_status', $patient->marital_status)" required />
+                            <x-text-input id="marital_status" class="block mt-1 w-full" type="text" name="marital_status" required />
                             <x-input-error :messages="$errors->get('marital_status')" class="mt-2" />
                         </div>
                         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
