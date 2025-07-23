@@ -81,11 +81,7 @@
                                             <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap ">
-                                            <form action="{{ route('deletePatient', $patient->id) }}" method="POST" class="" onsubmit="return confirm('{{ __('Sei sicuro di voler eliminare questo paziente?') }}');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</button>
-                                            </form>
+                                            <button type="button" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -95,6 +91,31 @@
                     </div>
                 </div>
             </div>
+            <!-- Confirm delete -->
+            <x-modal name="confirm-patient-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                <form method="post" action="{{ route('deletePatient', $patient->id) }}" class="p-6">
+                    @csrf
+                    @method('delete')
+
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        {{ __('Sei sicuro di voler eliminare questo paziente?') }}
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __('Una volta che il paziente è stato eliminato, tutte le sue risorse e i dati saranno permanentemente eliminati. Desideri procedere comunque?') }}
+                    </p>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Annulla') }}
+                        </x-secondary-button>
+
+                        <x-danger-button class="ms-3">
+                            {{ __('Cancella paziente') }}
+                        </x-danger-button>
+                    </div>
+                </form>
+            </x-modal>
             {{-- Mobile view --}}
             <div class= "block sm:hidden  mt-2 space-y-6">
                 @foreach($patients as $patient)
@@ -106,11 +127,7 @@
                         <p>{{ __('Email: ') . $patient->email }}</p>
                         <div class="mt-4 flex space-x-4">
                             <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                            <form action="{{ route('deletePatient', $patient->id) }}" method="POST" class="" onsubmit="return confirm('{{ __('Sei sicuro di voler eliminare questo paziente?') }}');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900">{{ __('Elimina') }}</button>
-                            </form>
+                            <button type="button" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
                         </div>
                     </div>
                 @endforeach
