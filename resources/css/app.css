@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bordo-t-3 {
+    border-top-width: 2px;
+}
