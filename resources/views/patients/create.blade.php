@@ -14,7 +14,7 @@
                         @csrf
                         <!-- Include form fields here -->
 
-                        <div>
+                        <div class="flex flex-col gap-3">
                             <x-input-label for="name" :value="__('Nome')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus />
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -28,7 +28,7 @@
                             <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" />
                             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                         </div>
-                        <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4">
+                        <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
                             <x-input-label for="nationality" :value="__('Nazionalità')" />
                             <x-text-input id="nationality" class="block mt-1 w-full" type="text" name="nationality" required />
                             <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
@@ -48,7 +48,7 @@
                             <x-text-input id="zip_code" class="block mt-1 w-full" type="text" name="zip_code" required />
                             <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
                         </div>
-                        <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4">
+                        <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
                             <x-input-label for="tax_code" :value="__('Codice fiscale')" />
                             <x-text-input id="tax_code" class="block mt-1 w-full" type="text" name="tax_code" required />
                             <x-input-error :messages="$errors->get('tax_code')" class="mt-2" />
