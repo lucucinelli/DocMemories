@@ -26,7 +26,7 @@
                                 <x-text-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" required /> 
                                 <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
                                 <x-input-label for="gender" :value="__('Genere')" />
-                                <x-select name="genere" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" />
+                                <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" />
                                 <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             </div>
                             <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4">
@@ -53,9 +53,9 @@
                                 <x-input-label for="tax_code" :value="__('Codice fiscale')" />
                                 <x-text-input id="tax_code" class="block mt-1 w-full" type="text" name="tax_code" required />
                                 <x-input-error :messages="$errors->get('tax_code')" class="mt-2" />
-                                <x-input-label for="phone" :value="__('Telefono')" />
-                                <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" required />
-                                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                                <x-input-label for="telephone" :value="__('Telefono')" />
+                                <x-text-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" required />
+                                <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
                                 <x-input-label for="email" :value="__('Email')" />
                                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" required />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
