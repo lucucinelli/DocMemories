@@ -69,4 +69,10 @@ class PatientController extends Controller
         $patient->update($incomingData); // Update the patient with the validated data
         return redirect()->route('showPatient', $patient->id)->with('status', __('patient-updated'));
     }
+
+    public function deletePatient(Patient $patient)
+    {
+        $patient->delete(); // Delete the patient from the database
+        return redirect()->route('showPatients')->with('status', __('patient-deleted'));
+    }
 }

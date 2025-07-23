@@ -16,6 +16,18 @@
                         </div>
                     </div>
                     <!-- sezione riguardante la storia clinica -->
+                    <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                        <div>
+                            <!-- mettere l'include -->
+                        </div>
+                    </div>
+                    <!-- sezione riguardante la cancellazione del paziente -->
+                    <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                        <div>
+                            @include('patients.partials.delete-patient')
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
