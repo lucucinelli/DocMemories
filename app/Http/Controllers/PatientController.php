@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -40,5 +41,10 @@ class PatientController extends Controller
     {
         $patients = Patient::all(); // Retrieve all patients from the database
         return view('patients.find', ['patients' => $patients]); // Return the view with the list of patients
+    }
+
+    public function showPatient(Patient $patient)
+    {
+        return view('patients.show', ['patient' => $patient]);
     }
 }

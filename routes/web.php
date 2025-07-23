@@ -29,10 +29,10 @@ require __DIR__.'/auth.php';
 /**------------------------------------------------------- PATIENTS CRUD -------------------------------------------------------------- */
 
 Route::get('/patients', [PatientController::class, 'showPatients'])->name('showPatients'); // List all patients
-Route::get('/showPatient', [PatientController::class, 'showPatient'])->name('showPatient'); // Show information about a specific patient
+Route::get('/showPatient/{patient}', [PatientController::class, 'showPatient'])->name('showPatient'); // Show information about a specific patient
 Route::post('/createPatient', [PatientController::class, 'newPatient'])->name('newPatient'); // Create a new patient
-Route::put('/editPatient', [PatientController::class, 'editPatient'])->name('editPatient'); // Edit an existing patient
-Route::delete('/deletePatient', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
+Route::put('/editPatient/{patient}', [PatientController::class, 'editPatient'])->name('editPatient'); // Edit an existing patient
+Route::delete('/deletePatient/{patient}', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
 
 Route::get('/newPatient', [PatientController::class, 'newPatientForm'])->name('newPatientForm'); // Show form to create a new patient
 
