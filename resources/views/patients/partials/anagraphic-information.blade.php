@@ -18,25 +18,25 @@
                 {{ __('Informazioni anagrafiche') }}
             </h2>
             <x-input-label for="name" :value="__('Nome')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $patient->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $patient->name)" required autofocus disabled autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
             <x-input-label for="surname" :value="__('Cognome')" />
-            <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname', $patient->surname)" required />
+            <x-text-input id="surname" class="block mt-1 w-full anagrafica" type="text" name="surname" :value="old('surname', $patient->surname)" required disabled />
             <x-input-error :messages="$errors->get('surname')" class="mt-2" />
             <x-input-label for="birthdate" :value="__('Data di nascita')" />
-            <x-text-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" :value="old('birthdate', $patient->birthdate->format('Y-m-d'))" required /> 
+            <x-text-input id="birthdate" class="block mt-1 w-full anagrafica" type="date" name="birthdate" :value="old('birthdate', $patient->birthdate->format('Y-m-d'))" required disabled /> 
             <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
             <x-input-label for="gender" :value="__('Genere')" />
-            <x-select name="gender" class="block mt-1 w-full" :options="['M' => 'Maschio', 'F' => 'Femmina']" :selected="old('gender', $patient->gender)" />
+            <x-select name="gender" class="block mt-1 w-full anagrafica" :options="['M' => 'Maschio', 'F' => 'Femmina']" :selected="old('gender', $patient->gender)" disabled />
             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
             <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
-            <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" :value="old('birthplace', $patient->birthplace)" required />
+            <x-text-input id="birthplace" class="block mt-1 w-full anagrafica" type="text" name="birthplace" :value="old('birthplace', $patient->birthplace)" required disabled />
             <x-input-error :messages="$errors->get('birthplace')" class="mt-2" />
             <x-input-label for="tax_code" :value="__('Codice fiscale')" />
-            <x-text-input id="tax_code" class="block mt-1 w-full" type="text" name="tax_code" :value="old('tax_code', $patient->tax_code)" required />
+            <x-text-input id="tax_code" class="block mt-1 w-full anagrafica" type="text" name="tax_code" :value="old('tax_code', $patient->tax_code)" required disabled />
             <x-input-error :messages="$errors->get('tax_code')" class="mt-2" />
             <x-input-label for="marital_status" :value="__('Stato civile')" />
-            <x-text-input id="marital_status" class="block mt-1 w-full" type="text" name="marital_status" :value="old('marital_status', $patient->marital_status)" required />
+            <x-text-input id="marital_status" class="block mt-1 w-full anagrafica" type="text" name="marital_status" :value="old('marital_status', $patient->marital_status)" required disabled />
             <x-input-error :messages="$errors->get('marital_status')" class="mt-2" />
         </div>
 
@@ -45,22 +45,22 @@
                 {{ __('Informazioni sulla residenza') }}
             </h2>
             <x-input-label for="nationality" :value="__('Nazionalità')" />
-            <x-text-input id="nationality" class="block mt-1 w-full" type="text" name="nationality" :value="old('nationality', $patient->nationality)" required />
+            <x-text-input id="nationality" class="block mt-1 w-full anagrafica" type="text" name="nationality" :value="old('nationality', $patient->nationality)" required disabled />
             <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
             <x-input-label for="city" :value="__('Città')" />
-            <x-text-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city', $patient->city)" required />
+            <x-text-input id="city" class="block mt-1 w-full anagrafica" type="text" name="city" :value="old('city', $patient->city)" required disabled />
             <x-input-error :messages="$errors->get('city')" class="mt-2" />
             <x-input-label for="province" :value="__('Provincia')" />
-            <x-text-input id="province" class="block mt-1 w-full" type="text" name="province" :value="old('province', $patient->province)" required />
+            <x-text-input id="province" class="block mt-1 w-full anagrafica" type="text" name="province" :value="old('province', $patient->province)" required disabled />
             <x-input-error :messages="$errors->get('province')" class="mt-2" />
             <x-input-label for="address" :value="__('Indirizzo')" />
-            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address', $patient->address)" required />
+            <x-text-input id="address" class="block mt-1 w-full anagrafica" type="text" name="address" :value="old('address', $patient->address)" required disabled />
             <x-input-error :messages="$errors->get('address')" class="mt-2" />
             <x-input-label for="street_number" :value="__('Numero civico')" />
-            <x-text-input id="street_number" class="block mt-1 w-full" type="text" name="street_number" :value="old('street_number', $patient->street_number)" required />
+            <x-text-input id="street_number" class="block mt-1 w-full anagrafica" type="text" name="street_number" :value="old('street_number', $patient->street_number)" required disabled />
             <x-input-error :messages="$errors->get('street_number')" class="mt-2" />
             <x-input-label for="zip_code" :value="__('CAP')" />
-            <x-text-input id="zip_code" class="block mt-1 w-full" type="text" name="zip_code" :value="old('zip_code', $patient->zip_code)" required />
+            <x-text-input id="zip_code" class="block mt-1 w-full anagrafica" type="text" name="zip_code" :value="old('zip_code', $patient->zip_code)" required disabled />
             <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
         </div>
         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
@@ -68,19 +68,19 @@
                 {{ __('Informazioni sul domicilio') }}
             </h2>
             <x-input-label for="domicile_city" :value="__('Città')" />
-            <x-text-input id="domicile_city" class="block mt-1 w-full" type="text" name="domicile_city" :value="old('domicile_city', $patient->domicile_city)" />
+            <x-text-input id="domicile_city" class="block mt-1 w-full anagrafica" type="text" name="domicile_city" :value="old('domicile_city', $patient->domicile_city)" disabled/>
             <x-input-error :messages="$errors->get('domicile_city')" class="mt-2" />
             <x-input-label for="domicile_province" :value="__('Provincia')" />
-            <x-text-input id="domicile_province" class="block mt-1 w-full" type="text" name="domicile_province" :value="old('domicile_province', $patient->domicile_province)" />
+            <x-text-input id="domicile_province" class="block mt-1 w-full anagrafica" type="text" name="domicile_province" :value="old('domicile_province', $patient->domicile_province)" disabled />
             <x-input-error :messages="$errors->get('domicile_province')" class="mt-2" />
             <x-input-label for="domicile_address" :value="__('Indirizzo')" />
-            <x-text-input id="domicile_address" class="block mt-1 w-full" type="text" name="domicile_address" :value="old('domicile_address', $patient->domicile_address)" />
+            <x-text-input id="domicile_address" class="block mt-1 w-full anagrafica" type="text" name="domicile_address" :value="old('domicile_address', $patient->domicile_address)" disabled />
             <x-input-error :messages="$errors->get('domicile_address')" class="mt-2" />
             <x-input-label for="domicile_street_number" :value="__('Numero civico')" />
-            <x-text-input id="domicile_street_number" class="block mt-1 w-full" type="text" name="domicile_street_number" :value="old('domicile_street_number', $patient->domicile_street_number)" />
+            <x-text-input id="domicile_street_number" class="block mt-1 w-full anagrafica" type="text" name="domicile_street_number" :value="old('domicile_street_number', $patient->domicile_street_number)" disabled />
             <x-input-error :messages="$errors->get('domicile_street_number')" class="mt-2" />
             <x-input-label for="domicile_zip_code" :value="__('CAP')" />
-            <x-text-input id="domicile_zip_code" class="block mt-1 w-full" type="text" name="domicile_zip_code" :value="old('domicile_zip_code', $patient->domicile_zip_code)" />
+            <x-text-input id="domicile_zip_code" class="block mt-1 w-full anagrafica" type="text" name="domicile_zip_code" :value="old('domicile_zip_code', $patient->domicile_zip_code)" disabled />
             <x-input-error :messages="$errors->get('domicile_zip_code')" class="mt-2" />
         </div>
         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
@@ -88,19 +88,20 @@
                 {{ __('Informazioni di contatto') }}
             </h2>
             <x-input-label for="telephone" :value="__('Telefono')" />
-            <x-text-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone', $patient->telephone)" required />
+            <x-text-input id="telephone" class="block mt-1 w-full anagrafica" type="tel" name="telephone" :value="old('telephone', $patient->telephone)" required disabled />
             <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $patient->email)" required />
+            <x-text-input id="email" class="block mt-1 w-full anagrafica" type="email" name="email" :value="old('email', $patient->email)" required disabled />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
             <x-input-label for="occupation" :value="__('Occupazione')" />
-            <x-text-input id="occupation" class="block mt-1 w-full" name="occupation" :value="old('occupation', $patient->occupation)" required></x-text-input>
+            <x-text-input id="occupation" class="block mt-1 w-full anagrafica" name="occupation" :value="old('occupation', $patient->occupation)" required disabled></x-text-input>
             <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
+            <x-secondary-button id="edit-button" onclick="toggleEditMode()">{{ __('Modifica') }}</x-secondary-button>
+            <x-secondary-button id="cancel-button" type="reset" onclick="toggleEditMode()" class="hidden">{{ __('Annulla') }}</x-secondary-button>
+            <x-primary-button id="save-button" class="hidden">{{ __('Salva') }}</x-primary-button>
             @if (session('status') === 'patient-updated')
                 <p
                     x-data="{ show: true }"
