@@ -14,7 +14,7 @@ export function toggleEditMode() {
 }
 
 function toggleInputState(){
-    const inputs = document.querySelectorAll('.anagrafica');
+    const inputs = document.querySelectorAll('.anag rafica');
     inputs.forEach(input => {
         input.disabled = !input.disabled;
     });
