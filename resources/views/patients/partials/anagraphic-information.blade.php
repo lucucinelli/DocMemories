@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Anagrafica') }}
+            {{ __('Scheda Paziente') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Aggiorna le informazioni anagrafiche del paziente.") }}
+            {{ __("Aggiorna le informazioni del paziente.") }}
         </p>
     </header>
 
@@ -14,6 +14,9 @@
         @method('PUT')
 
         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Informazioni anagrafiche') }}
+            </h2>
             <x-input-label for="name" :value="__('Nome')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $patient->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
@@ -29,12 +32,18 @@
             <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
             <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" :value="old('birthplace', $patient->birthplace)" required />
             <x-input-error :messages="$errors->get('birthplace')" class="mt-2" />
+            <x-input-label for="tax_code" :value="__('Codice fiscale')" />
+            <x-text-input id="tax_code" class="block mt-1 w-full" type="text" name="tax_code" :value="old('tax_code', $patient->tax_code)" required />
+            <x-input-error :messages="$errors->get('tax_code')" class="mt-2" />
             <x-input-label for="marital_status" :value="__('Stato civile')" />
             <x-text-input id="marital_status" class="block mt-1 w-full" type="text" name="marital_status" :value="old('marital_status', $patient->marital_status)" required />
             <x-input-error :messages="$errors->get('marital_status')" class="mt-2" />
         </div>
 
         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Informazioni sulla residenza') }}
+            </h2>
             <x-input-label for="nationality" :value="__('Nazionalità')" />
             <x-text-input id="nationality" class="block mt-1 w-full" type="text" name="nationality" :value="old('nationality', $patient->nationality)" required />
             <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
@@ -55,9 +64,29 @@
             <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
         </div>
         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
-            <x-input-label for="tax_code" :value="__('Codice fiscale')" />
-            <x-text-input id="tax_code" class="block mt-1 w-full" type="text" name="tax_code" :value="old('tax_code', $patient->tax_code)" required />
-            <x-input-error :messages="$errors->get('tax_code')" class="mt-2" />
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Informazioni sul domicilio') }}
+            </h2>
+            <x-input-label for="domicile_city" :value="__('Città')" />
+            <x-text-input id="domicile_city" class="block mt-1 w-full" type="text" name="domicile_city" :value="old('domicile_city', $patient->domicile_city)" />
+            <x-input-error :messages="$errors->get('domicile_city')" class="mt-2" />
+            <x-input-label for="domicile_province" :value="__('Provincia')" />
+            <x-text-input id="domicile_province" class="block mt-1 w-full" type="text" name="domicile_province" :value="old('domicile_province', $patient->domicile_province)" />
+            <x-input-error :messages="$errors->get('domicile_province')" class="mt-2" />
+            <x-input-label for="domicile_address" :value="__('Indirizzo')" />
+            <x-text-input id="domicile_address" class="block mt-1 w-full" type="text" name="domicile_address" :value="old('domicile_address', $patient->domicile_address)" />
+            <x-input-error :messages="$errors->get('domicile_address')" class="mt-2" />
+            <x-input-label for="domicile_street_number" :value="__('Numero civico')" />
+            <x-text-input id="domicile_street_number" class="block mt-1 w-full" type="text" name="domicile_street_number" :value="old('domicile_street_number', $patient->domicile_street_number)" />
+            <x-input-error :messages="$errors->get('domicile_street_number')" class="mt-2" />
+            <x-input-label for="domicile_zip_code" :value="__('CAP')" />
+            <x-text-input id="domicile_zip_code" class="block mt-1 w-full" type="text" name="domicile_zip_code" :value="old('domicile_zip_code', $patient->domicile_zip_code)" />
+            <x-input-error :messages="$errors->get('domicile_zip_code')" class="mt-2" />
+        </div>
+        <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Informazioni di contatto') }}
+            </h2>
             <x-input-label for="telephone" :value="__('Telefono')" />
             <x-text-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone', $patient->telephone)" required />
             <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
