@@ -29,10 +29,34 @@ class Patient extends Model
         'telephone',
         'email',
         'occupation'
-        
     ];
 
     protected $casts = [
         'birthdate' => 'date', // Dopo aver recuperato la data dal db la converte in un oggetto carbon per il quale è possibile utilizzare il metodo format()
     ];
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class, 'patient_id');
+    }
+
+    public function physiologicalHistory()
+    {
+        return $this->hasMany(PhysiologicalHistory::class, 'patient_id');
+    }
+    
+    public function familiarHistory()
+    {
+        return $this->hasMany(FamiliarHistory::class, 'patient_id');
+    }
+
+    public function remotePathologicalHistory()
+    {
+        return $this->hasMany(RemotePathologicalHistory::class, 'patient_id');
+    }
+
+    public function nextPathologicalHistory()
+    {
+        return $this->hasMany(NextPathologicalHistory::class, 'patient_id');
+    }
 }

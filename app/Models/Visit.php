@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Visit extends Model
+{
+    //
+    protected $fillable = [
+        'visit_date',
+        'reason',
+        'diagnosis',
+        'note',
+        'user_id',
+        'patient_id',
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function patient(){
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
+
+    public function medicinals()
+    {
+        return $this->hasMany(Medicinal::class, 'visit_id');
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class, 'visit_id');
+    }
+
+    public function allergyTests()
+    {
+        return $this->hasMany(AllergyTest::class, 'visit_id');
+    }
+}
