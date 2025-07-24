@@ -27,37 +27,39 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 /**------------------------------------------------------- PATIENTS CRUD -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::get('/patients', [PatientController::class, 'showPatients'])->name('showPatients'); // List all patients
+    Route::get('/showPatient/{patient}', [PatientController::class, 'showPatient'])->name('showPatient'); // Show information about a specific patient
+    Route::post('/createPatient', [PatientController::class, 'newPatient'])->name('newPatient'); // Create a new patient
+    Route::post('/searchPatient', [PatientController::class, 'searchPatient'])->name('searchPatient'); // Search a new patient
+    Route::put('/editPatient/{patient}', [PatientController::class, 'editPatient'])->name('editPatient'); // Edit an existing patient
+    Route::delete('/deletePatient/{patient}', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
 
-Route::get('/patients', [PatientController::class, 'showPatients'])->name('showPatients'); // List all patients
-Route::get('/showPatient/{patient}', [PatientController::class, 'showPatient'])->name('showPatient'); // Show information about a specific patient
-Route::post('/createPatient', [PatientController::class, 'newPatient'])->name('newPatient'); // Create a new patient
-Route::post('/searchPatient', [PatientController::class, 'searchPatient'])->name('searchPatient'); // Search a new patient
-Route::put('/editPatient/{patient}', [PatientController::class, 'editPatient'])->name('editPatient'); // Edit an existing patient
-Route::delete('/deletePatient/{patient}', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
-
-Route::get('/newPatient', [PatientController::class, 'newPatientForm'])->name('newPatientForm'); // Show form to create a new patient
-
+    Route::get('/newPatient', [PatientController::class, 'newPatientForm'])->name('newPatientForm'); // Show form to create a new patient
+});
 /**--------------------------------------------------------- VISITS CRUD -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::get('/visits', [VisitController::class, 'showVisits'])->name('showVisits'); // List all visits
+    Route::get('/showVisits/{visitId}', [VisitController::class, 'showVisit'])->name('showVisit');  // Show information about a specific visit
+    Route::post('/createVisit/{visitId}', [VisitController::class, 'newVisit'])->name('newVisit'); // Create a new visit for a patient
+    Route::put('/editVisit/{visitId}', [VisitController::class, 'editVisit'])->name('editVisit');  // Edit an existing visit
+    Route::delete('/deleteVisit/{visitId}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
 
-Route::get('/visits', [VisitController::class, 'showVisits'])->name('showVisits'); // List all visits
-Route::get('/showVisits/{visitId}', [VisitController::class, 'showVisit'])->name('showVisit');  // Show information about a specific visit
-Route::post('/createVisit/{visitId}', [VisitController::class, 'newVisit'])->name('newVisit'); // Create a new visit for a patient
-Route::put('/editVisit/{visitId}', [VisitController::class, 'editVisit'])->name('editVisit');  // Edit an existing visit
-Route::delete('/deleteVisit/{visitId}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
-
-Route::get('/newVisit/{patientId}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
-
+    Route::get('/newVisit/{patientId}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
+});
 
 /**--------------------------------------------------------- THERAPIES CRUD-------------------------------------------------------------- */
-
-Route::get('/therapies', [TherapyController::class, 'showTherapies'])->name('showTherapies'); // List all therapies
-Route::get('/showTherapy/{therapyId}', [TherapyController::class, 'showTherapy'])->name('showTherapy'); // Show information about a specific therapy
+Route::middleware('auth')->group(function () {
+    Route::get('/therapies', [TherapyController::class, 'showTherapies'])->name('showTherapies'); // List all therapies
+    Route::get('/showTherapy/{therapyId}', [TherapyController::class, 'showTherapy'])->name('showTherapy'); // Show information about a specific therapy
+});
 
 
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
-
-Route::get('/medicinals', [MedicineController::class, 'showMedicinals'])->name('showMedicinals'); // List all medicinals
-Route::get('/showMedicinal/{medicinalId}', [MedicineController::class, 'showMedicinal'])->name('showMedicinal'); // Show information about a specific medicinal
-Route::post('/createMedicinal', [MedicineController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
-Route::put('/editMedicinal/{medicinalId}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
-Route::delete('/deleteMedicinal/{medicinalId}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
+Route::middleware('auth')->group(function () {
+    Route::get('/medicinals', [MedicineController::class, 'showMedicinals'])->name('showMedicinals'); // List all medicinals
+    Route::get('/showMedicinal/{medicinalId}', [MedicineController::class, 'showMedicinal'])->name('showMedicinal'); // Show information about a specific medicinal
+    Route::post('/createMedicinal', [MedicineController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
+    Route::put('/editMedicinal/{medicinalId}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
+    Route::delete('/deleteMedicinal/{medicinalId}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
+});
