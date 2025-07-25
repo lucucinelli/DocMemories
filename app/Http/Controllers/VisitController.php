@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Visit;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -13,5 +14,12 @@ class VisitController extends Controller
         // Logic to show the form for creating a new visit for the patient
         $patients = Patient::all(); // Fetch all patients to show in the form if needed
         return view('visits.create', ['patientId' => $patientId, 'patients' => $patients]);
+    }
+
+    public function showVisits()
+    {
+        // Logic to list all visits
+        $visits = Visit::all(); // Assuming you have a Visit model
+        return view('visits.index', ['visits' => $visits]);
     }
 }
