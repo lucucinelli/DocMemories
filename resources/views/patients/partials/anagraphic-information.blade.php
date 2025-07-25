@@ -18,7 +18,7 @@
                 {{ __('Informazioni anagrafiche') }}
             </h2>
             <x-input-label for="name" :value="__('Nome')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $patient->name)" required autofocus disabled autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full anagrafica" :value="old('name', $patient->name)" required autofocus disabled autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
             <x-input-label for="surname" :value="__('Cognome')" />
             <x-text-input id="surname" class="block mt-1 w-full anagrafica" type="text" name="surname" :value="old('surname', $patient->surname)" required disabled />
