@@ -1,19 +1,14 @@
-console.log("Exams script loaded");
+console.log("Exam script loaded");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const examsArrowDown = document.getElementById('exams-toggle-Down');
-    const examsArrowUp = document.getElementById('exams-toggle-Up');
-    examsArrowDown.addEventListener('click', () => {
-        const examsSection = document.getElementById('exams-list');
-        examsSection.classList.toggle('hidden');
-        examsArrowDown.classList.add('hidden');
-        examsArrowUp.classList.remove('hidden');
-    });
+const toggleBtn = document.getElementById('exams-toggle-Down');
+const examsSection = document.getElementById('exams-list');
 
-    examsArrowUp.addEventListener('click', () => {
-        const examsSection = document.getElementById('exams-list');
-        examsSection.classList.toggle('hidden');
-        examsArrowDown.classList.remove('hidden');
-        examsArrowUp.classList.add('hidden');
-    });
+toggleBtn.addEventListener('click', () => {
+    examsSection.classList.toggle('hidden');
+
+    if (toggleBtn.classList.contains('bi-caret-down-fill')) {
+        toggleBtn.classList.replace('bi-caret-down-fill', 'bi-caret-up-fill');
+    } else {
+        toggleBtn.classList.replace('bi-caret-up-fill', 'bi-caret-down-fill');
+    }
 });

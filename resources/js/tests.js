@@ -1,20 +1,14 @@
 console.log("Test script loaded");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const testsArrowDown = document.getElementById('tests-toggle-Down');
-    const testsArrowUp = document.getElementById('tests-toggle-Up');
-    testsArrowDown.addEventListener('click', () => {
-        const testsSection = document.getElementById('tests-list');
-        testsSection.classList.toggle('hidden');
-        testsArrowDown.classList.add('hidden');
-        testsArrowUp.classList.remove('hidden');
-    });
+const toggleBtn = document.getElementById('tests-toggle-Down');
+const testsSection = document.getElementById('tests-list');
 
-    testsArrowUp.addEventListener('click', () => {
-        const testsSection = document.getElementById('tests-list');
-        testsSection.classList.toggle('hidden');
-        testsArrowDown.classList.remove('hidden');
-        testsArrowUp.classList.add('hidden');
-    });
+toggleBtn.addEventListener('click', () => {
+    testsSection.classList.toggle('hidden');
+
+    if (toggleBtn.classList.contains('bi-caret-down-fill')) {
+        toggleBtn.classList.replace('bi-caret-down-fill', 'bi-caret-up-fill');
+    } else {
+        toggleBtn.classList.replace('bi-caret-up-fill', 'bi-caret-down-fill');
+    }
 });
-
