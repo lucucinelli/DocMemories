@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/deleteVisit/{visit}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
 
     Route::get('/newVisit/{patient}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
+    Route::post('/searchVisits', [VisitController::class, 'searchVisits'])->name('searchVisits'); // Search for visits
 });
 
 /**--------------------------------------------------------- THERAPIES CRUD-------------------------------------------------------------- */
