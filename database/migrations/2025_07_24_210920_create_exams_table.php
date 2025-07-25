@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('type');
             $table->text('note')->nullable();
             $table->foreignId('visit_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

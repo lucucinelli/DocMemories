@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('period');
             $table->text('note')->nullable();
             $table->foreignId('visit_id')->constrained();
+            $table->timestamps();
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('effect');
             $table->string('note')->nullable();
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
