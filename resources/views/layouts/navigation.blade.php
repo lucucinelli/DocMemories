@@ -48,9 +48,6 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('newVisitForm', ['patientId' => 0])">
-                                {{ __('Nuova visita') }}
-                            </x-dropdown-link>
                             <x-dropdown-link :href="route('showVisits')">
                                 {{ __('Elenco visite') }}
                             </x-dropdown-link>
@@ -163,9 +160,6 @@
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ __('Visite') }}</div>
             </div>
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('newVisitForm', ['patientId' => 0])">
-                    {{ __('Nuova visita') }}
-                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('showVisits')">
                     {{ __('Elenco visite') }}
                 </x-responsive-nav-link>
