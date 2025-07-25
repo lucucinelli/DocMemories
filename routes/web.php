@@ -40,26 +40,26 @@ Route::middleware('auth')->group(function () {
 /**--------------------------------------------------------- VISITS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::get('/visits', [VisitController::class, 'showVisits'])->name('showVisits'); // List all visits
-    Route::get('/showVisits/{visitId}', [VisitController::class, 'showVisit'])->name('showVisit');  // Show information about a specific visit
-    Route::post('/createVisit/{visitId}', [VisitController::class, 'newVisit'])->name('newVisit'); // Create a new visit for a patient
-    Route::put('/editVisit/{visitId}', [VisitController::class, 'editVisit'])->name('editVisit');  // Edit an existing visit
-    Route::delete('/deleteVisit/{visitId}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
+    Route::get('/showVisits/{visit}', [VisitController::class, 'showVisit'])->name('showVisit');  // Show information about a specific visit
+    Route::post('/createVisit/{patient}', [VisitController::class, 'newVisit'])->name('newVisit'); // Create a new visit for a patient
+    Route::put('/editVisit/{visit}', [VisitController::class, 'editVisit'])->name('editVisit');  // Edit an existing visit
+    Route::delete('/deleteVisit/{visit}', [VisitController::class, 'deleteVisit'])->name('deleteVisit'); // Delete an existing visit
 
-    Route::get('/newVisit/{patientId}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
+    Route::get('/newVisit/{patient?}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
 });
 
 /**--------------------------------------------------------- THERAPIES CRUD-------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::get('/therapies', [TherapyController::class, 'showTherapies'])->name('showTherapies'); // List all therapies
-    Route::get('/showTherapy/{therapyId}', [TherapyController::class, 'showTherapy'])->name('showTherapy'); // Show information about a specific therapy
+    Route::get('/showTherapy/{therapy}', [TherapyController::class, 'showTherapy'])->name('showTherapy'); // Show information about a specific therapy
 });
 
 
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::get('/medicinals', [MedicineController::class, 'showMedicinals'])->name('showMedicinals'); // List all medicinals
-    Route::get('/showMedicinal/{medicinalId}', [MedicineController::class, 'showMedicinal'])->name('showMedicinal'); // Show information about a specific medicinal
+    Route::get('/showMedicinal/{medicinal}', [MedicineController::class, 'showMedicinal'])->name('showMedicinal'); // Show information about a specific medicinal
     Route::post('/createMedicinal', [MedicineController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
-    Route::put('/editMedicinal/{medicinalId}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
-    Route::delete('/deleteMedicinal/{medicinalId}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
+    Route::put('/editMedicinal/{medicinal}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
+    Route::delete('/deleteMedicinal/{medicina}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
 });
