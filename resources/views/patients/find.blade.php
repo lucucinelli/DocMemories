@@ -89,36 +89,8 @@
                                                 <button type="button" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
                                             </td>
                                         </tr>
-                                    @else
-                                        @foreach ($patients as $patient)
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $patient->name }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $patient->surname }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $patient->birthdate->format('d/m/Y') }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $patient->gender === 'M' ? 'Maschio' : 'Femmina' }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $patient->telephone }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $patient->email }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap ">
-                                                    <button type="button" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="{ selectedPatient: {{ $patient->id }} }" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                    @endforeach
+                                @endif
                                 </tbody>
                             </table>
                         </div>
