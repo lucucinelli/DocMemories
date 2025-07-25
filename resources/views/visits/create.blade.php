@@ -28,7 +28,7 @@
                             <x-text-input id="diagnosis" class="block mt-1 w-full" type="text" name="diagnosis" required />
                             <x-input-error :messages="$errors->get('diagnosis')" class="mt-2" />
                             <x-input-label for="note" :value="__('Nota')" />
-                            <x-textarea id="note" class="block mt-1 w-full" name="note"></x-textarea>
+                            <textarea id="note" class="block mt-1 w-full" name="note"></textarea>
                             <x-input-error :messages="$errors->get('note')" class="mt-2" />
                         <div>
                             <x-primary-button class="mt-4">

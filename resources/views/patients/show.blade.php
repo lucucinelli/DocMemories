@@ -21,7 +21,7 @@
                             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                                 {{ __('Visita') }}
                             </h2>
-                            <x-primary-button class="mt-4" onclick="window.location.href='{{ route('newVisitForm'), $patient->id }}'">
+                            <x-primary-button class="mt-4" onclick="window.location.href='{{ route('newVisitForm', $patient->id) }}'">
                                 <i class="bi bi-plus-square-fill mr-2"></i> {{ __('Aggiungi visita') }}
                             </x-primary-button>
                             <x-secondary-button class="mt-4 ml-3" onclick="window.location.href='{{ route('showVisits') }}'">
