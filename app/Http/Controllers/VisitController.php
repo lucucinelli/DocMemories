@@ -10,11 +10,30 @@ use Illuminate\Http\Request;
 class VisitController extends Controller
 {
     //
-    public function newVisitForm($patientId = 0)
+    public function newVisitForm($patientId)
     {
-        // Logic to show the form for creating a new visit for the patient
-        $patients = Patient::all(); // Fetch all patients to show in the form if needed
-        return view('visits.create', ['patientId' => $patientId, 'patients' => $patients]);
+        $patient = Patient::find($patientId);
+        if (!$patient) {
+            abort(404, 'Patient not found'); // da modificare con la vista di errore
+        }   
+        return view('visits.create', ['patient' => $patient]);
+    }
+
+    public function newVisit(Request $request, $patientId)
+    {
+        $incomingData = $request->validate([
+            'date' => 'required|date',
+            'reason' => 'required|string|max:255',
+            'diagnosis' => 'required|string|max:255',
+            'note' => 'nullable|string',
+        ]);
+
+        $visit = new Visit($incomingData);
+        $visit->patient_id = $patientId;
+        $visit->user_id = Auth::id();
+        $visit->save();
+
+        return redirect()->route('showVisits');
     }
 
     public function showVisits()

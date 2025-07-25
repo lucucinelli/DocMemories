@@ -16,10 +16,6 @@ class Visit extends Model
         'patient_id',
     ];
 
-    protected $casts = [
-        'visit_date' => 'date',
-    ];
-
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
