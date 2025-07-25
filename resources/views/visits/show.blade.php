@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Modifica la visita') }}
+            {{ __('Visualizza e modifica la visita') }}
         </h2>
     </x-slot>
 
@@ -51,4 +51,20 @@
             </div>
         </div>
     </div>
+
+    <div class="py-3">
+        @include('visits.partials.tests')
+    </div>
+
+    <div class="py-3">
+        @include('visits.partials.medicinals')
+    </div>
+
+    <div class="py-3">
+        @include('visits.partials.exams')
+    </div> 
 </x-app-layout>
+
+@vite('resources/js/exams.js')
+@vite('resources/js/tests.js')
+@vite('resources/js/medicinals.js')

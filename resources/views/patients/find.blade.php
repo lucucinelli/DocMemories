@@ -142,3 +142,5 @@
         </x-modal>
     </x-app-layout>
 </div>
+
+@vite('resources/js/sortPatients-init.js')
