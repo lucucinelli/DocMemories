@@ -18,7 +18,7 @@ class VisitController extends Controller
     public function newVisit(Request $request, Patient $patient)
     {
         $incomingData = $request->validate([
-            'date' => [ 'required', 'date'],
+            'visit_date' => [ 'required', 'date'],
             'reason' => [ 'required', 'string', 'max:255'],
             'diagnosis' => [ 'required', 'string', 'max:255'],
             'note' => [ 'nullable', 'string'],

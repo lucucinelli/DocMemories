@@ -18,9 +18,9 @@
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('Visita') }}
                             </h2>
-                            <x-input-label for="date" :value="__('Data')" />
-                            <x-text-input id="date" class="block mt-1 w-full" type="date" name="date" required autofocus />
-                            <x-input-error :messages="$errors->get('date')" class="mt-2" />
+                            <x-input-label for="visit_date" :value="__('Data')" />
+                            <x-text-input id="visit_date" class="block mt-1 w-full" type="date" name="visit_date" required autofocus />
+                            <x-input-error :messages="$errors->get('visit_date')" class="mt-2" />
                             <x-input-label for="reason" :value="__('Motivazione della visita')" />
                             <x-text-input id="reason" class="block mt-1 w-full" type="text" name="reason" required />
                             <x-input-error :messages="$errors->get('reason')" class="mt-2" />
@@ -30,10 +30,11 @@
                             <x-input-label for="note" :value="__('Nota')" />
                             <textarea id="note" class="block mt-1 w-full" name="note"></textarea>
                             <x-input-error :messages="$errors->get('note')" class="mt-2" />
-                        <div>
-                            <x-primary-button class="mt-4">
-                                {{ __('Crea Visita') }}
-                            </x-primary-button>
+                            <div>
+                                <x-primary-button class="mt-4">
+                                    {{ __('Crea Visita') }}
+                                </x-primary-button>
+                            </div>
                         </div>
                     </form>
                 </div>
