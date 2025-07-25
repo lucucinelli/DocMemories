@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('period')->nullable();
             $table->string('period_regularity')->nullable();
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
             
         });
     }
