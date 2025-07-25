@@ -22,10 +22,10 @@
                                 {{ __('Visita') }}
                             </h2>
                             <x-primary-button class="mt-4" onclick="window.location.href='{{ route('newVisitForm'), $patient->id }}'">
-                                {{ __('Aggiungi visita') }}
+                                <i class="bi bi-plus-square-fill mr-2"></i> {{ __('Aggiungi visita') }}
                             </x-primary-button>
-                            <x-secondary-button class="mt-4" onclick="window.location.href='{{ route('showVisits') }}'">
-                                {{ __('Visualizza visite') }}
+                            <x-secondary-button class="mt-4 ml-3" onclick="window.location.href='{{ route('showVisits') }}'">
+                                <i class="bi bi-card-list mr-2"></i> {{ __('Visualizza visite') }}
                             </x-secondary-button>
                         </div>
                     </div>
