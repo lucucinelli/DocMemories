@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visit;
 use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class VisitController extends Controller
@@ -19,7 +20,7 @@ class VisitController extends Controller
     public function showVisits()
     {
         // Logic to list all visits
-        $visits = Visit::all(); // Assuming you have a Visit model
-        return view('visits.index', ['visits' => $visits]);
+        $visits = Auth::user()->visits; // Assuming you have a Visit model
+        return view('visits.find', ['visits' => $visits]);
     }
 }
