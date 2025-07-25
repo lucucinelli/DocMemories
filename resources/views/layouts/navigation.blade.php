@@ -58,16 +58,6 @@
                     </x-dropdown>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('showTherapies')" :active="request()->routeIs('showTherapies')">
-                        {{ __('Terapie') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('showMedicinals')" :active="request()->routeIs('showMedicinals')">
-                        {{ __('Medicine') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('newPatient')" :active="request()->routeIs('newPatient')">
                         {{ __('Statistiche') }}
                     </x-nav-link>
@@ -182,12 +172,6 @@
             </div>
         </div>
         <div class="pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-600">
-            <x-responsive-nav-link :href="route('showTherapies')" :active="request()->routeIs('showTherapies')">
-                {{ __('Terapie') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('showMedicinals')" :active="request()->routeIs('showMedicinals')">
-                {{ __('Medicine') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('newPatient')" :active="request()->routeIs('newPatient')">
                 {{ __('Statistiche') }}
             </x-responsive-nav-link>
