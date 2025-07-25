@@ -8,7 +8,7 @@
         </x-slot> 
         
         <div class="max-w-4xl mx-auto mt-10">
-            <form class="w-full sm:mx-6" method="POST" action="{{ route('searchPatient') }}"> 
+            <form class="w-full sm:mx-6" method="POST" action="{{ route('searchVisits') }}"> 
                 @csrf
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white 2-4"> Cerca </label>
                 <div class="relative">
@@ -103,6 +103,5 @@
                 @endforeach
             </div>
         </div>
-        
     </x-app-layout>
 </div>
