@@ -18,7 +18,15 @@
                     <!-- Medical record -->
                     <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                         <div>
-                            <!-- mettere l'include -->
+                            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                                {{ __('Visita') }}
+                            </h2>
+                            <x-primary-button class="mt-4" onclick="window.location.href='{{ route('newVisitForm'), $patient->id }}'">
+                                {{ __('Aggiungi visita') }}
+                            </x-primary-button>
+                            <x-secondary-button class="mt-4" onclick="window.location.href='{{ route('showVisits') }}'">
+                                {{ __('Visualizza visite') }}
+                            </x-secondary-button>
                         </div>
                     </div>
                     <!-- Deleting patient -->
