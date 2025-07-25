@@ -38,7 +38,22 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>
+
+    <div class="py-3">
+        @include('visits.partials.tests')
+    </div>
+
+    <div class="py-3">
+        @include('visits.partials.medicinals')
+    </div>
+
+    <div class="py-3">
+        @include('visits.partials.exams')
+    </div>
 </x-app-layout>
+
+

@@ -8,6 +8,12 @@ import { toggleEditMode } from './toggleEditMode';
 
 window.toggleEditMode = toggleEditMode;
 
+import './tests';
+import './medicinals';
+import './exams';
+
+
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
