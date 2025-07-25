@@ -54,4 +54,25 @@ class VisitController extends Controller
         $visit->delete();
         return redirect()->route('showVisits')->with('success', 'Visit deleted successfully.');
     }
+
+    public function searchVisits(Request $request)
+    {
+        $incomingData = $request->validate([
+            'search' => ['string', 'nullable', 'max:255'],
+        ]);
+        $searchTerm = $incomingData['search'];
+        if ($searchTerm === null || $searchTerm === '') {
+            return redirect()->route('showVisits'); // If search term is empty, redirect to show all visits
+        } else {
+            $searchTerm = trim($searchTerm); // Trim whitespace from the search term
+            $patients = Patient::whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
+            ->get();
+            $visits = Visit::whereIn('patient_id', $patients->pluck('id'))->get();
+
+        }
+        return view('visits.find', ['visits' => $visits]);
+    }
 }
