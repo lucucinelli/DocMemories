@@ -73,10 +73,10 @@
                                                     {{ $visit->reason }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
+                                                    <a href="{{ route('showVisit', $visit->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap ">
-                                                    <button type="button" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
+                                                    <button type="button" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-visit-deletion')">{{ __('Elimina') }}</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -87,6 +87,31 @@
                     </div>
                 </div>
             </div>    
+            {{-- Modal for visit deletion confirmation --}}
+            <x-modal name="confirm-visit-deletion" :show="$errors->visitDeletion->isNotEmpty()" focusable>
+                <form method="post" action="{{ route('deleteVisit', $visit->id) }}" class="p-6">
+                    @csrf
+                    @method('delete')
+
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        {{ __('Sei sicuro di voler eliminare questa visita?') }}
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __('Una volta che la visita è stata eliminata, tutte le sue risorse e i dati saranno permanentemente eliminati. Desideri procedere comunque?') }}
+                    </p>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Annulla') }}
+                        </x-secondary-button>
+
+                        <x-danger-button class="ms-3">
+                            {{ __('Cancella visita') }}
+                        </x-danger-button>
+                    </div>
+                </form>
+            </x-modal>
             {{-- Mobile view --}}
             <div class= "block sm:hidden  mt-2 space-y-6">
                 @foreach($visits as $visit)
@@ -95,8 +120,8 @@
                         <p>{{ __('Data: ') . $visit->visit_date->format('d/m/Y') }}</p>
                         <p>{{ __('Motivo: ') . $visit->reason }}</p>
                         <div class="mt-4 flex space-x-4">
-                            <a href="{{ route('showPatient', $visit->patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                            <button type="button" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
+                            <a href="{{ route('showVisit', $visit->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
+                            <button type="button" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-visit-deletion')">{{ __('Elimina') }}</button>
                         </div>
                     </div>
                 @endforeach
