@@ -19,7 +19,7 @@
                                 {{ __('Visita') }}
                             </h2>
                             <x-input-label for="visit_date" :value="__('Data')" />
-                            <x-text-input id="visit_date" class="block mt-1 w-full" type="date" name="visit_date" required autofocus />
+                            <x-text-input id="visit_date" class="block mt-1 w-full" type="date" name="visit_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required autofocus />
                             <x-input-error :messages="$errors->get('visit_date')" class="mt-2" />
                             <x-input-label for="reason" :value="__('Motivazione della visita')" />
                             <x-text-input id="reason" class="block mt-1 w-full" type="text" name="reason" required />
