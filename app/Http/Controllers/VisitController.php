@@ -33,6 +33,19 @@ class VisitController extends Controller
         return redirect()->route('showVisits');
     }
 
+    public function editVisit(Request $request, Visit $visit)
+    {
+        $incomingData = $request->validate([
+            'visit_date' => [ 'required', 'date'],
+            'reason' => [ 'required', 'string', 'max:255'],
+            'diagnosis' => [ 'required', 'string', 'max:255'],
+            'note' => [ 'nullable', 'string'],
+        ]);
+
+        $visit->update($incomingData);
+        return redirect()->route('showVisit', $visit->id)->with('status', __('visit-updated'));;
+    }
+
     public function showVisits()
     {
         // Logic to list all visits
