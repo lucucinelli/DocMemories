@@ -19,7 +19,7 @@
                                 {{ __('Visita') }}
                             </h2>
                             <x-input-label for="visit_date" :value="__('Data')" />
-                            <x-text-input id="visit_date" class="block mt-1 w-full" type="date" name="visit_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required autofocus />
+                            <x-text-input id="visit_date" class="block mt-1 w-full" type="date" name="visit_date" required autofocus />
                             <x-input-error :messages="$errors->get('visit_date')" class="mt-2" />
                             <x-input-label for="reason" :value="__('Motivazione della visita')" />
                             <x-text-input id="reason" class="block mt-1 w-full" type="text" name="reason" required />
@@ -28,7 +28,7 @@
                             <x-text-input id="diagnosis" class="block mt-1 w-full" type="text" name="diagnosis" required />
                             <x-input-error :messages="$errors->get('diagnosis')" class="mt-2" />
                             <x-input-label for="note" :value="__('Nota')" />
-                            <textarea id="note" class="block mt-1 w-full" name="note"></textarea>
+                            <textarea id="note" rows="4" name="note" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Scrivi la tua nota qui..."></textarea>
                             <x-input-error :messages="$errors->get('note')" class="mt-2" />
                             <div>
                                 <x-primary-button class="mt-4">
