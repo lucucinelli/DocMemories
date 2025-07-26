@@ -18,6 +18,9 @@
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('Visita') }}
                             </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __('Compila il modulo per creare una nuova visita.') }}
+                            </p>
                             <x-input-label for="visit_date" :value="__('Data')" />
                             <x-text-input id="visit_date" class="block mt-1 w-full" type="date" name="visit_date" required autofocus />
                             <x-input-error :messages="$errors->get('visit_date')" class="mt-2" />
