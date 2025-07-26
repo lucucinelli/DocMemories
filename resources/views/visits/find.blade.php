@@ -96,7 +96,7 @@
                     <p>{{ __('Motivo: ') . $visit->reason }}</p>
                     <div class="mt-4 flex space-x-4">
                         <a href="{{ route('showVisit', $visit->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                        <button type="button" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-visit-deletion')">{{ __('Elimina') }}</button>
+                        <a href="{{ route('showVisit', $visit->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                     </div>
                 </div>
             @endforeach

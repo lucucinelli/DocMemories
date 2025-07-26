@@ -50,7 +50,7 @@
                                         {{ __('Visualizza') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
-                                        {{ __('Elimina') }}
+                                        {{ __('Nuova visita') }}
                                     </th>
                                 </tr>
                             </thead>
@@ -85,8 +85,8 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <button type="button" class=" text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
+                                            <td class="flex justify-center px-6 py-4 whitespace-nowrap ">
+                                                <a href="{{ route('newVisitForm', $patient->id) }}" class="text-orange-600 hover:text-orange-800 dark:text-orange-600 dark:hover:text-orange-900"> <i class="bi bi-clipboard-plus-fill"> </i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -109,7 +109,7 @@
                         <p>{{ __('Email: ') . $patient->email }}</p>
                         <div class="mt-4 flex space-x-4">
                             <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                            <button type="button" class="text-red-600 hover:text-red-900 dark:text-red-600 dark:hover:text-red-900"  x-data=" { selectedPatient: {{ $patient->id }} }" x-on:click.prevent="$dispatch('open-modal', 'confirm-patient-deletion')">{{ __('Elimina') }}</button>
+                            <a href="{{ route('newVisitForm', $patient->id) }}" class="text-orange-600 hover:text-orange-800 dark:text-orange-600 dark:hover:text-orange-900">{{ __('Crea nuova visita') }}</a>
                         </div>
                     </div>
                 @endforeach
