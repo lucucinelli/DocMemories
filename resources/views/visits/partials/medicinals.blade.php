@@ -7,15 +7,15 @@
             </h2>
         </div>
         <div id="medicinals-list" class="mt-4 hidden">
-                <div class="p-4">
-                    <table class="w-full table-auto border border-gray-300">
-                        <thead>
+                <div class="relative overflow-x-auto p-4">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-600 dark:text-gray-400">
                             <tr class="bg-gray-100">
-                                <th class="border px-4 py-2">{{ __('Nome') }}</th>
-                                <th class="border px-4 py-2">{{ __('Qta') }}</th>
-                                <th class="border px-4 py-2">{{ __('Assunzione') }}</th>
-                                <th class="border px-4 py-2">{{ __('Periodo') }}</th>
-                                <th class="border px-4 py-2">{{ __('Rimuovi') }}</th>
+                                <th scope="col" class="px-6 py-3">{{ __('Nome') }}</th>
+                                <th scope="col" class="px-6 py-3">{{ __('Qta') }}</th>
+                                <th scope="col" class="px-6 py-3">{{ __('Assunzione') }}</th>
+                                <th scope="col" class="px-6 py-3">{{ __('Periodo') }}</th>
+                                <th scope="col" class="px-6 py-3">{{ __('Rimuovi') }}</th>
                             </tr>
                         </thead>
                         <tbody id="tabella-dinamica">
@@ -23,7 +23,7 @@
                     </table>
 
                     <div class="mt-4 text-center">
-                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" x-data="" x-on:click.prevent="$dispatch('open-modal', 'new-medicinal-row')">
+                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-200" x-data="" x-on:click.prevent="$dispatch('open-modal', 'new-medicinal-row')">
                             + Aggiungi Riga
                         </button>
                     </div>
