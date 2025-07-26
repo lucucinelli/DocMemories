@@ -7,28 +7,27 @@
             </h2>
         </div>
         <div id="medicinals-list" class="mt-4 hidden">
-                <div class="relative overflow-x-auto p-4">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-600 dark:text-gray-400">
-                            <tr class="bg-gray-100">
-                                <th scope="col" class="px-6 py-3">{{ __('Nome') }}</th>
-                                <th scope="col" class="px-6 py-3">{{ __('Qta') }}</th>
-                                <th scope="col" class="px-6 py-3">{{ __('Assunzione') }}</th>
-                                <th scope="col" class="px-6 py-3">{{ __('Periodo') }}</th>
-                                <th scope="col" class="px-6 py-3">{{ __('Rimuovi') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabella-dinamica">
-                        </tbody>
-                    </table>
-
-                    <div class="mt-4 text-center">
-                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600" x-data="" x-on:click.prevent="$dispatch('open-modal', 'new-medicinal-row')">
-                            + Aggiungi Riga
-                        </button>
-                    </div>
-                </div>
+            <div class="relative overflow-x-auto p-4 ">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-300">
+                    <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                        <tr class="bg-gray-100">
+                            <th scope="col" class="px-6 py-3">{{ __('Nome') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('Qta') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('Assunzione') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('Periodo') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('Rimuovi') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-base" id="tabella-dinamica">
+                    </tbody>
+                </table>
             </div>
+            <div class="my-4 text-center">
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600" x-data="" x-on:click.prevent="$dispatch('open-modal', 'new-medicinal-row')">
+                    + Aggiungi Riga
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 <x-modal name="new-medicinal-row" :show="$errors->userDeletion->isNotEmpty()" focusable>
