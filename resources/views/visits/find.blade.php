@@ -102,7 +102,8 @@
             @endforeach
         </div>
     </div>
-    <x-modal name="confirm-visit-deletion" :show="$errors->visitDeletion->isNotEmpty()" focusable>
+    @if (!$visits->isEmpty())
+        <x-modal name="confirm-visit-deletion" :show="$errors->visitDeletion->isNotEmpty()" focusable>
             <form method="post" action="{{ route('deleteVisit', $visit->id) }}" class="p-6">
                 @csrf
                 @method('delete')
@@ -126,6 +127,7 @@
                 </div>
             </form>
         </x-modal>
+    @endif
 </x-app-layout>
 
 @vite('resources/js/sortPatients-init.js')
