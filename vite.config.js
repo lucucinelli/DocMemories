@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/js/tests.js',
                 'resources/js/exams.js',
                 'resources/js/medicinals.js',
+                'resources/js/medicinals-dynamic-table.js',
             ],
             refresh: true,
         }),
