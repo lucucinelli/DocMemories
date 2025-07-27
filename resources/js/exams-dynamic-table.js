@@ -17,22 +17,22 @@ function newExamRow() {
     newRow.className = "bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
-            <p name="righe[${rowIndex}][date]">${exam_date}</p>
+            <input name="righe[${rowIndex}][date]" value="${exam_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <p  name="righe[${rowIndex}][type]">${exam_type}</p>
+            <input name="righe[${rowIndex}][type]" value="${exam_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <p  name="righe[${rowIndex}][result]">${exam_result}</p>
+            <input name="righe[${rowIndex}][result]" value="${exam_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <p  name="righe[${rowIndex}][note]">${exam_note}</p>
+            <input name="righe[${rowIndex}][note]" value="${exam_note}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="editRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> ✎ </button>
+            <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> ✎ </button>
         </td>
         <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="deleteRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
+            <button type="button" onclick="deleteExamRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -44,7 +44,38 @@ function newExamRow() {
     document.getElementById('modExams').dispatchEvent(new CustomEvent('close', { bubbles: true }));
 }
 
-window.deleteRow = function(button) {
+window.deleteExamRow = function(button) {
     button.closest('tr').remove();
 }
 
+// Function to edit a row
+window.editExamRow = function(button) {
+    // Abilita tutti gli input nella riga
+    button.closest('tr').querySelectorAll('input').forEach(input => {
+        input.disabled = false;
+    });
+
+    // Cambia l'icona ✎ in ✔
+    button.innerHTML = '<i class="bi bi-check"></i>';
+    button.classList.remove('text-blue-600', 'hover:text-blue-800');
+    button.classList.add('text-green-600', 'hover:text-green-800');
+
+    // Cambia la funzione onclick da editRow a saveRow
+    button.setAttribute('onclick', 'saveExamRow(this)');
+}
+
+// Function to save the edited row
+window.saveExamRow = function(button) {
+    // Disabilita tutti gli input nella riga
+    button.closest('tr').querySelectorAll('input').forEach(input => {
+        input.disabled = true;
+    });
+
+    // Ripristina l'icona ✔ in ✎
+    button.innerHTML = '<i class="bi bi-pencil"></i>';
+    button.classList.remove('text-green-600', 'hover:text-green-800');
+    button.classList.add('text-blue-600', 'hover:text-blue-800');
+
+    // Cambia di nuovo onclick da saveExamRow a editExamRow
+    button.setAttribute('onclick', 'editExamRow(this)');
+}
