@@ -1,5 +1,5 @@
 import './bootstrap';
-
+import './reloadPositionPatient.js';
 import { toggleEditMode } from './toggleEditMode';
 
 window.toggleEditMode = toggleEditMode;
