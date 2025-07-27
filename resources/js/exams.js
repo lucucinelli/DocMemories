@@ -6,6 +6,7 @@ const examsSection = document.getElementById('exams-list');
 
 toggleBtn.addEventListener('click', () => {
     examsSection.classList.toggle('hidden');
+    examsSection.scrollIntoView({ behavior: 'smooth' });
 
     if (toggleDownIcon.classList.contains('bi-caret-down-fill')) {
         toggleDownIcon.classList.replace('bi-caret-down-fill', 'bi-caret-up-fill');

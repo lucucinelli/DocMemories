@@ -10,8 +10,8 @@ class AllergyTest extends Model
     protected $fillable = [
         'test_date',
         'test_type',
-        'result',
-        'note',
+        'test_result',
+        'test_note',
         'visit_id',
     ];
 

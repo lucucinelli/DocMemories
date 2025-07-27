@@ -6,6 +6,7 @@ const testsSection = document.getElementById('tests-list');
 
 toggleBtn.addEventListener('click', () => {
     testsSection.classList.toggle('hidden');
+    testsSection.scrollIntoView({ behavior: 'smooth' });
 
     if (toggleDownIcon.classList.contains('bi-caret-down-fill')) {
         toggleDownIcon.classList.replace('bi-caret-down-fill', 'bi-caret-up-fill');

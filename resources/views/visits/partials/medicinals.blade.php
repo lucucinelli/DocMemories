@@ -8,17 +8,18 @@
         </div>
         <div id="medicinals-list" class="mt-4 hidden">
             <div class="relative overflow-x-auto p-4 ">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-300">
-                    <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-700">
+                    <thead class="text-base text-gray-700 uppercase dark:bg-gray-200 dark:text-gray-800">
                         <tr class="bg-gray-100">
                             <th scope="col" class="px-6 py-3">{{ __('Nome') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Qta') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Assunzione') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Periodo') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('Modifica') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Rimuovi') }}</th>
                         </tr>
                     </thead>
-                    <tbody class="text-base" id="tabella-dinamica">
+                    <tbody class="text-base" id="dynamic-table-medicinals">
                     </tbody>
                 </table>
             </div>
@@ -31,7 +32,7 @@
     </div>
 </div>
 <x-modal name="new-medicinal-row" :show="$errors->userDeletion->isNotEmpty()" focusable>
-    <div  class="p-6">
+    <div  class="p-6"  id="modMedicinals">
 
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Aggiungi Medicinale') }}
@@ -61,7 +62,7 @@
                 {{ __('Annulla') }}
             </x-secondary-button>
 
-            <x-primary-button class="ms-3" x-on:click="newRow()">
+            <x-primary-button class="ms-3" x-on:click="newMedicinalRow()">
                 {{ __('Aggiungi') }}
             </x-primary-button>
         </div>

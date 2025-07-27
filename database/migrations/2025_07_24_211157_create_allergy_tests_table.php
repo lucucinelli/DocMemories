@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('test_date');
             $table->string('test_type');
-            $table->string('result');
-            $table->string('note')->nullable();
+            $table->string('test_result');
+            $table->string('test_note')->nullable();
             $table->foreignId('visit_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

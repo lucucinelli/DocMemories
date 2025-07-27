@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->string('type');
+            $table->string('result')->default('in attesa');
             $table->text('note')->nullable();
             $table->foreignId('visit_id')->constrained()->onDelete('cascade');
             $table->timestamps();
