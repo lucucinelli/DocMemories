@@ -53,7 +53,7 @@
                 <x-text-input id="test_result" class="block mt-1 w-full" type="text" name="esito" required />
                 <x-input-error :messages="$errors->get('esito')" class="mt-2" />
                 <x-input-label for="nota" :value="__('Nota')" />
-                <x-text-input id="test_note" class="block mt-1 w-full" type="text" name="nota"/>  
+                <textarea id="test_note" rows="4" name="note" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 anagrafica" placeholder="Scrivi la tua nota qui..."> </textarea>
                 <x-input-error :messages="$errors->get('nota')" class="mt-2" />
             </div>
 
