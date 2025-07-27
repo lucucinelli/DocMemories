@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="border-2 border-red-500  bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <!-- Form for creating a new patient -->
                     <form method="POST" action="{{ route('editVisit', $visit->id) }}">
@@ -19,6 +19,9 @@
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('Visita') }}
                             </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __('Queste sono le informazioni della visita.') }}
+                            </p>
                             <x-input-label for="visit_date" :value="__('Data')" />
                             <x-text-input id="visit_date" class="block mt-1 w-full anagrafica" type="date" name="visit_date" :value="old('visit_date', $visit->visit_date->format('Y-m-d'))"  autofocus disabled/>
                             <x-input-error :messages="$errors->get('visit_date')" class="mt-2" />
