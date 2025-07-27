@@ -12,7 +12,6 @@ class Medicinal extends Model
         'dosage',
         'usage',
         'period',
-        'note',
         'visit_id',
     ];
 

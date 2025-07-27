@@ -17,19 +17,19 @@ function newExamRow() {
     newRow.className = "bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
-            <input name="righe[${rowIndex}][date]" value="${exam_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${rowIndex}][date]" type="date" value="${exam_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${rowIndex}][type]" value="${exam_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${rowIndex}][type]" value="${exam_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${rowIndex}][result]" value="${exam_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${rowIndex}][result]" value="${exam_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${rowIndex}][note]" value="${exam_note}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <textarea name="righe[${rowIndex}][note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>${exam_note}</textarea>
         </td>
         <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> ✎ </button>
+            <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class=" px-6 py-2 text-center ">
             <button type="button" onclick="deleteExamRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
@@ -54,9 +54,12 @@ window.editExamRow = function(button) {
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = false;
     });
+    button.closest('tr').querySelectorAll('textarea').forEach(textarea => {
+        textarea.disabled = false;      
+    });
 
     // Cambia l'icona ✎ in ✔
-    button.innerHTML = '<i class="bi bi-check"></i>';
+    button.innerHTML = '<i class="bi bi-check text-2xl"></i>';
     button.classList.remove('text-blue-600', 'hover:text-blue-800');
     button.classList.add('text-green-600', 'hover:text-green-800');
 
@@ -69,6 +72,9 @@ window.saveExamRow = function(button) {
     // Disabilita tutti gli input nella riga
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = true;
+    });
+    button.closest('tr').querySelectorAll('textarea').forEach(textarea => {
+        textarea.disabled = true;      
     });
 
     // Ripristina l'icona ✔ in ✎

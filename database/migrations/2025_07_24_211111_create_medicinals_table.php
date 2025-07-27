@@ -17,7 +17,6 @@ return new class extends Migration
             $table->float('dosage');
             $table->string('usage');
             $table->string('period');
-            $table->text('note')->nullable();
             $table->foreignId('visit_id')->constrained();
             $table->timestamps();
         });
