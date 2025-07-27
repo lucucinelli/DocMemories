@@ -22,19 +22,19 @@ function newTestRow() {
             <input name="righe[${rowIndex}][test_date]" value="${test_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${rowIndex}][test_type]" value="${test_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${rowIndex}][test_type]"  value="${test_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${rowIndex}][test_result]" value="${test_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${rowIndex}][test_result]"  value="${test_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${rowIndex}][test_note]" value="${test_note}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <textarea name="righe[${rowIndex}][test_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>${test_note}</textarea>
         </td>
         <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="editRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
+            <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="deleteRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
+            <button type="button" onclick="deleteTestRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -46,31 +46,37 @@ function newTestRow() {
     document.getElementById('modTests').dispatchEvent(new CustomEvent('close', { bubbles: true }));
 }
 
-window.deleteRow = function(button) {
+window.deleteTestRow = function(button) {
     button.closest('tr').remove();
 }
 
 // Function to edit a row
-window.editRow = function(button) {
+window.editTestRow = function(button) {
     // Abilita tutti gli input nella riga
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = false;
     });
+    button.closest('tr').querySelectorAll('textarea').forEach(textarea => {
+        textarea.disabled = false;      
+    });
 
     // Cambia l'icona ✎ in ✔
-    button.innerHTML = '<i class="bi bi-check"></i>';
+    button.innerHTML = '<i class="bi bi-check  text-2xl"></i>';
     button.classList.remove('text-blue-600', 'hover:text-blue-800');
     button.classList.add('text-green-600', 'hover:text-green-800');
 
     // Cambia la funzione onclick da editRow a saveRow
-    button.setAttribute('onclick', 'saveRow(this)');
+    button.setAttribute('onclick', 'saveTestRow(this)');
 }
 
 // Function to save the edited row
-window.saveRow = function(button) {
+window.saveTestRow = function(button) {
     // Disabilita tutti gli input nella riga
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = true;
+    });
+    button.closest('tr').querySelectorAll('textarea').forEach(textarea => {
+        textarea.disabled = true;      
     });
 
     // Ripristina l'icona ✔ in ✎
@@ -79,6 +85,6 @@ window.saveRow = function(button) {
     button.classList.add('text-blue-600', 'hover:text-blue-800');
 
     // Cambia di nuovo onclick da saveRow a editRow
-    button.setAttribute('onclick', 'editRow(this)');
+    button.setAttribute('onclick', 'editTestRow(this)');
 }
 
