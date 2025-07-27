@@ -1,13 +1,21 @@
 console.log("Tests Dynamic Table Script Loaded");
 let rowIndex = 1;
 
-window.newTestRow = function() {
+document.getElementById('test-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            newTestRow();
+            console.log('nessuna richiesta inviata.');
+});
+
+
+function newTestRow() {
     const tbody = document.getElementById('dynamic-table-tests');
     const newRow = document.createElement('tr');
     const test_date = document.getElementById('test_date').value;
     const test_type = document.getElementById('test_type').value;
     const test_result = document.getElementById('test_result').value;
     const test_note = document.getElementById('test_note').value;
+   
     newRow.className = "bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
@@ -31,7 +39,7 @@ window.newTestRow = function() {
     `;
     tbody.appendChild(newRow);
     rowIndex++;
-    document.getElementById('test_date').value;
+    document.getElementById('test_date').value= "";
     document.getElementById('test_type').value = "";
     document.getElementById('test_result').value = "";
     document.getElementById('test_note').value = "";
@@ -41,4 +49,6 @@ window.newTestRow = function() {
 window.deleteRow = function(button) {
     button.closest('tr').remove();
 }
+
+
 

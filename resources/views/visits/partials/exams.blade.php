@@ -33,39 +33,40 @@
 </div>
 <x-modal name="new-exam-row" :show="$errors->userDeletion->isNotEmpty()" focusable>
     <div  class="p-6"  id="modExams">
+        <form method="POST" id="exam-form">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Aggiungi Esame') }}
+            </h2>
 
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Aggiungi Esame') }}
-        </h2>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {{ __('L\'esame verrà aggiunto alla lista.') }}
+            </p>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('L\'esame verrà aggiunto alla lista.') }}
-        </p>
+            <div class="mt-4">
+                <x-input-label for="data" :value="__('Data')" />
+                <x-text-input id="exam_date" class="block mt-1 w-full" type="date" name="data" required />
+                <x-input-error :messages="$errors->get('data')" class="mt-2" />
+                <x-input-label for="tipo" :value="__('Tipo')" />
+                <x-text-input id="exam_type" class="block mt-1 w-full" type="text" name="tipo" required />
+                <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
+                <x-input-label for="esito" :value="__('Esito')" />
+                <x-text-input id="exam_result" class="block mt-1 w-full" type="text" name="esito" required />
+                <x-input-error :messages="$errors->get('esito')" class="mt-2" />
+                <x-input-label for="nota" :value="__('Nota')" />
+                <x-text-input id="exam_note" class="block mt-1 w-full" type="text" name="nota" />  
+                <x-input-error :messages="$errors->get('nota')" class="mt-2" />
+            </div>
 
-        <div class="mt-4">
-            <x-input-label for="data" :value="__('Data')" />
-            <x-text-input id="exam_date" class="block mt-1 w-full" type="date" name="data" required />
-            <x-input-error :messages="$errors->get('data')" class="mt-2" />
-            <x-input-label for="tipo" :value="__('Tipo')" />
-            <x-text-input id="exam_type" class="block mt-1 w-full" type="text" name="tipo" required />
-            <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
-            <x-input-label for="esito" :value="__('Esito')" />
-            <x-text-input id="exam_result" class="block mt-1 w-full" type="text" name="esito" required />
-            <x-input-error :messages="$errors->get('esito')" class="mt-2" />
-            <x-input-label for="nota" :value="__('Nota')" />
-            <x-text-input id="exam_note" class="block mt-1 w-full" type="text" name="nota" required />  
-            <x-input-error :messages="$errors->get('nota')" class="mt-2" />
-        </div>
+            <div class="mt-6 flex justify-end">
+                <x-secondary-button x-on:click="$dispatch('close')" id="cancel-button">
+                    {{ __('Annulla') }}
+                </x-secondary-button>
 
-        <div class="mt-6 flex justify-end">
-            <x-secondary-button x-on:click="$dispatch('close')" id="cancel-button">
-                {{ __('Annulla') }}
-            </x-secondary-button>
-
-            <x-primary-button class="ms-3" x-on:click="newExamRow()">
-                {{ __('Aggiungi') }}
-            </x-primary-button>
-        </div>
+                <x-primary-button class="ms-3">
+                    {{ __('Aggiungi') }}
+                </x-primary-button>
+            </div>
+        </form>
     </div>
 </x-modal>
 

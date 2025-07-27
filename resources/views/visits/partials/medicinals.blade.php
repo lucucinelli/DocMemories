@@ -33,39 +33,40 @@
 </div>
 <x-modal name="new-medicinal-row" :show="$errors->userDeletion->isNotEmpty()" focusable>
     <div  class="p-6"  id="modMedicinals">
+        <form method="POST" id="medicinal-form">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Aggiungi Medicinale') }}
+            </h2>
 
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Aggiungi Medicinale') }}
-        </h2>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {{ __('Il medicinale verrà aggiunto alla lista.') }}
+            </p>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Il medicinale verrà aggiunto alla lista.') }}
-        </p>
+            <div class="mt-4">
+                <x-input-label for="nome" :value="__('Nome')" />
+                <x-text-input id="medicinal_name" class="block mt-1 w-full" type="text" name="nome" required />
+                <x-input-error :messages="$errors->get('nome')" class="mt-2" />
+                <x-input-label for="qta" :value="__('Quantità')" />
+                <x-text-input id="medicinal_quantity" class="block mt-1 w-full" type="text" name="qta" required />
+                <x-input-error :messages="$errors->get('qta')" class="mt-2" />
+                <x-input-label for="assunzione" :value="__('Assunzione')" />
+                <x-text-input id="medicinal_usage" class="block mt-1 w-full" type="text" name="assunzione" required />
+                <x-input-error :messages="$errors->get('assunzione')" class="mt-2" />
+                <x-input-label for="periodo" :value="__('Periodo')" />
+                <x-text-input id="medicinal_period" class="block mt-1 w-full" type="text" name="periodo" required />  
+                <x-input-error :messages="$errors->get('periodo')" class="mt-2" />
+            </div>
 
-        <div class="mt-4">
-            <x-input-label for="nome" :value="__('Nome')" />
-            <x-text-input id="medicinal_name" class="block mt-1 w-full" type="text" name="nome" required />
-            <x-input-error :messages="$errors->get('nome')" class="mt-2" />
-            <x-input-label for="qta" :value="__('Quantità')" />
-            <x-text-input id="medicinal_quantity" class="block mt-1 w-full" type="text" name="qta" required />
-            <x-input-error :messages="$errors->get('qta')" class="mt-2" />
-            <x-input-label for="assunzione" :value="__('Assunzione')" />
-            <x-text-input id="medicinal_usage" class="block mt-1 w-full" type="text" name="assunzione" required />
-            <x-input-error :messages="$errors->get('assunzione')" class="mt-2" />
-            <x-input-label for="periodo" :value="__('Periodo')" />
-            <x-text-input id="medicinal_period" class="block mt-1 w-full" type="text" name="periodo" required />  
-            <x-input-error :messages="$errors->get('periodo')" class="mt-2" />
-        </div>
+            <div class="mt-6 flex justify-end">
+                <x-secondary-button x-on:click="$dispatch('close')" id="cancel-button">
+                    {{ __('Annulla') }}
+                </x-secondary-button>
 
-        <div class="mt-6 flex justify-end">
-            <x-secondary-button x-on:click="$dispatch('close')" id="cancel-button">
-                {{ __('Annulla') }}
-            </x-secondary-button>
-
-            <x-primary-button class="ms-3" x-on:click="newMedicinalRow()">
-                {{ __('Aggiungi') }}
-            </x-primary-button>
-        </div>
+                <x-primary-button class="ms-3">
+                    {{ __('Aggiungi') }}
+                </x-primary-button>
+            </div>
+        </form>
     </div>
 </x-modal>
 

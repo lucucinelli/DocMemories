@@ -1,7 +1,13 @@
 console.log("Medicinals Dynamic Table Script Loaded");
 let rowIndex = 1;
 
-window.newMedicinalRow = function() {
+document.getElementById('medicinal-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            newMedicinalRow();
+            console.log('nessuna richiesta inviata.');
+});
+
+function newMedicinalRow() {
     const tbody = document.getElementById('dynamic-table-medicinals');
     const newRow = document.createElement('tr');
     const med_name = document.getElementById('medicinal_name').value;

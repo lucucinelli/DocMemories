@@ -1,7 +1,13 @@
 console.log("Exams Dynamic Table Script Loaded");
 let rowIndex = 1;
 
-window.newExamRow = function() {
+document.getElementById('exam-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            newExamRow();
+            console.log('nessuna richiesta inviata.');
+});
+
+function newExamRow() {
     const tbody = document.getElementById('dynamic-table-exams');
     const newRow = document.createElement('tr');
     const exam_date = document.getElementById('exam_date').value;
