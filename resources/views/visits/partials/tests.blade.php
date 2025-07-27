@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+<div class="max-w-8xl mx-auto sm:px-6 lg:px-8" >
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700" id = "tests-toggle">
             <h2 class="flex justify-between items-center text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -69,66 +69,5 @@
         </form>
     </div>
 </x-modal>
-<style>
-  .form-table {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 800px;
-    margin: auto;
-  }
-
-  .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .form-field {
-    flex: 1;
-    min-width: 150px;
-  }
-
-  .form-field.large {
-    flex: 2;
-    min-width: 300px;
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 1rem;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  button {
-    padding: 8px 12px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-</style>
-
-<div class="form-table">
-  <div class="form-row">
-    <div class="form-field"><input type="text" placeholder="Campo 1"></div>
-    <div class="form-field"><input type="text" placeholder="Campo 2"></div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-field"><input type="text" placeholder="Campo 3"></div>
-    <div class="form-field large"><textarea placeholder="Campo 4 (grande)"></textarea></div>
-  </div>
-
-  <div class="form-row form-actions">
-    <button>Salva</button>
-    <button>Cancella</button>
-  </div>
-</div>
-
 
 @vite('resources/js/tests-dynamic-table.js')

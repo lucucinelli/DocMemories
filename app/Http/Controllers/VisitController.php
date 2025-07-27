@@ -20,7 +20,7 @@ class VisitController extends Controller
         $incomingData = $request->validate([
             'visit_date' => [ 'required', 'date'],
             'reason' => [ 'required', 'string', 'max:255'],
-            'diagnosis' => [ 'required', 'string', 'max:255'],
+            'diagnosis' => ['nullable', 'string', 'max:255'],
             'note' => [ 'nullable', 'string'],
         ]);
 
@@ -30,7 +30,7 @@ class VisitController extends Controller
         $visit->user_id = Auth::id();
         $visit->save();
 
-        return redirect()->route('showVisits');
+        return redirect()->route('showVisit', $visit->id);
     }
 
     public function editVisit(Request $request, Visit $visit)
@@ -38,7 +38,7 @@ class VisitController extends Controller
         $incomingData = $request->validate([
             'visit_date' => [ 'required', 'date'],
             'reason' => [ 'required', 'string', 'max:255'],
-            'diagnosis' => [ 'required', 'string', 'max:255'],
+            'diagnosis' => [ 'nullable', 'string', 'max:255'],
             'note' => [ 'nullable', 'string'],
         ]);
 
