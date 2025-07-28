@@ -5,6 +5,7 @@ document.getElementById('medicinal-form').addEventListener('submit', function(e)
             newMedicinalRow();
             console.log('nessuna richiesta inviata.');
 });
+
 // Function to add a new medicinal row and db
 function newMedicinalRow() {
     const tbody = document.getElementById('dynamic-table-medicinals');
@@ -98,17 +99,17 @@ window.deleteMedicinalRow = function(button) {
 
 // Function to edit a row
 window.editMedicinalRow = function(button) {
-    // Abilita tutti gli input nella riga
+    // Enable all inputs in the row
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = false;
     });
 
-    // Cambia l'icona ✎ in ✔
+    // Change the icon ✎ in ✔
     button.innerHTML = '<i class="bi bi-check text-2xl"></i>';
     button.classList.remove('text-blue-600', 'hover:text-blue-800');
     button.classList.add('text-green-600', 'hover:text-green-800');
 
-    // Cambia la funzione onclick da editRow a saveRow
+    // Change the onclick function from editRow to saveRow
     button.setAttribute('onclick', 'saveMedicinalRow(this)');
 }
 

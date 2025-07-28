@@ -31,16 +31,16 @@ class MedicinalController extends Controller
     public function editMedicinal(Request $request, Medicinal $medicinal)
     {
         $incomingData = $request->validate([
-            'new_name' => ['required', 'string', 'max:255'],
-            'new_quantity' => ['nullable', 'string'],
-            'new_usage' => ['required', 'string', 'max:255'],
-            'new_period' => ['required', 'string', 'max:255'],
+            'new_med_name' => ['required', 'string', 'max:255'],
+            'new_med_quantity' => ['nullable', 'string'],
+            'new_med_usage' => ['required', 'string', 'max:255'],
+            'new_med_period' => ['required', 'string', 'max:255'],
         ]);
 
-        $medicinal->name = $incomingData['new_name'];
-        $medicinal->quantity = $incomingData['new_quantity'];
-        $medicinal->usage = $incomingData['new_usage'];
-        $medicinal->period = $incomingData['new_period'];
+        $medicinal->name = $incomingData['new_med_name'];
+        $medicinal->quantity = $incomingData['new_med_quantity'];
+        $medicinal->usage = $incomingData['new_med_usage'];
+        $medicinal->period = $incomingData['new_med_period'];
         $medicinal->save();
 
         return response()->json(['message' => 'Medicinal updated successfully', 'medicinal' => $medicinal], 200);
