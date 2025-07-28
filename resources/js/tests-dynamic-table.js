@@ -70,7 +70,6 @@ function appendTestRow(test_id, test_date, test_type, test_result, test_note, tb
             <button type="button" onclick="deleteTestRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
         </td>
     `;
-    
     tbody.appendChild(newRow);
     document.getElementById('test_date').value = "";
     document.getElementById('test_type').value = "";
