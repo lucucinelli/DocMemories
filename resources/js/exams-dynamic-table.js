@@ -57,13 +57,13 @@ function appendExamRow(exam_id, exam_date, exam_type, exam_result, exam_note, tb
             <input name="righe[${exam_id}][exam_date]" type="date" value="${exam_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${exam_id}][exam_type]" value="${exam_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${exam_id}][exam_type]" value="${exam_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${exam_id}][exam_result]" value="${exam_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="righe[${exam_id}][exam_result]" value="${exam_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" disabled>
         </td>
         <td class="px-6 py-4 dark:text-gray-500">
-            <textarea name="righe[${exam_id}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>${exam_note}</textarea>
+            <textarea name="righe[${exam_id}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" disabled>${exam_note}</textarea>
         </td>
         <td class=" px-6 py-2 text-center ">
             <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>

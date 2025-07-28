@@ -33,7 +33,7 @@
                                             <input name="righe[{{ $exam->id }}][exam_result]"  value="{{ $exam->result }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" disabled>
                                         </td>
                                         <td class="px-6 py-4 dark:text-gray-500">
-                                            <textarea name="righe[{{ $exam->id }}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>{{ $exam->note }}</textarea>
+                                            <textarea name="righe[{{ $exam->id }}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>{{ $exam->note }}</textarea>
                                         </td>
                                         <td class=" px-6 py-2 text-center ">
                                             <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 dark:text-blue-300 font-bold"> <i class="bi bi-pencil"></i> </button>
