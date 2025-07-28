@@ -78,6 +78,7 @@ function appendMedicinalRow(medicinal_id, med_name, med_quantity, med_usage, med
 
 // Function to delete a row
 window.deleteMedicinalRow = function(button) {
+    console.log('delete medicinal row');
     const medicinal_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
     fetch(`/deleteMedicinal/${medicinal_id}`, {
         method: 'DELETE',
