@@ -20,6 +20,30 @@
                             </tr>
                         </thead>
                         <tbody class="text-base" id="dynamic-table-exams">
+                            @if (!$exams->isEmpty())
+                                @foreach ($exams as $exam)
+                                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
+                                            <input name="righe[{{ $exam->id }}][exam_date]" type="date" value="{{ $exam->date }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+                                        </td>
+                                        <td class="px-6 py-4 dark:text-gray-500">
+                                            <input name="righe[{{ $exam->id }}][exam_type]"  value="{{ $exam->type }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>
+                                        </td>
+                                        <td class="px-6 py-4 dark:text-gray-500">
+                                            <input name="righe[{{ $exam->id }}][exam_result]"  value="{{ $exam->result }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" disabled>
+                                        </td>
+                                        <td class="px-6 py-4 dark:text-gray-500">
+                                            <textarea name="righe[{{ $exam->id }}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>{{ $exam->note }}</textarea>
+                                        </td>
+                                        <td class=" px-6 py-2 text-center ">
+                                            <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
+                                        </td>
+                                        <td class=" px-6 py-2 text-center ">
+                                            <button type="button" onclick="deleteExamRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
