@@ -22,7 +22,7 @@
                         <tbody class="text-base" id="dynamic-table-exams">
                             @if (!$exams->isEmpty())
                                 @foreach ($exams as $exam)
-                                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                                    <tr class="bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200   ">
                                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
                                             <input name="righe[{{ $exam->id }}][exam_date]" type="date" value="{{ $exam->date }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                         </td>
@@ -36,10 +36,10 @@
                                             <textarea name="righe[{{ $exam->id }}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>{{ $exam->note }}</textarea>
                                         </td>
                                         <td class=" px-6 py-2 text-center ">
-                                            <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
+                                            <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 dark:text-blue-300 font-bold"> <i class="bi bi-pencil"></i> </button>
                                         </td>
                                         <td class=" px-6 py-2 text-center ">
-                                            <button type="button" onclick="deleteExamRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
+                                            <button type="button" onclick="deleteExamRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -74,7 +74,7 @@
                 <x-text-input id="exam_type" class="block mt-1 w-full" type="text" name="tipo" required />
                 <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
                 <x-input-label for="esito" :value="__('Esito')" />
-                <x-text-input id="exam_result" class="block mt-1 w-full" type="text" name="esito" required />
+                <x-text-input id="exam_result" class="block mt-1 w-full" type="text" name="esito" />
                 <x-input-error :messages="$errors->get('esito')" class="mt-2" />
                 <x-input-label for="nota" :value="__('Nota')" />
                 <x-text-input id="exam_note" class="block mt-1 w-full" type="text" name="nota" />  

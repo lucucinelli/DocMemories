@@ -36,10 +36,10 @@
                                         <input name="righe[{{$medicinal->id}}][med_period]" value="{{$medicinal->period}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class=" px-6 py-2 text-center ">
-                                        <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
+                                        <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
                                     </td>
                                     <td class=" px-6 py-2 text-center ">
-                                        <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
+                                        <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
                                     </td>
                                 </tr>
                             
