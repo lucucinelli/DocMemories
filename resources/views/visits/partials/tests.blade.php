@@ -22,7 +22,7 @@
                     <tbody class="text-base" id="dynamic-table-tests">
                         @if (!$tests->isEmpty())
                             @foreach ($tests as $test)
-                                <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                                <tr class="bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200">
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
                                         <input name="righe[{{ $test->id }}][test_date]" type="date" value="{{ $test->test_date }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>

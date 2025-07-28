@@ -5,7 +5,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\MedicinalController;
 
 // welcome page
 
@@ -50,16 +51,19 @@ Route::middleware('auth')->group(function () {
 });
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
-    Route::get('/medicinals', [MedicineController::class, 'showMedicinals'])->name('showMedicinals'); // List all medicinals
-    Route::get('/showMedicinal/{medicinal}', [MedicineController::class, 'showMedicinal'])->name('showMedicinal'); // Show information about a specific medicinal
-    Route::post('/createMedicinal', [MedicineController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
-    Route::put('/editMedicinal/{medicinal}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
-    Route::delete('/deleteMedicinal/{medicina}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
+    Route::post('/createMedicinal', [MedicinalController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
+    Route::put('/editMedicinal/{medicinal}', [MedicinalController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
+    Route::delete('/deleteMedicinal/{medicina}', [MedicinalController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
 });
 /**--------------------------------------------------------- TESTS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::post('/createTest/{visit}', [TestController::class, 'newTest'])->name('newTest'); // Create a new test
     Route::put('/editTest/{test}', [TestController::class, 'editTest'])->name('editTest'); // Edit an existing test
     Route::delete('/deleteTest/{test}', [TestController::class, 'deleteTest'])->name('deleteTest'); // Delete an existing test
-
+});
+/**--------------------------------------------------------- EXAMS CRUD -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/createExam/{visit}', [ExamController::class, 'newExam'])->name('newExam'); // Create a new exam
+    Route::put('/editExam/{exam}', [ExamController::class, 'editExam'])->name('editExam'); // Edit an existing exam
+    Route::delete('/deleteExam/{exam}', [ExamController::class, 'deleteExam'])->name('deleteExam'); // Delete an existing exam
 });

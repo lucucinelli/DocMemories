@@ -9,7 +9,7 @@ class Medicinal extends Model
     //
     protected $fillable = [
         'name',
-        'dosage',
+        'quantity',
         'usage',
         'period',
         'visit_id',
