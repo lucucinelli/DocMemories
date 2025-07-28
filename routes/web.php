@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TherapyController;
 use App\Http\Controllers\MedicineController;
 
 // welcome page
@@ -48,14 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/newVisit/{patient}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
     Route::post('/searchVisits', [VisitController::class, 'searchVisits'])->name('searchVisits'); // Search for visits
 });
-
-/**--------------------------------------------------------- THERAPIES CRUD-------------------------------------------------------------- */
-Route::middleware('auth')->group(function () {
-    Route::get('/therapies', [TherapyController::class, 'showTherapies'])->name('showTherapies'); // List all therapies
-    Route::get('/showTherapy/{therapy}', [TherapyController::class, 'showTherapy'])->name('showTherapy'); // Show information about a specific therapy
-});
-
-
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::get('/medicinals', [MedicineController::class, 'showMedicinals'])->name('showMedicinals'); // List all medicinals
@@ -63,4 +55,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/createMedicinal', [MedicineController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
     Route::put('/editMedicinal/{medicinal}', [MedicineController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
     Route::delete('/deleteMedicinal/{medicina}', [MedicineController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
+});
+/**--------------------------------------------------------- TESTS CRUD -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/createTest/{visit}', [TestController::class, 'newTest'])->name('newTest'); // Create a new test
+    Route::put('/editTest/{test}', [TestController::class, 'editTest'])->name('editTest'); // Edit an existing test
+    Route::delete('/deleteTest/{test}', [TestController::class, 'deleteTest'])->name('deleteTest'); // Delete an existing test
+
 });
