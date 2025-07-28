@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
 });
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
-    Route::post('/createMedicinal', [MedicinalController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
+    Route::post('/createMedicinal/{visit}', [MedicinalController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
     Route::put('/editMedicinal/{medicinal}', [MedicinalController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
     Route::delete('/deleteMedicinal/{medicina}', [MedicinalController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
 });
