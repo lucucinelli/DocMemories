@@ -21,7 +21,7 @@
                     </thead>
                     <tbody class="text-base" id="dynamic-table-medicinals">
                         @if($medicinals->isNotEmpty())
-                            @foreach($medicinals as $medicinal){
+                            @foreach($medicinals as $medicinal)
                                 <tr class="bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200">
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
                                         <input name="righe[{{$medicinal->id}}][med_name]" value="{{$medicinal->name}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
@@ -42,7 +42,7 @@
                                         <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 font-bold">✕</button>
                                     </td>
                                 </tr>
-                            }
+                            
                             @endforeach
                         @endif
                     </tbody>
