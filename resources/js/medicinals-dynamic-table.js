@@ -37,7 +37,7 @@ function newMedicinalRow() {
     .then(data => {
         console.log('Server response:', data);
         // Only if the response is ok, then add the row to the table:
-        appendTestRow(data.id, med_name, med_quantity, med_usage, med_period, tbody, newRow);
+        appendMedicinalRow(data.id, med_name, med_quantity, med_usage, med_period, tbody, newRow);
     })
     .catch(error => {
         console.error('Error:', error);
