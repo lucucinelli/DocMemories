@@ -24,16 +24,16 @@
                             @foreach($medicinals as $medicinal){
                                 <tr class="bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200">
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
-                                        <input name="righe[{{$medicinal->id}}][name]" value="{{$medicinal->name}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+                                        <input name="righe[{{$medicinal->id}}][med_name]" value="{{$medicinal->name}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class="px-6 py-4 dark:text-gray-500">
-                                        <input name="righe[{{$medicinal->id}}][quantity]" value="{{$medicinal->quantity}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+                                        <input name="righe[{{$medicinal->id}}][med_quantity]" value="{{$medicinal->quantity}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class="px-6 py-4 dark:text-gray-500">
-                                        <input name="righe[{{$medicinal->id}}][usage]" value="{{$medicinal->usage}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+                                        <input name="righe[{{$medicinal->id}}][med_usage]" value="{{$medicinal->usage}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class="px-6 py-4 dark:text-gray-500">
-                                        <input name="righe[{{$medicinal->id}}][period]" value="{{$medicinal->period}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+                                        <input name="righe[{{$medicinal->id}}][med_period]" value="{{$medicinal->period}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class=" px-6 py-2 text-center ">
                                         <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold"> <i class="bi bi-pencil"></i> </button>
