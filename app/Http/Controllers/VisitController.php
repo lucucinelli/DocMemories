@@ -58,7 +58,9 @@ class VisitController extends Controller
         // Logic to show a specific visit
         $visit = Visit::findOrFail($visitId);
         $tests = $visit->allergyTests()->get(); // Assuming you have a relationship defined in the Visit model
-        return view('visits.show', ['visit' => $visit, 'tests' => $tests]);
+        $exams = $visit->exams()->get(); // Assuming you have a relationship defined in the Visit model
+        $medicinals = $visit->medicinals()->get(); // Assuming you have a relationship defined in the Visit model
+        return view('visits.show', ['visit' => $visit, 'tests' => $tests, 'exams' => $exams, 'medicinals' => $medicinals]);
     }
 
     public function deleteVisit($visitId)
