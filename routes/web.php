@@ -6,7 +6,9 @@ use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExamController;
-use App\Http\Controllers\MedicinalController;
+use App\Http\Controllers\MedicinalController; 
+use App\Http\Controllers\HistoryController;
+
 
 // welcome page
 
@@ -66,4 +68,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/createExam/{visit}', [ExamController::class, 'newExam'])->name('newExam'); // Create a new exam
     Route::put('/editExam/{exam}', [ExamController::class, 'editExam'])->name('editExam'); // Edit an existing exam
     Route::delete('/deleteExam/{exam}', [ExamController::class, 'deleteExam'])->name('deleteExam'); // Delete an existing exam
+});
+/**--------------------------------------------------------- HISTORIES CRUD -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/createHistory/{visit}', [HistoryController::class, 'newHistory'])->name('newHistory'); // Create a new history
+    Route::put('/editHistory/{history}', [HistoryController::class, 'editHistory'])->name('editHistory'); // Edit an existing history
+    Route::delete('/deleteHistory/{history}', [HistoryController::class, 'deleteHistory'])->name('deleteHistory'); // Delete an existing history
+
+    Route::get('/showHistory/{patient}', [HistoryController::class, 'show'])->name('showHistory'); // Show information about a specific history
 });

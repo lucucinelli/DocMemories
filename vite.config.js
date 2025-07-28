@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/sortPatients-init.js',
                 'resources/js/tests.js',
                 'resources/js/exams.js',
+                'resources/js/history.js',
                 'resources/js/medicinals.js',
                 'resources/js/medicinals-dynamic-table.js',
                 'resources/js/exams-dynamic-table.js',
