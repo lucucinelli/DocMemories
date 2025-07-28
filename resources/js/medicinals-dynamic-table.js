@@ -1,5 +1,4 @@
 console.log("Medicinals Dynamic Table Script Loaded");
-let rowIndex = 1;
 
 document.getElementById('medicinal-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -16,7 +15,7 @@ function newMedicinalRow() {
     const med_period = document.getElementById('medicinal_period').value;
     const pathSegments = window.location.pathname.split('/'); // URL
     const visit_id = pathSegments[2]; 
-    fetch(`/createTest/${visit_id}`, {
+    fetch(`/createMedicinal/${visit_id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -69,13 +68,14 @@ function appendMedicinalRow(medicinal_id, med_name, med_quantity, med_usage, med
         </td>
     `;
     tbody.appendChild(newRow);
-    rowIndex++;
     document.getElementById('medicinal_name').value = "";
     document.getElementById('medicinal_quantity').value = "";
     document.getElementById('medicinal_usage').value = "";
     document.getElementById('medicinal_period').value = "";
     document.getElementById('modMedicinals').dispatchEvent(new CustomEvent('close', { bubbles: true }));
 }
+
+
 // Function to delete a row
 window.deleteMedicinalRow = function(button) {
     const medicinal_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
