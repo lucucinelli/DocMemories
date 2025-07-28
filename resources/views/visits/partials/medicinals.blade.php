@@ -72,7 +72,7 @@
                 <x-text-input id="medicinal_name" class="block mt-1 w-full" type="text" name="nome" required />
                 <x-input-error :messages="$errors->get('nome')" class="mt-2" />
                 <x-input-label for="qta" :value="__('Quantità')" />
-                <x-text-input id="medicinal_quantity" class="block mt-1 w-full" type="text" name="qta" required />
+                <x-text-input id="medicinal_quantity" class="block mt-1 w-full" type="text" name="qta" />
                 <x-input-error :messages="$errors->get('qta')" class="mt-2" />
                 <x-input-label for="assunzione" :value="__('Assunzione')" />
                 <x-text-input id="medicinal_usage" class="block mt-1 w-full" type="text" name="assunzione" required />

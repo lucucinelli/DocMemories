@@ -12,7 +12,7 @@ class MedicinalController extends Controller
     {
         $incomingData = $request->validate([
             'med_name' => ['required', 'string', 'max:255'],
-            'med_quantity' => ['required', 'string'],
+            'med_quantity' => ['nullable', 'string'],
             'med_usage' => ['required', 'string', 'max:255'],
             'med_period' => ['required', 'string', 'max:255'],
         ]);
@@ -32,7 +32,7 @@ class MedicinalController extends Controller
     {
         $incomingData = $request->validate([
             'new_name' => ['required', 'string', 'max:255'],
-            'new_quantity' => ['required', 'string'],
+            'new_quantity' => ['nullable', 'string'],
             'new_usage' => ['required', 'string', 'max:255'],
             'new_period' => ['required', 'string', 'max:255'],
         ]);
