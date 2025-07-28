@@ -14,6 +14,8 @@ function newMedicinalRow() {
     const med_quantity = document.getElementById('medicinal_quantity').value;
     const med_usage = document.getElementById('medicinal_usage').value;
     const med_period = document.getElementById('medicinal_period').value;
+    const pathSegments = window.location.pathname.split('/'); // URL
+    const visit_id = pathSegments[2]; 
     fetch(`/createTest/${visit_id}`, {
         method: 'POST',
         headers: {
