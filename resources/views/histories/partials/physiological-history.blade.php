@@ -36,6 +36,9 @@
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('Ciclo mestruale') }}
                             </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __("Altre informazioni") }}
+                            </p>
                             <x-input-label for="period" :value="__('Inizio ciclo')" />
                             <x-text-input id="period" class="block mt-1 w-full" type="text" name="period" value="{{ old('period') }}" />
                             <x-input-error :messages="$errors->get('period')" class="mt-2" />

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Anamnesi di :patient', ['patient' => $patient->name]) }}
+            {{ __('Anamnesi di ' . $patient->name . ' ' . $patient->surname . ', età ' . $eta . ' anni') }}
         </h2>
     </x-slot>
     <div class="py-12">
