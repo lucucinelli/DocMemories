@@ -115,8 +115,8 @@
                 @endforeach
             </div>
         </div>
-        
-    </x-app-layout>
-</div>
+    </div>    
+</x-app-layout>
+
 
 @vite('resources/js/sortPatients-init.js')
