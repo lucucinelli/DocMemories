@@ -9,7 +9,7 @@
         <div id="tests-list" class="mt-4 hidden">
             <div class="relative overflow-x-auto p-4 ">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-700">
-                    <thead class="text-base text-gray-700 uppercase dark:bg-gray-200 dark:text-gray-800">
+                    <thead class="text-base text-gray-700 uppercase dark:bg-gray-200 dark:text-gray-800 hidden sm:table-header-group">
                         <tr class="bg-gray-100">
                             <th scope="col" class="px-6 py-3">{{ __('Data') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Tipo') }}</th>
@@ -20,31 +20,32 @@
                         </tr>
                     </thead>
                     <tbody class="text-base" id="dynamic-table-tests">
-                        @if (!$tests->isEmpty())
+                        @if(!$tests->isEmpty())        
                             @foreach ($tests as $test)
-                                <tr class="bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
-                                        <input name="righe[{{ $test->id }}][test_date]" type="date" value="{{ $test->test_date }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+                                <tr class="bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:table-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none">
+                                    <td class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Data'] before:font-bold before:block sm:before:hidden">
+                                        <input name="righe[{{ $test->id }}][test_date]" type="date" value="{{ $test->test_date }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-500">
-                                        <input name="righe[{{ $test->id }}][test_type]"  value="{{ $test->test_type }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>
+                                    <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
+                                        <input name="righe[{{ $test->id }}][test_type]" value="{{ $test->test_type }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-500">
-                                        <input name="righe[{{ $test->id }}][test_result]"  value="{{ $test->test_result }}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" disabled>
+                                    <td class="px-6 py-2 dark:text-gray-500 before:content-['Esito'] before:font-bold before:block sm:before:hidden">
+                                        <input name="righe[{{ $test->id }}][test_result]" value="{{ $test->test_result }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-500">
-                                        <textarea name="righe[{{ $test->id }}][test_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>{{ $test->test_note }}</textarea>
+                                    <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
+                                        <textarea name="righe[{{ $test->id }}][test_note]" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" rows="2" disabled>{{ $test->test_note }}</textarea>
                                     </td>
-                                    <td class=" px-6 py-2 text-center ">
-                                        <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
+                                    <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
+                                        <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"><i class="bi bi-pencil"></i></button>
                                     </td>
-                                    <td class=" px-6 py-2 text-center ">
+                                    <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
                                         <button type="button" onclick="deleteTestRow(this)" class="text-red-600 hover:text-red-800 font-bold dark:text-red-300">✕</button>
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
+
                 </table>
             </div>
             <div class="my-4 text-center">
@@ -52,7 +53,7 @@
                     + Aggiungi Riga
                 </button>
             </div>
-        </div>
+        </div> 
     </div>
 </div>
 <x-modal name="new-test-row" :show="$errors->userDeletion->isNotEmpty()" focusable>
@@ -95,3 +96,4 @@
 </x-modal>
 
 @vite('resources/js/tests-dynamic-table.js')
+

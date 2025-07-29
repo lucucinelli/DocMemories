@@ -49,26 +49,27 @@ function newTestRow() {
 }
 
 function appendTestRow(test_id, test_date, test_type, test_result, test_note, tbody, newRow) {
-    newRow.className = "bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200";
+    newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:table-row sm:mb-0 mb-6 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
-        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
-            <input name="righe[${test_id}][test_date]" type="date" value="${test_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+        <td class="px-6 py-2 font-medium text-gray-900 dark:text-gray-700 before:content-['Data'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${test_id}][test_date]" type="date" value="${test_date}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
         </td>
-        <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${test_id}][test_type]"  value="${test_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" rows="2" disabled>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${test_id}][test_type]" value="${test_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
         </td>
-        <td class="px-6 py-4 dark:text-gray-500">
-            <input name="righe[${test_id}][test_result]"  value="${test_result}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full resize-none" disabled>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Esito'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${test_id}][test_result]" value="${test_result}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
         </td>
-        <td class="px-6 py-4 dark:text-gray-500">
-            <textarea name="righe[${test_id}][test_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${test_note}</textarea>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
+            <textarea name="righe[${test_id}][test_note]" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" rows="2" disabled>${test_note}</textarea>
         </td>
-        <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
+        <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
+            <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"><i class="bi bi-pencil"></i></button>
         </td>
-        <td class=" px-6 py-2 text-center ">
+        <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
             <button type="button" onclick="deleteTestRow(this)" class="text-red-600 hover:text-red-800 font-bold dark:text-red-300">✕</button>
         </td>
+                          
     `;
     tbody.appendChild(newRow);
     document.getElementById('test_date').value = "";
