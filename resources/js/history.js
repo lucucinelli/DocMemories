@@ -149,6 +149,9 @@ window.editFamiliarHistoryRow = function(button) {
     cancelButton.classList.remove('hidden');
     const saveButton = document.getElementById('save-familiar-history');
     saveButton.classList.remove('hidden');
+    button.closest('tr').querySelectorAll('button').forEach(button => {
+        button.disabled = true; // Disable all buttons in the row
+    });
 };
 
 
