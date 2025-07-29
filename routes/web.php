@@ -10,6 +10,7 @@ use App\Http\Controllers\MedicinalController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FamiliarHistoryController;
 use App\Http\Controllers\RemotePathologicalHistoryController;
+use App\Http\Controllers\NextPathologicalHistoryController;
 
 
 // welcome page
@@ -88,4 +89,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/createRemotePathologicalHistory/{patient}', [RemotePathologicalHistoryController::class, 'newRemotePathologicalHistory'])->name('newRemotePathologicalHistory'); // Create a new remote pathological history
     Route::put('/editRemotePathologicalHistory/{remotePathologicalHistory}', [RemotePathologicalHistoryController::class, 'editRemotePathologicalHistory'])->name('editRemotePathologicalHistory'); // Edit an existing remote pathological history
     Route::delete('/deleteRemotePathologicalHistory/{remotePathologicalHistory}', [RemotePathologicalHistoryController::class, 'deleteRemotePathologicalHistory'])->name('deleteRemotePathologicalHistory'); // Delete an existing remote pathological history
+});
+/**--------------------------------------------------------- NEXT PATHOLOGICAL HISTORIES -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/createNextPathologicalHistory/{patient}', [NextPathologicalHistoryController::class, 'newNextPathologicalHistory'])->name('newNextPathologicalHistory'); // Create a new next pathological history
+    Route::put('/editNextPathologicalHistory/{nextPathologicalHistory}', [NextPathologicalHistoryController::class, 'editNextPathologicalHistory'])->name('editNextPathologicalHistory'); // Edit an existing next pathological history
+    Route::delete('/deleteNextPathologicalHistory/{nextPathologicalHistory}', [NextPathologicalHistoryController::class, 'deleteNextPathologicalHistory'])->name('deleteNextPathologicalHistory'); // Delete an existing next pathological history
 });
