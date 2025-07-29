@@ -9,6 +9,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\MedicinalController; 
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FamiliarHistoryController;
+use App\Http\Controllers\RemotePathologicalHistoryController;
 
 
 // welcome page
@@ -80,4 +81,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/createFamiliarHistory/{patient}', [FamiliarHistoryController::class, 'newFamiliarHistory'])->name('newFamiliarHistory'); // Create a new familiar history
     Route::put('/editFamiliarHistory/{familiarHistory}', [FamiliarHistoryController::class, 'editFamiliarHistory'])->name('editFamiliarHistory'); // Edit an existing familiar history
     Route::delete('/deleteFamiliarHistory/{familiarHistory}', [FamiliarHistoryController::class, 'deleteFamiliarHistory'])->name('deleteFamiliarHistory'); // Delete an existing familiar history
+});
+
+/**--------------------------------------------------------- REMOTE PATHOLOGICAL HISTORIES -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/createRemotePathologicalHistory/{patient}', [RemotePathologicalHistoryController::class, 'newRemotePathologicalHistory'])->name('newRemotePathologicalHistory'); // Create a new remote pathological history
+    Route::put('/editRemotePathologicalHistory/{remotePathologicalHistory}', [RemotePathologicalHistoryController::class, 'editRemotePathologicalHistory'])->name('editRemotePathologicalHistory'); // Edit an existing remote pathological history
+    Route::delete('/deleteRemotePathologicalHistory/{remotePathologicalHistory}', [RemotePathologicalHistoryController::class, 'deleteRemotePathologicalHistory'])->name('deleteRemotePathologicalHistory'); // Delete an existing remote pathological history
 });
