@@ -186,6 +186,9 @@ window.saveUpdatedFamiliarHistoryRow = function(){
         row.querySelector('input[name^="righe["][name$="[allergy]"]').value = allergy.value;
         row.querySelector('input[name^="righe["][name$="[relative]"]').value = relative.value;
         row.querySelector('textarea[name^="righe["][name$="[note]"]').value = note.value;
+        row.querySelectorAll('button').forEach(button => {
+            button.disabled = false; // Disable all buttons in the row
+        });
     })
     .then(() => {
         document.getElementById('allergy').value = "";
@@ -198,7 +201,7 @@ window.saveUpdatedFamiliarHistoryRow = function(){
         cancelButton.classList.add('hidden');
         const saveButton = document.getElementById('save-familiar-history');
         saveButton.classList.add('hidden');
-    }) 
+    })
     .catch(error => {
         console.error('Error:', error);
     });
@@ -209,4 +212,9 @@ window.cancelUpdatedFamiliarHistoryRow = function() {
    document.getElementById('cancel-familiar-history').classList.add('hidden');
    document.getElementById('save-familiar-history').classList.add('hidden');
    document.getElementById('submit-familiar-history').classList.remove('hidden');
+   const familiar_history_id = document.getElementById('familiar_history_id');
+   const row = document.querySelector(`input[name^="righe[${familiar_history_id.value}]"]`).closest('tr');
+   row.querySelectorAll('button').forEach(button => {
+       button.disabled = false; // Enable all buttons in the row
+   });
 }
