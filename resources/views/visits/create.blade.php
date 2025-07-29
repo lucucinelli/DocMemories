@@ -46,7 +46,3 @@
         </div>
     </div>
 </x-app-layout>
-
-@vite('resources/js/exams.js')
-@vite('resources/js/tests.js')
-@vite('resources/js/medicinals.js')
