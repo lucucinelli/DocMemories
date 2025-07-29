@@ -47,25 +47,25 @@ function newMedicinalRow() {
 }
 
 function appendMedicinalRow(medicinal_id, med_name, med_quantity, med_usage, med_period, tbody, newRow) {
-    newRow.className = "bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200";
+    newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:table-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
-        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
+        <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Nome'] before:font-bold before:block sm:before:hidden">
             <input name="righe[${medicinal_id}][med_name]" value="${med_name}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
-        <td class="px-6 py-4 dark:text-gray-500">
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Quantità'] before:font-bold before:block sm:before:hidden">
             <input name="righe[${medicinal_id}][med_quantity]" value="${med_quantity}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
-        <td class="px-6 py-4 dark:text-gray-500">
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Modalità di assunzione'] before:font-bold before:block sm:before:hidden">
             <input name="righe[${medicinal_id}][med_usage]" value="${med_usage}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
-        <td class="px-6 py-4 dark:text-gray-500">
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Periodo'] before:font-bold before:block sm:before:hidden">
             <input name="righe[${medicinal_id}][med_period]" value="${med_period}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
-        <td class=" px-6 py-2 text-center ">
+        <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
             <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
         </td>
-        <td class=" px-6 py-2 text-center ">
-            <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 font-bold dark:text-red-300">✕</button>
+        <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
+            <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);

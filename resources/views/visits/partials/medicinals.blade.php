@@ -9,7 +9,7 @@
         <div id="medicinals-list" class="mt-4 hidden">
             <div class="relative overflow-x-auto p-4 ">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-700">
-                    <thead class="text-base text-gray-700 uppercase dark:bg-gray-200 dark:text-gray-800">
+                    <thead class="text-base text-gray-700 uppercase dark:bg-gray-200 dark:text-gray-800 hidden sm:table-header-group">
                         <tr class="bg-gray-100">
                             <th scope="col" class="px-6 py-3">{{ __('Nome') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Qta') }}</th>
@@ -22,27 +22,26 @@
                     <tbody class="text-base" id="dynamic-table-medicinals">
                         @if($medicinals->isNotEmpty())
                             @foreach($medicinals as $medicinal)
-                                <tr class="bg-gray-300 border-b dark:bg-gray-600 dark:border-gray-700 border-gray-200">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700">
+                                <tr class="bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:table-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none">
+                                    <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Nome'] before:font-bold before:block sm:before:hidden">
                                         <input name="righe[{{$medicinal->id}}][med_name]" value="{{$medicinal->name}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-500">
+                                    <td class="px-6 py-2 dark:text-gray-500 before:content-['Quantità'] before:font-bold before:block sm:before:hidden">
                                         <input name="righe[{{$medicinal->id}}][med_quantity]" value="{{$medicinal->quantity}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-500">
+                                    <td class="px-6 py-2 dark:text-gray-500 before:content-['Modalità di assunzione'] before:font-bold before:block sm:before:hidden">
                                         <input name="righe[{{$medicinal->id}}][med_usage]" value="{{$medicinal->usage}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class="px-6 py-4 dark:text-gray-500">
+                                    <td class="px-6 py-2 dark:text-gray-500 before:content-['Periodo'] before:font-bold before:block sm:before:hidden">
                                         <input name="righe[{{$medicinal->id}}][med_period]" value="{{$medicinal->period}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
                                     </td>
-                                    <td class=" px-6 py-2 text-center ">
+                                    <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
                                         <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
                                     </td>
-                                    <td class=" px-6 py-2 text-center ">
+                                    <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
                                         <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
                                     </td>
                                 </tr>
-                            
                             @endforeach
                         @endif
                     </tbody>
