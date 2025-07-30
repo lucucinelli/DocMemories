@@ -71,6 +71,8 @@ class PatientController extends Controller
             ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(gender, 'aschio') LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(gender, 'emmina') LIKE ?", ["%{$searchTerm}%"])
             ->get();
         }
         return view('patients.find', ['patients' => $patients]);
