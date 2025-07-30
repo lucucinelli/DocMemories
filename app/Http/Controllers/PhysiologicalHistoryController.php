@@ -37,8 +37,11 @@ class PhysiologicalHistoryController extends Controller
             'period_regularity' => ['nullable', 'string', 'max:255'],
         ]);
 
-        $physiologicalHistory = $patient->physiologicalHistory()->get()->firstOrFail();
+        $physiologicalHistory = $patient->physiologicalHistory()->get()->first();
         $physiologicalHistory->update($incomingData);
+
+        return redirect()->route('showHistory', ['patient' => $patient]);
+
     }
 
     public function isPhysiologicalHistorySet(Patient $patient)
