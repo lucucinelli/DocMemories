@@ -2,11 +2,8 @@
     <div class="bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 ">
             <!-- Form for creating a new patient -->
-            <form method="post" id="physiological-history-form" action="{{ isset($physiologicalHistory) ? route('editPhysiologicalHistory', $patient->id) : route('newPhysiologicalHistory', $patient->id) }}">
+            <form method="post" id="physiological-history-form" action="{{route('newPhysiologicalHistory', $patient->id) }}">
                 @csrf
-                @if(isset($physiologicalHistory))
-                    @method('PUT')
-                @endif
         
                 <div class="flex flex-col gap-3">
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -30,6 +27,7 @@
                     <x-input-label for="habits" :value="__('Abitudini')" />
                     <x-text-input id="habits" class="block mt-1 w-full anagrafica" type="text" name="habits"  value="{{ $physiologicalHistory->habits ?? '' }}" />
                     <x-input-error :messages="$errors->get('habits')" class="mt-2" />
+                    <input type="hidden" name="gender" id="gender" value="{{ $patient->gender}}">
                     @if($patient->gender === 'F')
                         <div class="pt-4 pb-1 bordo-t-3 border-black dark:border-gray-600 mt-4 flex flex-col gap-3">
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -44,15 +42,14 @@
                             <x-input-label for="period_regularity" :value="__('Regolarità ciclo')" />
                             <x-text-input id="period_regularity" class="block mt-1 w-full anagrafica" type="text" name="period_regularity" value="{{ $physiologicalHistory->period_regularity ?? '' }}" />
                             <x-input-error :messages="$errors->get('period_regularity')" class="mt-2" />
-                        </div>
+                            </div>
                     @endif
-                    
                 </div>
                 <div class="mt-4">
                     @if (isset($physiologicalHistory))
                         <x-secondary-button id="edit-button" onclick="toggleEditMode()">{{ __('Modifica') }}</x-secondary-button>
                         <x-secondary-button id="cancel-button" type="reset" onclick="toggleEditMode()" class="hidden">{{ __('Annulla') }}</x-secondary-button>
-                        <x-primary-button id="save-button" type="submit" class="hidden">{{ __('Salva') }}</x-primary-button>
+                        <x-primary-button id="save-button" type="button" class="hidden" onclick="savePhysiologicalHistoryUpdated()">{{ __('Salva') }}</x-primary-button>
                     @else
                         <x-primary-button >
                             {{ __('Registra anamnesi') }}

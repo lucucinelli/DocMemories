@@ -5,3 +5,25 @@
 .bordo-t-3 {
     border-top-width: 2px;
 }
+
+/* Stili per rendere i campi readonly simili a disabled (senza cambiare lo sfondo) */
+input[readonly],
+select[readonly] {
+    cursor: default; /* Cambia il cursore a freccia, come per i disabled */
+    opacity: 1; /* Assicura che non ci sia trasparenza */
+    -webkit-text-fill-color: currentcolor; /* Per Safari, per mantenere il colore del testo */
+}
+
+/* Rimuove gli stili di focus per i campi readonly e nasconde il cursore */
+input[readonly]:focus,
+select[readonly]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: initial !important; /* Mantiene il colore del bordo originale */
+    --tw-ring-color: transparent !important; /* Specifico per Tailwind CSS */
+    -webkit-user-select: none; /* Impedisce la selezione del testo */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    caret-color: transparent; /* Rende il cursore di testo trasparente */
+}

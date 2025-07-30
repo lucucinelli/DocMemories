@@ -100,7 +100,69 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    
 });
+
+window.savePhysiologicalHistoryUpdated = function() {
+    const physiologicalHistoryForm = document.getElementById('physiological-history-form');
+    const formFields = physiologicalHistoryForm ? physiologicalHistoryForm.querySelectorAll('input, select') : [];
+    const birth = document.getElementById('birth').value;
+    const atopy = document.getElementById('atopy').value;
+    const nursing = document.getElementById('nursing').value;
+    const diet = document.getElementById('diet').value;
+    const habits = document.getElementById('habits').value;
+    const gender = document.getElementById('gender').value;
+    if (gender === 'F') {
+        const period = document.getElementById('period').value;
+        const period_regularity = document.getElementById('period_regularity').value;
+    } else {
+        var period = "";
+        var period_regularity = "";
+    }
+    const editButton = document.getElementById('edit-button');
+    const cancelButton = document.getElementById('cancel-button');
+    const saveButton = document.getElementById('save-button');
+    const pathSegments = window.location.pathname.split('/'); 
+    const patient_id = pathSegments[2];
+
+    fetch(`/editPhysiologicalHistory/${patient_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            birth,
+            atopy,
+            nursing,
+            diet,
+            habits,
+            period,
+            period_regularity
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Request error');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Server response:', data);
+        formFields.forEach(field => {
+            field.readOnly = true; 
+        });
+        editButton.classList.remove('hidden');
+        cancelButton.classList.add('hidden');
+        saveButton.classList.add('hidden');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
 
 //-------------------------------------familiar history----------------------------------
 console.log("Familiar History Script Loaded");

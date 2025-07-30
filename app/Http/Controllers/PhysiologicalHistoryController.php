@@ -40,8 +40,7 @@ class PhysiologicalHistoryController extends Controller
         $physiologicalHistory = $patient->physiologicalHistory()->get()->first();
         $physiologicalHistory->update($incomingData);
 
-        return redirect()->route('showHistory', ['patient' => $patient]);
-
+        return response()->json(['success' => true, 'message' => 'Storia fisiologica aggiornata con successo.']);
     }
 
     public function isPhysiologicalHistorySet(Patient $patient)
