@@ -14,6 +14,7 @@ class HistoryController extends Controller
         $nascita = new DateTime($patient->birthdate);
         $diff = $oggi->diff($nascita);
         $eta = $diff->y;
+        $physiologicalHistory = $patient->physiologicalHistory()->get()->first();
         $familiar_histories = $patient->familiarHistory()->get();
         $remote_histories = $patient->remotePathologicalHistory()->get();
         $next_histories = $patient->nextPathologicalHistory()->get();
@@ -21,6 +22,7 @@ class HistoryController extends Controller
         return view('histories.show', [
             'patient' => $patient,
             'eta' => $eta,
+            'physiologicalHistory' => $physiologicalHistory,
             'familiar_histories' => $familiar_histories,
             'remote_histories' => $remote_histories,
             'next_histories' => $next_histories,

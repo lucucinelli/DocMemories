@@ -49,7 +49,7 @@ function newTestRow() {
 }
 
 function appendTestRow(test_id, test_date, test_type, test_result, test_note, tbody, newRow) {
-    newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:table-row sm:mb-0 mb-6 rounded-lg shadow-md sm:shadow-none";
+    newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:mb-0 mb-6 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
         <td class="px-6 py-2 font-medium text-gray-900 dark:text-gray-700 before:content-['Data'] before:font-bold before:block sm:before:hidden">
             <input name="righe[${test_id}][test_date]" type="date" value="${test_date}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>

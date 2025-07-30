@@ -27,7 +27,7 @@
             <x-text-input id="birthdate" class="block mt-1 w-full anagrafica" type="date" name="birthdate" :value="old('birthdate', $patient->birthdate->format('Y-m-d'))" required disabled /> 
             <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
             <x-input-label for="gender" :value="__('Genere')" />
-            <x-select name="gender" class="block mt-1 w-full anagrafica" :options="['M' => 'Maschio', 'F' => 'Femmina']" :selected="old('gender', $patient->gender)" disabled />
+            <x-select name="gender" class="block mt-1 w-full anagrafica" :options="['Maschio' => 'M', 'Femmina' => 'F']" :selected="old('gender', $patient->gender)" disabled />
             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
             <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
             <x-text-input id="birthplace" class="block mt-1 w-full anagrafica" type="text" name="birthplace" :value="old('birthplace', $patient->birthplace)" required disabled />

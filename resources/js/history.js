@@ -30,7 +30,36 @@ tabs.forEach(tab => {
     });
 });
 
+//-------------------------------------physiological history----------------------------------
 
+document.addEventListener('DOMContentLoaded', function() {
+    const pathSegments = window.location.pathname.split('/'); // URL
+    const patient_id = pathSegments[2];
+    fetch(`/isPhysiologicalHistorySet/${patient_id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Request error');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data.success) {
+            const form = document.getElementById('physiological-history-form');
+            form.querySelectorAll('input, select').forEach(field => {
+                field.disabled = true;
+            });
+        } 
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
 
 //-------------------------------------familiar history----------------------------------
 console.log("Familiar History Script Loaded");

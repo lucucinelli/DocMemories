@@ -16,7 +16,7 @@
                     <x-text-input id="remote_date" class="block mt-1 w-full" type="date" name="remote_date" required autofocus value="{{ old('remote_date') }}"/>
                     <x-input-error :messages="$errors->get('remote_date')" class="mt-2" />
                     <x-input-label for="remote_type" :value="__('Tipo')" />
-                    <x-select id="remote_type" name="remote_type" class="block mt-1 w-full anagrafica" :options="['intervento' => 'Intervento', 'malattia' => 'Malattia']" :selected="old('remote_type')" required />
+                    <x-select id="remote_type" name="remote_type" class="block mt-1 w-full anagrafica" :options="['Intervento' => 'intervento', 'Malattia' => 'malattia']" :selected="old('remote_type')" required />
                     <x-input-error :messages="$errors->get('remote_type')" class="mt-2" />
                     <x-input-label for="remote_description" :value="__('Descrizione')" />
                     <x-text-input id="remote_description" class="block mt-1 w-full" type="text" name="remote_description" required value="{{ old('remote_description') }}" />

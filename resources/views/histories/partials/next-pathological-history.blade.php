@@ -20,7 +20,7 @@
 
 
                     <x-input-label for="next_type" :value="__('Tipo di problematica')" />
-                    <x-select name="next_type" id="next_type" class="block mt-1 w-full" :options="['respiratori' => 'Respiratori', 'dermatologici' => 'Dermatologici', 'alimentari' => 'Alimentari', 'farmacologici' => 'Farmacologici', 'veleno di imenotteri' => 'Veleno di imenotteri', 'ALTRO' => 'Altro']" required />
+                    <x-select name="next_type" id="next_type" class="block mt-1 w-full" :options="['Respiratori' => 'respiratori', 'Dermatologici' => 'dermatologici', 'Alimentari' => 'alimentari', 'Farmacologici' => 'farmacologici', 'Veleno di imenotteri' => 'veleno di imenotteri', 'ALTRO' => 'altro']" required />
                     <x-input-error :messages="$errors->get('next_type')" class="mt-2" />
 
                     <x-input-label for="next_problem" id="next_problem-label" :value="__('Problematica')" class="hidden"/>

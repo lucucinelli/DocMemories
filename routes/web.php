@@ -11,7 +11,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FamiliarHistoryController;
 use App\Http\Controllers\RemotePathologicalHistoryController;
 use App\Http\Controllers\NextPathologicalHistoryController;
-
+use App\Http\Controllers\PhysiologicalHistoryController;
 
 // welcome page
 
@@ -95,4 +95,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/createNextPathologicalHistory/{patient}', [NextPathologicalHistoryController::class, 'newNextPathologicalHistory'])->name('newNextPathologicalHistory'); // Create a new next pathological history
     Route::put('/editNextPathologicalHistory/{nextPathologicalHistory}', [NextPathologicalHistoryController::class, 'editNextPathologicalHistory'])->name('editNextPathologicalHistory'); // Edit an existing next pathological history
     Route::delete('/deleteNextPathologicalHistory/{nextPathologicalHistory}', [NextPathologicalHistoryController::class, 'deleteNextPathologicalHistory'])->name('deleteNextPathologicalHistory'); // Delete an existing next pathological history
+});
+/**--------------------------------------------------------- PHYSIOLOGICAL HISTORIES -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::get('/isPhysiologicalHistorySet/{patient}', [PhysiologicalHistoryController::class, 'isPhysiologicalHistorySet'])->name('isPhysiologicalHistorySet'); // Check if physiological history is set
+    Route::post('/createPhysiologicalHistory/{patient}', [PhysiologicalHistoryController::class, 'newPhysiologicalHistory'])->name('newPhysiologicalHistory'); // Create a new physiological history
+    Route::put('/editPhysiologicalHistory/{patient}', [PhysiologicalHistoryController::class, 'editPhysiologicalHistory'])->name('editPhysiologicalHistory'); // Edit an existing physiological history
 });
