@@ -46,10 +46,13 @@ class VisitController extends Controller
         return redirect()->route('showVisit', $visit->id)->with('status', __('visit-updated'));;
     }
 
-    public function showVisits()
+    public function showVisits($patient_id = 0)
     {
         // Logic to list all visits
         $visits = Auth::user()->visits; // Assuming you have a Visit model
+        if ($patient_id != 0) {
+            $visits = $visits->where('patient_id', $patient_id);
+        }
         return view('visits.find', ['visits' => $visits]);
     }
 
