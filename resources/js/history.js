@@ -33,8 +33,14 @@ tabs.forEach(tab => {
 //-------------------------------------physiological history----------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-    const pathSegments = window.location.pathname.split('/'); // URL
+    const physiologicalHistoryForm = document.getElementById('physiological-history-form');
+    const formFields = physiologicalHistoryForm ? physiologicalHistoryForm.querySelectorAll('input, select') : [];
+    const editButton = document.getElementById('edit-button');
+    const cancelButton = document.getElementById('cancel-button');
+    const saveButton = document.getElementById('save-button');
+    const pathSegments = window.location.pathname.split('/');
     const patient_id = pathSegments[2];
+
     fetch(`/isPhysiologicalHistorySet/${patient_id}`, {
         method: 'GET',
         headers: {
@@ -49,16 +55,51 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
     })
     .then(data => {
-        if(data.success) {
-            const form = document.getElementById('physiological-history-form');
-            form.querySelectorAll('input, select').forEach(field => {
-                field.disabled = true;
+        if (data.success) {
+            // Se la storia esiste, metti i campi in modalità di sola lettura
+            formFields.forEach(field => {
+                field.readOnly = true; // Usa readOnly invece di disabled
             });
-        } 
+        } else {
+            // Se la storia non esiste, abilita i campi per la creazione
+            formFields.forEach(field => {
+                field.readOnly = false;
+            });
+        }
     })
     .catch(error => {
         console.error('Error:', error);
     });
+
+
+    window.toggleEditMode = function() {
+        if (editButton && editButton.classList.contains('hidden')) { 
+
+            formFields.forEach(field => {
+                field.readOnly = true;
+            });
+            editButton.classList.remove('hidden');
+            cancelButton.classList.add('hidden');
+            saveButton.classList.add('hidden');
+        } else { // Stiamo attivando la modalità di modifica (da 'Modifica')
+            formFields.forEach(field => {
+                field.readOnly = false;
+            });
+            editButton.classList.add('hidden');
+            cancelButton.classList.remove('hidden');
+            saveButton.classList.remove('hidden');
+        }
+    };
+
+    
+    if (physiologicalHistoryForm) {
+        physiologicalHistoryForm.addEventListener('submit', function() {
+            
+            formFields.forEach(field => {
+                field.readOnly = true; 
+            });
+        });
+    }
 });
 
 //-------------------------------------familiar history----------------------------------
