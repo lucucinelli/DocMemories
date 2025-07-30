@@ -59,7 +59,7 @@
         </div>
         <div class="my-4 bg-white dark:bg-gray-800 ">
             <div class="relative overflow-x-auto p-4 ">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-700">
+                <table class="w-full table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  dark:bg-gray-700">
                     <thead class="text-base text-gray-700 uppercase dark:bg-gray-200 dark:text-gray-800 hidden sm:table-header-group">
                         <tr class="bg-gray-100">
                             <th scope="col" class="px-6 py-3">{{ __('Data') }}</th>
