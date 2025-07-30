@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div id="tabs" class="flex flex-wrap gap-2 justify-center sm:justify-start mb-4">
                 <button data-tab="physiological" class="tab-btn text-gray-700 bg-orange-400 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-orange-200 transition">
                     Fisiologica
@@ -24,7 +24,7 @@
             <div data-content="physiological" class="contenuto hidden border-2 bg-white dark:border-gray-800 dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                 @include('histories.partials.physiological-history')
             </div>
-            <div data-content="familiar" class="contenuto hidden border-2 dark:border-gray-600 bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
+            <div data-content="familiar" class="contenuto hidden border-2 dark:border-gray-800 bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                 @include('histories.partials.familiar-history')
             </div>
             <div data-content="remote-pathological" class="contenuto hidden border-2 dark:border-gray-800 bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">

@@ -7,48 +7,37 @@ function showTab(tabName) {
     document.querySelector(`[data-content="${tabName}"]`).classList.remove("hidden");
 
     tabs.forEach(t => {
-    t.classList.remove("bg-orange-400", "text-white", "font-semibold");
-    t.classList.add("bg-white", "text-gray-700");
+        t.classList.remove("bg-orange-400", "text-white", "font-semibold");
+        t.classList.add("bg-white", "text-gray-700");
     });
 
     const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
     activeTab.classList.remove("bg-white", "text-gray-700");
     activeTab.classList.add("bg-orange-400", "text-white", "font-semibold");
+
+    //Salva il nome della tab selezionata
+    localStorage.setItem("activeTab", tabName);
 }
 
-// Inizializzazione: mostra la prima tab
-showTab("physiological");
+//Recupera la tab attiva salvata oppure default
+const savedTab = localStorage.getItem("activeTab") || "physiological";
+showTab(savedTab);
 
 tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-    const tabName = tab.getAttribute("data-tab");
-    showTab(tabName);
+        const tabName = tab.getAttribute("data-tab");
+        showTab(tabName);
     });
 });
 
 
-// ----------------------------------next pathological history----------------------------------
-const type = document.getElementById('type');
-type.addEventListener('change', function() {
-    if (this.value === 'ALTRO') {
-        document.getElementById('problem').classList.replace('hidden', 'block');
-        document.getElementById('problem-label').classList.replace('hidden', 'block');
-        document.getElementById('problem').required = true; // Mark the input as required
-    } else {
-        document.getElementById('problem').classList.replace('block', 'hidden');
-        document.getElementById('problem-label').classList.replace('block', 'hidden');
-        document.getElementById('problem').value = ''; // Clear the input if not needed
-        document.getElementById('problem').required = false; // Mark the input as not required
-    }
-});
 
 //-------------------------------------familiar history----------------------------------
 console.log("Familiar History Script Loaded");
 
 document.getElementById('familiar-history-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            newFamiliarHistoryRow();
-            console.log('nessuna richiesta inviata.');
+    e.preventDefault();
+    newFamiliarHistoryRow();
 });
 
 function newFamiliarHistoryRow(){
@@ -221,9 +210,9 @@ window.cancelUpdatedFamiliarHistoryRow = function() {
 console.log("Remote History Script Loaded");
 
 document.getElementById('remote-history-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            newRemoteHistoryRow();
-            console.log('nessuna richiesta inviata.');
+    e.preventDefault();
+    newRemoteHistoryRow();
+    
 });
 
 function newRemoteHistoryRow(){
@@ -401,4 +390,259 @@ window.cancelUpdatedRemoteHistoryRow = function() {
    row.querySelectorAll('button').forEach(button => {
        button.disabled = false; // Enable all buttons in the row
    });
+}
+
+//-------------------------------------next history----------------------------------
+console.log("Next History Script Loaded");
+
+const type = document.getElementById('next_type');
+type.addEventListener('change', function() {
+    if (this.value === 'ALTRO') {
+        document.getElementById('next_problem').classList.replace('hidden', 'block');
+        document.getElementById('next_problem-label').classList.replace('hidden', 'block');
+        document.getElementById('next_problem').required = true; // Mark the input as required
+    } else {
+        document.getElementById('next_problem').classList.replace('block', 'hidden');
+        document.getElementById('next_problem-label').classList.replace('block', 'hidden');
+        document.getElementById('next_problem').value = ''; // Clear the input if not needed
+        document.getElementById('next_problem').required = false; // Mark the input as not required
+    }
+});
+
+document.getElementById('next-history-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    newNextHistoryRow();
+});
+
+function newNextHistoryRow(){
+    const tbody = document.getElementById('dynamic-table-next-history');
+    const newRow = document.createElement('tr');
+    const next_date = document.getElementById('next_date').value;
+    var next_type = document.getElementById('next_type').value;
+    const next_problem = document.getElementById('next_problem').value;
+    const next_name = document.getElementById('next_name').value;
+    const next_cause = document.getElementById('next_cause').value;
+    const next_effect = document.getElementById('next_effect').value;
+    const next_note = document.getElementById('next_note').value;
+    const pathSegments = window.location.pathname.split('/'); // URL
+    const patient_id = pathSegments[2]; 
+    if (next_type === 'ALTRO') {
+        next_type = next_problem; // Use the problem as the type if 'ALTRO' is selected
+    }
+    fetch(`/createNextPathologicalHistory/${patient_id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            next_date,
+            next_type,
+            next_name,
+            next_cause,
+            next_effect,
+            next_note
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Request error');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Server response:', data);
+        // Only if the response is ok, then add the row to the table:
+        appendNextHistoryRow(data.id, next_date, next_type, next_name, next_cause, next_effect, next_note, tbody, newRow);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function appendNextHistoryRow(nextHistory_id, next_date, next_type, next_name, next_cause, next_effect, next_note, tbody, newRow) {
+    newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:table-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none";
+    newRow.innerHTML = `
+        <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Data'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${nextHistory_id}][date]" value="${next_date}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+        </td>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${nextHistory_id}][type]" value="${next_type}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+        </td>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Nome'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${nextHistory_id}][name]" value="${next_name}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+        </td>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Causa'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${nextHistory_id}][cause]" value="${next_cause}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+        </td>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Effetto'] before:font-bold before:block sm:before:hidden">
+            <input name="righe[${nextHistory_id}][effect]" value="${next_effect}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+        </td>
+        <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
+            <textarea name="righe[${nextHistory_id}][note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${next_note}</textarea>
+        </td>
+        <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden w-1/8">
+            <button type="button" onclick="editNextHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
+        </td>
+        <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
+            <button type="button" onclick="deleteNextHistoryRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+        </td>
+    `;
+    tbody.appendChild(newRow);
+    document.getElementById('next_date').value = "";
+    document.getElementById('next_type').selectedIndex = 0; // Reset to the first option
+    document.getElementById('next_problem').value = "";
+    document.getElementById('next_name').value = "";
+    document.getElementById('next_cause').value = "";
+    document.getElementById('next_effect').value = "";
+    document.getElementById('next_note').value = "";
+}
+
+
+window.deleteNextHistoryRow = function(button) {
+    console.log('delete next history row');
+    const nextHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    fetch(`/deleteNextPathologicalHistory/${nextHistory_id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Request error');
+        }
+        return response.ok;
+    })
+    button.closest('tr').remove();
+}
+
+window.editNextHistoryRow = function(button) {
+    console.log('edit next history row');
+    
+    const next_date = document.getElementById('next_date');
+    const next_type = document.getElementById('next_type');
+    const next_problem = document.getElementById('next_problem');
+    const next_name = document.getElementById('next_name');
+    const next_cause = document.getElementById('next_cause');
+    const next_effect = document.getElementById('next_effect');
+    const next_note = document.getElementById('next_note');
+    const next_history_id = document.getElementById('next_history_id');
+    //set the values of the inputs to the values of the row being edited
+    next_date.value = button.closest('tr').querySelector('input[name^="righe["][name$="[date]"]').value;
+
+    const values = Array.from(next_type.options).map(option => option.value);
+    const appoggio = button.closest('tr').querySelector('input[name^="righe["][name$="[type]"]').value;
+    if (!values.includes(appoggio)){
+        next_problem.value = appoggio;
+        next_type.value = "ALTRO";
+        document.getElementById('next_problem').classList.replace('hidden', 'block');
+        document.getElementById('next_problem-label').classList.replace('hidden', 'block');
+        document.getElementById('next_problem').required = true; // Mark the input as required
+    } else{
+        next_problem.value = "";
+        next_type.value = appoggio;
+    }
+    next_name.value = button.closest('tr').querySelector('input[name^="righe["][name$="[name]"]').value;
+    next_cause.value = button.closest('tr').querySelector('input[name^="righe["][name$="[cause]"]').value;
+    next_effect.value = button.closest('tr').querySelector('input[name^="righe["][name$="[effect]"]').value;
+    next_note.value = button.closest('tr').querySelector('textarea[name^="righe["][name$="[note]"]').value;
+    next_history_id.value = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    // display the Annulla and Salva buttons; then hide the Submit button and disable all buttons in the row
+    const submitNextButton = document.getElementById('submit-next-history');
+    submitNextButton.classList.add('hidden');
+    const cancelNextButton = document.getElementById('cancel-next-history');
+    cancelNextButton.classList.remove('hidden');
+    const saveNextButton = document.getElementById('save-next-history');
+    saveNextButton.classList.remove('hidden');
+    button.closest('tr').querySelectorAll('button').forEach(button => {
+        button.disabled = true; // Disable all buttons in the row
+    });
+};
+
+
+window.saveUpdatedNextHistoryRow = function(){
+    const next_history_id = document.getElementById('next_history_id');
+    const next_date = document.getElementById('next_date').value;
+    var next_type = document.getElementById('next_type').value;
+    const next_problem = document.getElementById('next_problem').value;
+    const next_name = document.getElementById('next_name').value;
+    const next_cause = document.getElementById('next_cause').value;
+    const next_effect = document.getElementById('next_effect').value;
+    const next_note = document.getElementById('next_note').value;
+    if (next_type === 'ALTRO') {
+        next_type = next_problem; // Use the problem as the type if 'ALTRO' is selected
+    }
+    fetch(`/editNextPathologicalHistory/${next_history_id.value}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            next_date,
+            next_type,
+            next_name,
+            next_cause,
+            next_effect,
+            next_note
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Request error');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        // Update the table row with the new values
+        const row = document.querySelector(`input[name^="righe[${next_history_id.value}]"]`).closest('tr');
+        row.querySelector('input[name^="righe["][name$="[date]"]').value = next_date;
+        row.querySelector('input[name^="righe["][name$="[type]"]').value = next_type;
+        row.querySelector('input[name^="righe["][name$="[name]"]').value = next_name;
+        row.querySelector('input[name^="righe["][name$="[cause]"]').value = next_cause;
+        row.querySelector('input[name^="righe["][name$="[effect]"]').value = next_effect;
+        row.querySelector('textarea[name^="righe["][name$="[note]"]').value = next_note;
+        row.querySelectorAll('button').forEach(button => {
+            button.disabled = false; // Disable all buttons in the row
+        });
+    })
+    .then(() => {
+        document.getElementById('next_date').value = "";
+        document.getElementById('next_type').selectedIndex = 0 ;
+        document.getElementById('next_name').value = "";
+        document.getElementById('next_cause').value = "";
+        document.getElementById('next_effect').value = "";
+        document.getElementById('next_note').value = "";
+        document.getElementById('next_history_id').value = "";
+        document.getElementById('next_problem').classList.replace('block', 'hidden');
+        document.getElementById('next_problem-label').classList.replace('block', 'hidden');
+        document.getElementById('next_problem').value = ''; // Clear the input if not needed
+        document.getElementById('next_problem').required = false; // Mark the input as not required
+        document.getElementById('cancel-next-history').classList.add('hidden');
+        document.getElementById('save-next-history').classList.add('hidden');
+        document.getElementById('submit-next-history').classList.remove('hidden');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    
+}
+
+window.cancelUpdatedNextHistoryRow = function() {
+    document.getElementById('cancel-next-history').classList.add('hidden');
+    document.getElementById('save-next-history').classList.add('hidden');
+    document.getElementById('submit-next-history').classList.remove('hidden');
+
+    document.getElementById('next_problem').classList.replace('block', 'hidden');
+    document.getElementById('next_problem-label').classList.replace('block', 'hidden');
+    document.getElementById('next_problem').value = ''; // Clear the input if not needed
+    document.getElementById('next_problem').required = false; // Mark the input as not required
+    const next_history_id = document.getElementById('next_history_id');
+    const row = document.querySelector(`input[name^="righe[${next_history_id.value}]"]`).closest('tr');
+    row.querySelectorAll('button').forEach(button => {
+        button.disabled = false; // Enable all buttons in the row
+    });
 }

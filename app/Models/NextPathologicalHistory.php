@@ -16,6 +16,10 @@ class NextPathologicalHistory extends Model
         'patient_id',
     ];
 
+    protected $casts = [
+        'date' => 'date',
+    ];
+
     // Define any relationships or additional methods if necessary
     public function patient()
     {

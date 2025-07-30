@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
     <div class="bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 ">
             <!-- Form for creating a new patient -->
