@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from 'vite'; // provides intellisense and autofill in JS files
+import laravel from 'laravel-vite-plugin'; // plugin useful for integrating Vite with Laravel, in particularly with Blade templates
 
 export default defineConfig({
     plugins: [
-        laravel({
+        laravel({  // gives to Laravel paths to the assets analized by Vite
             input: [
                 'resources/css/app.css', 
                 'resources/js/app.js', 
@@ -16,7 +16,7 @@ export default defineConfig({
                 'resources/js/exams-dynamic-table.js',
                 'resources/js/tests-dynamic-table.js',
             ],
-            refresh: true,
+            refresh: true, // enables automatic page refresh when files change, it only works in dev mode
         }),
     ],
 });
