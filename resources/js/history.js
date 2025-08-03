@@ -7,13 +7,13 @@ function showTab(tabName) {
     document.querySelector(`[data-content="${tabName}"]`).classList.remove("hidden");
 
     tabs.forEach(t => {
-        t.classList.remove("bg-orange-400", "text-white", "font-semibold");
+        t.classList.remove("bg-red-600", "text-white", "font-semibold");
         t.classList.add("bg-white", "text-gray-700");
     });
 
     const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
     activeTab.classList.remove("bg-white", "text-gray-700");
-    activeTab.classList.add("bg-orange-400", "text-white", "font-semibold");
+    activeTab.classList.add("bg-red-600", "text-white", "font-semibold");
 
     //Salva il nome della tab selezionata
     localStorage.setItem("activeTab", tabName);

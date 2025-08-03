@@ -28,7 +28,8 @@ class Patient extends Model
         'domicile_zip_code',
         'telephone',
         'email',
-        'occupation'
+        'occupation',
+        'reservation',
     ];
 
     protected $casts = [

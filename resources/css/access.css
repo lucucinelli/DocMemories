@@ -1,0 +1,10 @@
+.backgroundImage {
+    position: absolute;        /* absolute */
+    top: 0;                    /* inset-0 */
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;    /* bg-cover */
+    background-position: center; /* bg-center */       /* blur-md in Tailwind corrisponde a ~12px */
+    z-index: 0;      
+}

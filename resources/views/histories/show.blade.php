@@ -7,16 +7,16 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div id="tabs" class="flex flex-wrap gap-2 justify-center sm:justify-start mb-4">
-                <button data-tab="physiological" class="tab-btn text-gray-700 bg-orange-400 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-orange-200 transition">
+                <button data-tab="physiological" class="tab-btn text-gray-700 bg-red-600 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-red-400 transition">
                     Fisiologica
                 </button>
-                <button data-tab="familiar" class="tab-btn  text-gray-700 bg-orange-400 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-orange-200 transition">
+                <button data-tab="familiar" class="tab-btn  text-gray-700 bg-red-600 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-red-400 transition">
                     Familiare
                 </button>
-                <button data-tab="remote-pathological" class="tab-btn  text-gray-700 bg-orange-400 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-orange-200 transition">
+                <button data-tab="remote-pathological" class="tab-btn  text-gray-700 bg-red-600 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-red-400 transition">
                     Patologica Remota
                 </button>
-                <button data-tab="next-pathological" class="tab-btn  text-gray-700 bg-orange-400 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-orange-200 transition">
+                <button data-tab="next-pathological" class="tab-btn  text-gray-700 bg-red-600 border border-gray-300 rounded-full px-4 py-1.5 text-lg hover:bg-red-400 transition">
                     Patologica Prossima
                 </button>
             </div>

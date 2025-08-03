@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('email');
             $table->string('occupation')->nullable();
+            $table->string('reservation');
             $table->timestamps();
         });
     }

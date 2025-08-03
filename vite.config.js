@@ -15,7 +15,8 @@ export default defineConfig({
                 'resources/js/medicinals-dynamic-table.js',
                 'resources/js/exams-dynamic-table.js',
                 'resources/js/tests-dynamic-table.js',
-                'resources/js/history.js'
+                'resources/js/history.js',
+                'resources/js/access.js',
             ],
             refresh: true, // enables automatic page refresh when files change, it only works in dev mode
         }),
