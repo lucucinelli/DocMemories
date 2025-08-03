@@ -19,8 +19,8 @@
                     <x-input-error :messages="$errors->get('next_date')" class="mt-2" />
 
 
-                    <x-input-label for="next_type" :value="__('Tipo di problematica')" />
-                    <x-select name="next_type" id="next_type" class="block mt-1 w-full" :options="['Respiratori' => 'respiratori', 'Dermatologici' => 'dermatologici', 'Alimentari' => 'alimentari', 'Farmacologici' => 'farmacologici', 'Veleno di imenotteri' => 'veleno di imenotteri', 'ALTRO' => 'altro']" required />
+                    <x-input-label for="next_type" :value="__('Tipo di patologia')" />
+                    <x-select name="next_type" id="next_type" class="block mt-1 w-full" :options="['Respiratoria' => 'respiratoria', 'Dermatologica' => 'dermatologica', 'Alimentare' => 'alimentare', 'Farmacologica' => 'farmacologica', 'Veleno di imenotteri' => 'veleno di imenotteri', 'Altro' => 'ALTRO']" required />
                     <x-input-error :messages="$errors->get('next_type')" class="mt-2" />
 
                     <x-input-label for="next_problem" id="next_problem-label" :value="__('Problematica')" class="hidden"/>
