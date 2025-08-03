@@ -5,8 +5,9 @@ export default defineConfig({
     plugins: [
         laravel({  // gives to Laravel paths to the assets analized by Vite
             input: [
-                'resources/css/app.css', 
-                'resources/js/app.js', 
+                'resources/css/app.css',
+                'resources/css/access.css',
+                'resources/js/app.js',
                 'resources/js/sortPatients-init.js',
                 'resources/js/tests.js',
                 'resources/js/exams.js',
