@@ -15,7 +15,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input type="search" name="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Digita qui il nome, il cognome di un qualunque paziente..."/>
+                <input type="search" name="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Digita qui il nome, il cognome di un qualunque paziente oppure cerca la visita"/>
                 <button type="submit" class="text-white w-24 absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Cerca </button>
             </div>
         </form>
@@ -40,6 +40,9 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
                                         {{ __('Motivo') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
+                                        {{ __('Prenotazione') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black dark:text-white uppercase tracking-wider">
                                         {{ __('Visualizza') }}
@@ -70,6 +73,9 @@
                                                 {{ $visit->reason }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
+                                                {{ $visit->reservation}}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
                                                 <a href="{{ route('showVisit', $visit->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                                             </td>
                                             
@@ -90,6 +96,7 @@
                     <h3 class="text-lg font-semibold">{{ $visit->patient->name }} {{ $visit->patient->surname }}</h3>
                     <p>{{ __('Data: ') . $visit->visit_date->format('d/m/Y') }}</p>
                     <p>{{ __('Motivo: ') . $visit->reason }}</p>
+                    <p>{{ __('Prenotazione: ') . $visit->reservation }}</p>
                     <div class="mt-4 flex space-x-4">
                         <a href="{{ route('showVisit', $visit->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
                     </div>

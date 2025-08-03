@@ -91,8 +91,11 @@ class VisitController extends Controller
             ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
             ->get();
-            $visits = Visit::whereIn('patient_id', $patients->pluck('id'))->get();
-
+            $visits = Visit::whereIn('patient_id', $patients->pluck('id'))
+            ->orWhere('reason', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('diagnosis', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('reservation', 'LIKE', "%{$searchTerm}%")
+            ->get();
         }
         return view('visits.find', ['visits' => $visits]);
     }
