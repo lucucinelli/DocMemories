@@ -21,6 +21,7 @@ class VisitController extends Controller
             'visit_date' => [ 'required', 'date'],
             'reason' => [ 'required', 'string', 'max:255'],
             'diagnosis' => ['nullable', 'string', 'max:255'],
+            'reservation' => [ 'required', 'string', 'max:255'],
             'note' => [ 'nullable', 'string'],
         ]);
 
@@ -39,6 +40,7 @@ class VisitController extends Controller
             'visit_date' => [ 'required', 'date'],
             'reason' => [ 'required', 'string', 'max:255'],
             'diagnosis' => [ 'nullable', 'string', 'max:255'],
+            'reservation' => [ 'required', 'string', 'max:255'],
             'note' => [ 'nullable', 'string'],
         ]);
 

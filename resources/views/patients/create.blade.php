@@ -96,9 +96,6 @@
                             <x-input-label for="occupation" :value="__('Occupazione')" />
                             <x-text-input id="occupation" class="block mt-1 w-full" name="occupation" required value="{{ old('occupation') }}"></x-text-input>
                             <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
-                            <x-input-label for="reservation" :value="__('Prenotazione')" />
-                            <x-select name="reservation" class="block mt-1 w-full" :options="['Istituzionale' => 'Istituzionale', 'Intramoenia' => 'Intramoenia']"  />
-                            <x-input-error :messages="$errors->get('reservation')" class="mt-2" />
                         </div>
                         <div>
                             <x-primary-button class="mt-4">

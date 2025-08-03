@@ -29,7 +29,7 @@ class Patient extends Model
         'telephone',
         'email',
         'occupation',
-        'reservation',
+     
     ];
 
     protected $casts = [

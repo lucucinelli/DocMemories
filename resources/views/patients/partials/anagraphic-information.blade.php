@@ -96,9 +96,6 @@
             <x-input-label for="occupation" :value="__('Occupazione')" />
             <x-text-input id="occupation" class="block mt-1 w-full anagrafica" name="occupation" :value="old('occupation', $patient->occupation)" required disabled></x-text-input>
             <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
-            <x-input-label for="reservation" :value="__('Prenotazione')" />
-            <x-select name="reservation" class="block mt-1 w-full anagrafica" :options="['Istituzionale' => 'Istituzionale', 'Intramoenia' => 'Intramoenia']"  disabled/>
-            <x-input-error :messages="$errors->get('reservation')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">

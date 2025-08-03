@@ -40,7 +40,6 @@ class PatientController extends Controller
             'telephone' => [ 'required', 'string', 'max:15'],
             'email' => [ 'required', 'email', 'max:255'],
             'occupation' => [ 'nullable', 'string', 'max:100'],
-            'reservation' => [ 'required', 'string', 'max:255'],
         ]);
 
         $patient = Patient::create($incomingData);

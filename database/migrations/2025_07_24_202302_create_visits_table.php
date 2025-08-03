@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('visit_date');
             $table->string('reason');
             $table->string('diagnosis')->nullable();
+            $table->string('reservation');
             $table->text('note')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');

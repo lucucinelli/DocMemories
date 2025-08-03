@@ -11,6 +11,7 @@ class Visit extends Model
         'visit_date',
         'reason',
         'diagnosis',
+        'reservation',
         'note',
         'user_id',
         'patient_id',

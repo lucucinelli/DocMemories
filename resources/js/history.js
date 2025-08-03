@@ -58,12 +58,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (data.success) {
             // Se la storia esiste, metti i campi in modalità di sola lettura
             formFields.forEach(field => {
-                field.readOnly = true; // Usa readOnly invece di disabled
+                if (field.type === 'input') {
+                    field.readOnly = true; 
+                } else {
+                    field.disabled = true; // Per i campi select
+                }
             });
         } else {
             // Se la storia non esiste, abilita i campi per la creazione
             formFields.forEach(field => {
-                field.readOnly = false;
+                if (field.type === 'input') {
+                    field.readOnly = false; 
+                } else {
+                    field.disabled = false; // Per i campi select
+                }
             });
         }
     })
@@ -76,14 +84,22 @@ document.addEventListener('DOMContentLoaded', function() {
         if (editButton && editButton.classList.contains('hidden')) { 
 
             formFields.forEach(field => {
-                field.readOnly = true;
+                if (field.type === 'input') {
+                    field.readOnly = true; 
+                } else {
+                    field.disabled = true; // Per i campi select
+                }
             });
             editButton.classList.remove('hidden');
             cancelButton.classList.add('hidden');
             saveButton.classList.add('hidden');
         } else { // Stiamo attivando la modalità di modifica (da 'Modifica')
             formFields.forEach(field => {
-                field.readOnly = false;
+                if (field.type === 'input') {
+                    field.readOnly = false; 
+                } else {
+                    field.disabled = false; // Per i campi select
+                }
             });
             editButton.classList.add('hidden');
             cancelButton.classList.remove('hidden');
@@ -96,7 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
         physiologicalHistoryForm.addEventListener('submit', function() {
             
             formFields.forEach(field => {
-                field.readOnly = true; 
+                if (field.type === 'input') {
+                    field.readOnly = true; 
+                } else {
+                    field.disabled = true; // Per i campi select
+                }
             });
         });
     }
@@ -151,7 +171,11 @@ window.savePhysiologicalHistoryUpdated = function() {
     .then(data => {
         console.log('Server response:', data);
         formFields.forEach(field => {
-            field.readOnly = true; 
+            if (field.type === 'input') {
+                    field.readOnly = true; 
+            } else {
+                field.disabled = true; // Per i campi select
+            }
         });
         editButton.classList.remove('hidden');
         cancelButton.classList.add('hidden');

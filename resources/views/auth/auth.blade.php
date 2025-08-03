@@ -1,11 +1,11 @@
 <x-guest-layout>
     <div class="backgroundImage" style="background-image: url('{{ asset('images/white2.jpg') }}');"> </div>
     <!-- Toggle Tabs -->
-    <nav class="relative z-10 pt-2 px-4 max-w-md bg-red-500 dark:bg-gray-800 flex space-x-8 border border-gray-300 rounded-t-lg">
-        <button class="pb-2 text-base font-medium text-black hover:text-blue-600 border-b-2 border-transparent" id="form1">
+    <nav class="relative z-10 pt-2 px-4 max-w-md bg-red-500 dark:bg-red-600 flex space-x-8 border border-gray-300 rounded-t-lg">
+        <button class="pb-2 text-base font-medium text-black hover:text-blue-600 dark:hover:text-blue-200 dark:text-white border-b-2 border-transparent" id="form1">
             Login
         </button>
-        <button class="pb-2 text-base font-medium text-black hover:text-blue-600 border-b-2 border-transparent" id="form2">
+        <button class="pb-2 text-base font-medium text-black hover:text-blue-600 dark:hover:text-blue-200 dark:text-white border-b-2 border-transparent" id="form2">
             Registrazione
         </button>
     </nav>
