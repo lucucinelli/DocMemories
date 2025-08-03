@@ -61,7 +61,7 @@ class VisitController extends Controller
     public function showVisit($visitId)
     {
         // Logic to show a specific visit
-        $visit = Visit::findOrFail($visitId);
+        $visit = Auth::user()->visits->findOrFail($visitId);
         $tests = $visit->allergyTests()->get(); // Assuming you have a relationship defined in the Visit model
         $exams = $visit->exams()->get(); // Assuming you have a relationship defined in the Visit model
         $medicinals = $visit->medicinals()->get(); // Assuming you have a relationship defined in the Visit model
@@ -71,7 +71,7 @@ class VisitController extends Controller
     public function deleteVisit($visitId)
     {
         // Logic to delete a specific visit
-        $visit = Visit::findOrFail($visitId);
+        $visit = Auth::user()->visits->findOrFail($visitId);
         $visit->delete();
         return redirect()->route('showVisits')->with('success', 'Visit deleted successfully.');
     }
@@ -91,7 +91,7 @@ class VisitController extends Controller
             ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
             ->get();
-            $visits = Visit::whereIn('patient_id', $patients->pluck('id'))
+            $visits = Auth::user()->visits->whereIn('patient_id', $patients->pluck('id'))
             ->orWhere('reason', 'LIKE', "%{$searchTerm}%")
             ->orWhere('diagnosis', 'LIKE', "%{$searchTerm}%")
             ->orWhere('reservation', 'LIKE', "%{$searchTerm}%")
