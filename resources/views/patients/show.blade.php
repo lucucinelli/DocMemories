@@ -21,6 +21,18 @@
                             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                                 {{ __('Visita') }}
                             </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                @switch($patient->visits->count())
+                                    @case(0)
+                                        {{ __("Il paziente non è stato ancora visitato.") }}
+                                        @break
+                                    @case(1)
+                                        {{ __("Il paziente è stato visitato una volta.") }}
+                                        @break
+                                    @default
+                                        {{ __("Il paziente è stato visitato " . $patient->visits->count() . " volte.") }}
+                                @endswitch
+                            </p>
                             <x-primary-button class="mt-4" onclick="window.location.href='{{ route('newVisitForm', $patient->id) }}'">
                                 <i class="bi bi-plus-square-fill mr-2"></i> {{ __('Aggiungi visita') }}
                             </x-primary-button>

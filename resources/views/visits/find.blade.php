@@ -3,6 +3,18 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Elenco delle visite') }}
         </h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            @switch($visits->count())
+                @case(0)
+                    {{ __("Non hai visite registrate.") }}
+                    @break
+                @case(1)
+                    {{ __("Hai una visita registrata.") }}
+                    @break
+                @default
+                    {{ __("Hai " . $visits->count() . " visite registrate.") }}
+            @endswitch
+        </p>
     </x-slot> 
     
     <div class="max-w-4xl mx-auto mt-10">
