@@ -1,4 +1,5 @@
 console.log('Analytics script loaded');
+let currentChart = null;
 
 window.showStep = function(step) {
     const step1 = document.getElementById('step-1');
@@ -28,6 +29,9 @@ window.showStep = function(step) {
             step3Indicator.classList.remove('border-blue-600', 'dark:border-blue-500');
             break;
         case 2:
+            if (currentChart) {
+                currentChart.destroy(); 
+            }
             step2.classList.remove('hidden');
             step1.classList.add('hidden');
             step3.classList.add('hidden');
@@ -65,13 +69,14 @@ window.showStep = function(step) {
 }
 
 showStep(1);
-let currentChart = null;
+
 
 /*------------------------------------------question-1----------------------------------------------- */
 document.getElementById('question-1').addEventListener('click', function() {
+    const errorMessage = document.getElementById('error-message');
     const chartType = document.getElementById('chart-type').value;
-    const fromDate = document.getElementById('from-date').value;
-    const toDate = document.getElementById('to-date').value;
+    const fromDate = document.getElementById('date_from').value;
+    const toDate = document.getElementById('date_to').value;
     // fetch data from the server
     fetch('/analytics/countOfPatients', {
         method: 'POST',
@@ -87,18 +92,44 @@ document.getElementById('question-1').addEventListener('click', function() {
     })
     .then(response => response.json())
     .then(data => {
-        // create the chart
-        createChart(chartType, data.labels, data.counts);
+        if (data.message === 'empty') {
+            console.log('No data available for the selected period.');
+            errorMessage.classList.remove('hidden');
+            if (currentChart) {
+                currentChart.destroy();
+            }
+        } else {
+            errorMessage.classList.add('hidden');
+            createChart(chartType, data.labels, data.counts);
+        }
     });
 });
 
 /*------------------------------------------question-2/6----------------------------------------------- */
 document.getElementById('question-2').addEventListener('click', function() {
+    Patology(2);
+});
+document.getElementById('question-3').addEventListener('click', function() {
+    Patology(3);
+});
+document.getElementById('question-4').addEventListener('click', function() {
+    Patology(4);
+});
+document.getElementById('question-5').addEventListener('click', function() {
+    Patology(5);
+});
+document.getElementById('question-6').addEventListener('click', function() {
+    Patology(6);
+});
+
+function Patology(number) {
+    const errorMessage = document.getElementById('error-message');
+    const patology = document.getElementById('patology-' + number).textContent;
     const chartType = document.getElementById('chart-type').value;
-    const fromDate = document.getElementById('from-date').value;
-    const toDate = document.getElementById('to-date').value;
+    const fromDate = document.getElementById('date_from').value;
+    const toDate = document.getElementById('date_to').value;
     // fetch data from the server
-    fetch('/analytics/countOfPatients', {
+    fetch('/analytics/patology', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,17 +137,32 @@ document.getElementById('question-2').addEventListener('click', function() {
         },
         body: JSON.stringify({
             // any necessary data to send to the server
+            fromDate: fromDate,
+            toDate: toDate,
+            patology: patology
         })
     })
     .then(response => response.json())
     .then(data => {
-        // create the chart
-        createChart(chartType, data.labels, data.counts);
+        if (data.message === 'empty') {
+            console.log('No data available for the selected period.');
+            errorMessage.classList.remove('hidden');
+            if (currentChart) {
+                currentChart.destroy();
+            }
+        } else {
+            errorMessage.classList.add('hidden');
+            createChart(chartType, data.labels, data.counts);
+        }
     });
-});
+};
 
 /*------------------------------------------chart----------------------------------------------- */
 function createChart(type, label, datasets){
+    var display = true;
+    if (type == 'bar' || type == 'line') {
+        display = false;
+    }
 
     const ctx = document.getElementById('analytics-chart').getContext('2d');
 
@@ -127,28 +173,31 @@ function createChart(type, label, datasets){
     currentChart = new Chart(ctx, {
         type: type,
         data: {
-        labels: label,
-        datasets: [{
-            label: 'Analytics Data',
-            data: datasets,
-            backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56',
-                '#4BC0C0',
-                '#9966FF',
-                '#FF9F40',
-                '#FF6384',
-                '#66BB6A',
-                '#EF5350',
-            ],
-            borderWidth: 1
-        }]
+            labels: label,
+            datasets: [{
+                label: 'Pazienti',
+                data: datasets,
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF9F40',
+                    '#FF6384',
+                    '#66BB6A',
+                    '#EF5350',
+                ],
+                borderWidth: 1,
+                hoverBorderWidth: 2,
+                hoverBorderColor: '#000000'
+            }]
         },
         options: {  
             responsive: true,
             plugins: {
                 legend: {
+                    display: display,
                     position: 'right',
                 }
             },

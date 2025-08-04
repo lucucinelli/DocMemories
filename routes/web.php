@@ -111,4 +111,5 @@ Route::middleware('auth')->group(function () {
 /**--------------------------------------------------------- ANALYTICS  -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::post('/analytics/countOfPatients', [AnalyticsController::class, 'numberOfPatients'])->name('analytics.countOfPatients'); // Get number of patients
+    Route::post('/analytics/patology', [AnalyticsController::class, 'analyzedPatology'])->name('analytics.patology'); // Get patology data
 });

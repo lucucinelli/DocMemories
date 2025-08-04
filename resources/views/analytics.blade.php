@@ -53,7 +53,7 @@
                             {{ __("Seleziona il periodo da analizzare") }}
                         </p>
                         <x-input-label  for="date_from" :value="__('Da')" />
-                        <x-text-input id="period_begin" class="block mt-1 w-full" type="date" name="period_begin" autofocus  value="{{now()->format('Y') . '-01-01'}}" />
+                        <x-text-input id="date_from" class="block mt-1 w-full" type="date" name="date_from" autofocus  value="{{now()->format('Y') . '-01-01'}}" />
                         <x-input-label  for="date_to" :value="__('A')" />
                         <x-text-input id="date_to" class="block mt-1 w-full" type="date" name="date_to" autofocus value="{{now()->format('Y-m-d')}}" />
                         <div class="flex justify-between">
@@ -76,6 +76,9 @@
                                 {{ __('Crea grafico') }}
                             </x-primary-button>
                         </div>
+                        <div class="mt-4 hidden" id="error-message">
+                            <h2 class="text-red-500 text-center font-medium"> Non ci sono dati da analizzare </h2>
+                        </div>
                         <div>
                             <canvas id="analytics-chart" class="mt-6 hidden"></canvas>
                         </div>
@@ -94,23 +97,23 @@
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                        <a id="question-2" href="#analytics-chart">Quanti pazienti hanno  l'<span class="font-semibold text-gray-900 dark:text-white">asma</span>?</a>
+                                        <a id="question-2" href="#analytics-chart">Quanti pazienti hanno  l'<span class="font-semibold text-gray-900 dark:text-white" id="patology-2">asma</span>?</a>
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                        <a id="question-3" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white">rinite</span>?</a>
+                                        <a id="question-3" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white" id="patology-3">rinite</span>?</a>
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                        <a id="question-4" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white">poliposi nasale</span>?</a>
+                                        <a id="question-4" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white" id="patology-4">poliposi nasale</span>?</a>
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                        <a id="question-5" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white">congiuntivite</span>?</a>
+                                        <a id="question-5" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white" id="patology-5">congiuntivite</span>?</a>
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                        <a id="question-6" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white">dermatite</span>?</a>
+                                        <a id="question-6" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white" id="patology-6">dermatite</span>?</a>
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
