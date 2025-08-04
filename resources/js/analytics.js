@@ -8,7 +8,7 @@ window.showStep = function(step) {
     const step1Indicator = document.getElementById('step-1-indicator');
     const step2Indicator = document.getElementById('step-2-indicator');
     const step3Indicator = document.getElementById('step-3-indicator');
-    const listItems = document.querySelectorAll('li');
+    const listItems = document.querySelectorAll('.stepper');
     
     switch (step) {
         case 1:
@@ -100,44 +100,44 @@ document.getElementById('question-1').addEventListener('click', function() {
             }
         } else {
             errorMessage.classList.add('hidden');
-            createChart(chartType, data.labels, data.counts);
+            createChart(chartType, data.labels, data.counts, 'Quanti pazienti sono stati visitati?');
         }
     });
 });
 
 /*------------------------------------------question-2/11----------------------------------------------- */
 document.getElementById('question-2').addEventListener('click', function() {
-    Patology('asma');
+    Patology('asma', 'Quanti pazienti sono affetti da asma?');
 });
 document.getElementById('question-3').addEventListener('click', function() {
-    Patology('rinite');
+    Patology('rinite', 'Quanti pazienti sono affetti da rinite?');
 });
 document.getElementById('question-4').addEventListener('click', function() {
-    Patology('poliposi nasale');
+    Patology('poliposi nasale', 'Quanti pazienti sono affetti da poliposi nasale?');
 });
 document.getElementById('question-5').addEventListener('click', function() {
-    Patology('congiuntivite');
+    Patology('congiuntivite', 'Quanti pazienti sono affetti da congiuntivite?');
 });
 document.getElementById('question-6').addEventListener('click', function() {
-    Patology('dermatite');
+    Patology('dermatite', 'Quanti pazienti sono affetti da dermatite?');
 });
 document.getElementById('question-7').addEventListener('click', function() {
-    Patology('aliment');
+    Patology('aliment', 'Quanti pazienti sono affetti da allergie alimentari?');
 });
 document.getElementById('question-8').addEventListener('click', function() {
-    Patology('beta-lattamic');
+    Patology('beta-lattamic', 'Quanti pazienti sono affetti da allergie al beta-lattamico?');
 });
 document.getElementById('question-9').addEventListener('click', function() {
-    Patology('antibiotic');
+    Patology('antibiotic', 'Quanti pazienti sono affetti da allergie agli antibiotici?');
 });
 document.getElementById('question-10').addEventListener('click', function() {
-    Patology('antinfiamma');
+    Patology('antinfiamma', 'Quanti pazienti sono affetti da antinfiammatori?');
 });
 document.getElementById('question-11').addEventListener('click', function() {
-    Patology('imenotteri');
+    Patology('imenotteri', 'Quanti pazienti sono affetti da veleno di imenotteri?');
 });
 
-function Patology(patology) {
+function Patology(patology, title) {
     const errorMessage = document.getElementById('error-message');
     const chartType = document.getElementById('chart-type').value;
     const fromDate = document.getElementById('date_from').value;
@@ -161,18 +161,20 @@ function Patology(patology) {
         if (data.message === 'empty') {
             console.log('No data available for the selected period.');
             errorMessage.classList.remove('hidden');
+            document.getElementById('analytics-chart-container').classList.add('hidden');
             if (currentChart) {
                 currentChart.destroy();
             }
         } else {
             errorMessage.classList.add('hidden');
-            createChart(chartType, data.labels, data.counts);
+            createChart(chartType, data.labels, data.counts, title);
         }
     });
 };
 
 /*------------------------------------------chart----------------------------------------------- */
-function createChart(type, label, datasets){
+function createChart(type, label, datasets, title){
+    document.getElementById('analytics-chart-container').classList.remove('hidden');
     var display = true;
     if (type == 'bar' || type == 'line') {
         display = false;
@@ -183,6 +185,10 @@ function createChart(type, label, datasets){
     if (currentChart) {
         currentChart.destroy();
     }
+
+    Chart.defaults.color = '#706E6E';
+    Chart.defaults.font.family = 'Arial, sans-serif';
+    Chart.defaults.font.size = 20;
 
     currentChart = new Chart(ctx, {
         type: type,
@@ -202,6 +208,7 @@ function createChart(type, label, datasets){
                     '#66BB6A',
                     '#EF5350',
                 ],
+                fill: type === 'line' || type === 'bar' ? true : false,
                 borderWidth: 1,
                 hoverBorderWidth: 2,
                 hoverBorderColor: '#000000'
@@ -210,6 +217,14 @@ function createChart(type, label, datasets){
         options: {  
             responsive: true,
             plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    font: {
+                        size: 24,
+                        weight: 'bold',
+                    },
+                },
                 legend: {
                     display: display,
                     position: 'right',
@@ -219,6 +234,8 @@ function createChart(type, label, datasets){
                 y: {
                     beginAtZero: true
                 }
+            },
+            layout:{
             }
         }
 
