@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Statistiche') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="border-2 border-red-500  dark:border-orange-600  bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <!-- Your analytics content goes here -->
                     <ol class="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
                         <li class="flex items-center text-blue-600 dark:text-blue-500 space-x-2.5 rtl:space-x-reverse">
@@ -69,7 +69,7 @@
                             <canvas id="analytics-chart" class="mt-6 hidden"></canvas>
                         </div>
                         <div class="mt-6">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                                 {{ __('FAQ') }}
                             </h2>
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
