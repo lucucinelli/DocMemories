@@ -30,6 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// analytics
+Route::get('/analytics', function () {
+    return view('analytics');
+})->middleware(['auth', 'verified'])->name('analytics');
+
 require __DIR__.'/auth.php';
 
 /**------------------------------------------------------- PATIENTS CRUD -------------------------------------------------------------- */
