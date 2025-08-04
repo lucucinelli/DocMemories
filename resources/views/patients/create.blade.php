@@ -27,7 +27,7 @@
                             <x-text-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" required value="{{ old('birthdate') }}" /> 
                             <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
                             <x-input-label for="gender" :value="__('Genere')" />
-                            <x-select name="gender" class="block mt-1 w-full" :options="['Maschio' => 'M', 'Femmina' => 'F', 'Altro' => 'O']"  />
+                            <x-select name="gender" class="block mt-1 w-full" :options="['Maschio' => 'M', 'Femmina' => 'F', 'Altro' => 'Altro']"  />
                             <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             <x-input-label for="birthplace" :value="__('Luogo di nascita')" />
                             <x-text-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" required value="{{ old('birthplace') }}" />

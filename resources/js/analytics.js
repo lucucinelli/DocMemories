@@ -105,26 +105,40 @@ document.getElementById('question-1').addEventListener('click', function() {
     });
 });
 
-/*------------------------------------------question-2/6----------------------------------------------- */
+/*------------------------------------------question-2/11----------------------------------------------- */
 document.getElementById('question-2').addEventListener('click', function() {
-    Patology(2);
+    Patology('asma');
 });
 document.getElementById('question-3').addEventListener('click', function() {
-    Patology(3);
+    Patology('rinite');
 });
 document.getElementById('question-4').addEventListener('click', function() {
-    Patology(4);
+    Patology('poliposi nasale');
 });
 document.getElementById('question-5').addEventListener('click', function() {
-    Patology(5);
+    Patology('congiuntivite');
 });
 document.getElementById('question-6').addEventListener('click', function() {
-    Patology(6);
+    Patology('dermatite');
+});
+document.getElementById('question-7').addEventListener('click', function() {
+    Patology('aliment');
+});
+document.getElementById('question-8').addEventListener('click', function() {
+    Patology('beta-lattamic');
+});
+document.getElementById('question-9').addEventListener('click', function() {
+    Patology('antibiotic');
+});
+document.getElementById('question-10').addEventListener('click', function() {
+    Patology('antinfiamma');
+});
+document.getElementById('question-11').addEventListener('click', function() {
+    Patology('imenotteri');
 });
 
-function Patology(number) {
+function Patology(patology) {
     const errorMessage = document.getElementById('error-message');
-    const patology = document.getElementById('patology-' + number).textContent;
     const chartType = document.getElementById('chart-type').value;
     const fromDate = document.getElementById('date_from').value;
     const toDate = document.getElementById('date_to').value;

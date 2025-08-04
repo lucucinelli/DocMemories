@@ -117,7 +117,7 @@
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                        <a id="question-7" href="#analytics-chart">Quanti pazienti sono <span class="font-semibold text-gray-900 dark:text-white">allergici ad alimenti</span>?</a>
+                                        <a id="question-7" href="#analytics-chart">Quanti pazienti sono allergici ad <span class="font-semibold text-gray-900 dark:text-white" value="alimenti">alimenti</span>?</a>
                                     </li>
                                     <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                         <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
