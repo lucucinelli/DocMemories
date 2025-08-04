@@ -65,3 +65,99 @@ window.showStep = function(step) {
 }
 
 showStep(1);
+let currentChart = null;
+
+/*------------------------------------------question-1----------------------------------------------- */
+document.getElementById('question-1').addEventListener('click', function() {
+    const chartType = document.getElementById('chart-type').value;
+    const fromDate = document.getElementById('from-date').value;
+    const toDate = document.getElementById('to-date').value;
+    // fetch data from the server
+    fetch('/analytics/countOfPatients', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            // any necessary data to send to the server
+            fromDate: fromDate,
+            toDate: toDate
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // create the chart
+        createChart(chartType, data.labels, data.counts);
+    });
+});
+
+/*------------------------------------------question-2/6----------------------------------------------- */
+document.getElementById('question-2').addEventListener('click', function() {
+    const chartType = document.getElementById('chart-type').value;
+    const fromDate = document.getElementById('from-date').value;
+    const toDate = document.getElementById('to-date').value;
+    // fetch data from the server
+    fetch('/analytics/countOfPatients', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            // any necessary data to send to the server
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // create the chart
+        createChart(chartType, data.labels, data.counts);
+    });
+});
+
+/*------------------------------------------chart----------------------------------------------- */
+function createChart(type, label, datasets){
+
+    const ctx = document.getElementById('analytics-chart').getContext('2d');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
+
+    currentChart = new Chart(ctx, {
+        type: type,
+        data: {
+        labels: label,
+        datasets: [{
+            label: 'Analytics Data',
+            data: datasets,
+            backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56',
+                '#4BC0C0',
+                '#9966FF',
+                '#FF9F40',
+                '#FF6384',
+                '#66BB6A',
+                '#EF5350',
+            ],
+            borderWidth: 1
+        }]
+        },
+        options: {  
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                }
+            },
+            scales: type === 'pie' || type === 'doughnut' ? {} : {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+
+    });
+}

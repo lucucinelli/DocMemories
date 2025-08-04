@@ -1,17 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VisitController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ExamController;
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\MedicinalController; 
-use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FamiliarHistoryController;
-use App\Http\Controllers\RemotePathologicalHistoryController;
-use App\Http\Controllers\NextPathologicalHistoryController;
 use App\Http\Controllers\PhysiologicalHistoryController;
+use App\Http\Controllers\NextPathologicalHistoryController;
+use App\Http\Controllers\RemotePathologicalHistoryController;
 
 // welcome page
 
@@ -106,4 +107,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/isPhysiologicalHistorySet/{patient}', [PhysiologicalHistoryController::class, 'isPhysiologicalHistorySet'])->name('isPhysiologicalHistorySet'); // Check if physiological history is set
     Route::post('/createPhysiologicalHistory/{patient}', [PhysiologicalHistoryController::class, 'newPhysiologicalHistory'])->name('newPhysiologicalHistory'); // Create a new physiological history
     Route::put('/editPhysiologicalHistory/{patient}', [PhysiologicalHistoryController::class, 'editPhysiologicalHistory'])->name('editPhysiologicalHistory'); // Edit an existing physiological history
+});
+/**--------------------------------------------------------- ANALYTICS  -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/analytics/countOfPatients', [AnalyticsController::class, 'numberOfPatients'])->name('analytics.countOfPatients'); // Get number of patients
 });

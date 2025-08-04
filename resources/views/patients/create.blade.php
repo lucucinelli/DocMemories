@@ -13,7 +13,6 @@
                     <form method="POST" action="{{ route('newPatient') }}">
                         @csrf
                         <!-- Include form fields here -->
-
                         <div class="flex flex-col gap-3">
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('Informazioni anagrafiche') }}
