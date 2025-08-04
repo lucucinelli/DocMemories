@@ -18,6 +18,7 @@ export default defineConfig({
                 'resources/js/tests-dynamic-table.js',
                 'resources/js/history.js',
                 'resources/js/access.js',
+                'resources/js/analytics.js',
             ],
             refresh: true, // enables automatic page refresh when files change, it only works in dev mode
         }),
