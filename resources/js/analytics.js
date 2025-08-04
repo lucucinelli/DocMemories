@@ -8,8 +8,6 @@ window.showStep = function(step) {
     const step2Indicator = document.getElementById('step-2-indicator');
     const step3Indicator = document.getElementById('step-3-indicator');
     const listItems = document.querySelectorAll('li');
-    const spanElements = document.querySelectorAll('span .shrink-0');
-
     
     switch (step) {
         case 1:

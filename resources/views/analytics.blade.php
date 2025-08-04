@@ -65,6 +65,17 @@
                         <x-primary-button type="button" class="mt-4" id="next-step-3">
                             {{ __('Crea grafico') }}
                         </x-primary-button>
+                        <div>
+                            <canvas id="analytics-chart" class="mt-6 hidden"></canvas>
+                        </div>
+                        <div class="mt-6">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                {{ __('FAQ') }}
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __("Cliccando sulla FAQ di interesse potrai visualizzarne il grafico") }}
+                            </p>
+                        </div>
                     </div>
                     
                 </div>
