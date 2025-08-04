@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="border-2 border-red-500  dark:border-orange-600  bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
+            <div class="border-2 border-white-500  dark:border-gray-800  bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <!-- Your analytics content goes here -->
                     <ol class="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
@@ -39,32 +39,40 @@
                             </span>
                         </li>
                     </ol>
-                    <div class="mt-6" id="step-1">
+                    <div class="mt-6 flex flex-col gap-3" id="step-1">
                         <x-input-label for="chart-type" :value="__('Tipo di grafico')" />
                         <x-select id="chart-type" class="block mt-1 w-full" name="chart_type" :options="['Linea' => 'line', 'Istogramma' => 'bar', 'Torta' => 'pie', 'Ciambella' => 'doughnut']" />
-                        <x-primary-button type="button" class="mt-4" id="next-step-1" onclick="showStep(2)">
-                            {{ __('Passo successivo') }}
-                        </x-primary-button>
+                        <div class="flex justify-end">
+                            <x-primary-button type="button" class="mt-4 " id="next-step-1" onclick="showStep(2)">
+                                {{ __('Passo successivo') }}
+                            </x-primary-button>
+                        </div>
                     </div>
-                    <div class="mt-6" id="step-2">
-                        <x-input-label for="period" :value="__('Periodo di analisi')" />
-                        <x-text-input id="period" class="block mt-1 w-full" type="date" name="period" autofocus />
-                        <x-secondary-button class="mt-4" id="prev-step-2" onclick="showStep(1)">
-                            {{ __('Indietro') }}
-                        </x-secondary-button>
-                        <x-primary-button type="button" class="mt-4" id="next-step-2" onclick="showStep(3)">
-                            {{ __('Passo successivo') }}
-                        </x-primary-button>
+                    <div class="mt-6 flex flex-col gap-3" id="step-2">
+                        <x-input-label for="date_from" :value="__('Data di inizio')" />
+                        <x-text-input id="period_begin" class="block mt-1 w-full" type="date" name="period_begin" autofocus  value="{{now()->format('Y') . '-01-01'}}" />
+                        <x-input-label for="date_to" :value="__('Data di fine')" />
+                        <x-text-input id="date_to" class="block mt-1 w-full" type="date" name="date_to" autofocus value="{{now()->format('Y-m-d')}}" />
+                        <div class="flex justify-between">
+                            <x-secondary-button class="mt-4" id="prev-step-2" onclick="showStep(1)">
+                                {{ __('Indietro') }}
+                            </x-secondary-button>
+                            <x-primary-button type="button" class="mt-4" id="next-step-2" onclick="showStep(3)">
+                                {{ __('Passo successivo') }}
+                            </x-primary-button>
+                        </div>
                     </div>
-                    <div class="mt-6" id="step-3">
+                    <div class="mt-6 flex flex-col gap-3" id="step-3">
                         <x-input-label for="param" :value="__('Parametri di analisi')" />
                         <x-text-input id="param" class="block mt-1 w-full" type="date" name="param" autofocus />
-                        <x-secondary-button class="mt-4" id="prev-step-3" onclick="showStep(2)">
-                            {{ __('Indietro') }}
-                        </x-secondary-button>
-                        <x-primary-button type="button" class="mt-4" id="next-step-3">
-                            {{ __('Crea grafico') }}
-                        </x-primary-button>
+                        <div class="flex justify-between">
+                            <x-secondary-button class="mt-4" id="prev-step-3" onclick="showStep(2)">
+                                {{ __('Indietro') }}
+                            </x-secondary-button>
+                            <x-primary-button type="button" class="mt-4" id="next-step-3">
+                                {{ __('Crea grafico') }}
+                            </x-primary-button>
+                        </div>
                         <div>
                             <canvas id="analytics-chart" class="mt-6 hidden"></canvas>
                         </div>
