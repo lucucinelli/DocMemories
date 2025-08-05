@@ -166,5 +166,6 @@
     </div>
 </x-app-layout>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 @vite('resources/js/analytics.js')
 
