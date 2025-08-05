@@ -100,8 +100,7 @@ window.deleteMedicinalRow = function() {
     const riga = document.querySelector(`input[name^="righe[${medicinal_id}]"]`);
     riga.closest('tr').remove();
     document.getElementById('medicinal_id').value = ""; 
-    // Chiudi la modale (dispatch evento Alpine)
-    
+   
 };
 
 

@@ -98,7 +98,7 @@
                                         <button type="button" onclick="editNextHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"><i class="bi bi-pencil"></i></button>
                                     </td>
                                     <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-                                        <button type="button" onclick="deleteNextHistoryRow(this)" class="text-red-600 hover:text-red-800 font-bold dark:text-red-300">✕</button>
+                                        <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-history-deletion')" onclick="openDeleteNextModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
                                     </td>
                                 </tr>
                             @endforeach

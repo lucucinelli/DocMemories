@@ -32,6 +32,24 @@ tabs.forEach(tab => {
     });
 });
 
+window.deleteRow = function(){
+    const history_id = document.getElementById('history_id').value;
+    const history_type = document.getElementById('history_type').value;
+    switch (history_type) {
+        case "remote":
+            // Call the delete function for remote history
+            deleteRemoteRow(history_id);
+            break;
+        case "next":
+            // Call the delete function for next history
+            deleteNextRow(history_id);
+            break;
+        default:
+            deleteFamiliarRow(history_id);
+    }
+    document.getElementById('history_type').value = ""; // Reset the history_type after deletion
+};
+
 //-------------------------------------physiological history----------------------------------
 console.log("Physiological History Script Loaded");
 
@@ -239,7 +257,7 @@ function appendFamiliarHistoryRow(familiarHistory_id, allergy, relative, note, t
             <button type="button" onclick="editFamiliarHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-            <button type="button" onclick="deleteFamiliarHistoryRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+            <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-history-deletion')" onclick="openDeleteFamiliarModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -248,11 +266,16 @@ function appendFamiliarHistoryRow(familiarHistory_id, allergy, relative, note, t
     document.getElementById('note').value = "";
 }
 
-
-window.deleteFamiliarHistoryRow = function(button) {
-    console.log('delete familiar history row');
+window.openDeleteFamiliarModal = function(button) {
     const familiarHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
-    fetch(`/deleteFamiliarHistory/${familiarHistory_id}`, {
+    document.getElementById('history_id').value = familiarHistory_id;
+    document.getElementById('history_type').value = "familiar";
+}
+
+// Function to delete a row
+window.deleteFamiliarRow = function() {
+    const familiar_id = document.getElementById('history_id').value
+    fetch(`/deleteFamiliarHistory/${familiar_id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -265,8 +288,10 @@ window.deleteFamiliarHistoryRow = function(button) {
         }
         return response.ok;
     })
-    button.closest('tr').remove();
-}
+    const riga = document.querySelector(`input[name^="righe[${familiar_id}]"]`);
+    riga.closest('tr').remove();
+    document.getElementById('history_id').value = "";
+};
 
 window.editFamiliarHistoryRow = function(button) {
     console.log('edit familiar history row');
@@ -419,7 +444,7 @@ function appendRemoteHistoryRow(remoteHistory_id, remote_date, remote_type, remo
             <button type="button" onclick="editRemoteHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-            <button type="button" onclick="deleteRemoteHistoryRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+            <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-history-deletion')" onclick="openDeleteRemoteModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -429,11 +454,16 @@ function appendRemoteHistoryRow(remoteHistory_id, remote_date, remote_type, remo
     document.getElementById('remote_note').value = "";
 }
 
-
-window.deleteRemoteHistoryRow = function(button) {
-    console.log('delete remote history row');
+window.openDeleteRemoteModal = function(button) {
     const remoteHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
-    fetch(`/deleteRemotePathologicalHistory/${remoteHistory_id}`, {
+    document.getElementById('history_id').value = remoteHistory_id;
+    document.getElementById('history_type').value = "remote";
+}
+
+// Function to delete a row
+window.deleteRemoteRow = function() {
+    const remote_id = document.getElementById('history_id').value
+    fetch(`/deleteRemotePathologicalHistory/${remote_id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -446,8 +476,10 @@ window.deleteRemoteHistoryRow = function(button) {
         }
         return response.ok;
     })
-    button.closest('tr').remove();
-}
+    const riga = document.querySelector(`input[name^="righe[${remote_id}]"]`);
+    riga.closest('tr').remove();
+    document.getElementById('history_id').value = "";
+};
 
 window.editRemoteHistoryRow = function(button) {
     console.log('edit remote history row');
@@ -631,7 +663,7 @@ function appendNextHistoryRow(nextHistory_id, next_date, next_type, next_name, n
             <button type="button" onclick="editNextHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-            <button type="button" onclick="deleteNextHistoryRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+            <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-history-deletion')" onclick="openDeleteNextModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -644,11 +676,16 @@ function appendNextHistoryRow(nextHistory_id, next_date, next_type, next_name, n
     document.getElementById('next_note').value = "";
 }
 
-
-window.deleteNextHistoryRow = function(button) {
-    console.log('delete next history row');
+window.openDeleteNextModal = function(button) {
     const nextHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
-    fetch(`/deleteNextPathologicalHistory/${nextHistory_id}`, {
+    document.getElementById('history_id').value = nextHistory_id;
+    document.getElementById('history_type').value = "next";
+}
+
+// Function to delete a row
+window.deleteNextRow = function() {
+    const next_id = document.getElementById('history_id').value
+    fetch(`/deleteNextPathologicalHistory/${next_id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -661,8 +698,11 @@ window.deleteNextHistoryRow = function(button) {
         }
         return response.ok;
     })
-    button.closest('tr').remove();
-}
+    const riga = document.querySelector(`input[name^="righe[${next_id}]"]`);
+    riga.closest('tr').remove();
+    document.getElementById('history_id').value = "";
+
+};
 
 window.editNextHistoryRow = function(button) {
     console.log('edit next history row');
