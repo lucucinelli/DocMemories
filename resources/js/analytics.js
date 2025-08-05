@@ -186,11 +186,12 @@ function createChart(type, label, datasets, title){
         currentChart.destroy();
     }
 
+    
     Chart.defaults.color = '#706E6E';
     Chart.defaults.font.family = 'Arial, sans-serif';
     Chart.defaults.font.size = 20;
 
-    currentChart = new Chart(ctx, {
+    const config = {
         type: type,
         data: {
             labels: label,
@@ -228,16 +229,25 @@ function createChart(type, label, datasets, title){
                 legend: {
                     display: display,
                     position: 'right',
+                },
+                datalabels: {
+                    formatter: ((value, context) => {
+                        const totalSum = context.dataset.data.reduce((acc, val) => {return acc + val}, 0);
+                        const percentage = ((value / totalSum) * 100).toFixed(2);
+                        return `${percentage}%`;
+                    }),
                 }
+                
             },
             scales: type === 'pie' || type === 'doughnut' ? {} : {
                 y: {
                     beginAtZero: true
                 }
             },
-            layout:{
-            }
-        }
+        },
+        plugins: type === 'pie' || type === 'doughnut' ? [ChartDataLabels] : []
 
-    });
+    };
+
+    currentChart = new Chart(ctx, config );
 }
