@@ -2,7 +2,7 @@
     <div class="bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 ">
             <!-- Form for creating a new patient -->
-            <form method="post" id="physiological-history-form" action="{{route('newPhysiologicalHistory', $patient->id) }}">
+            <form method="POST" id="physiological-history-form" action="{{route('newPhysiologicalHistory', $patient->id) }}">
                 @csrf
                 <div class="flex flex-col gap-3">
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -50,7 +50,7 @@
                         <x-secondary-button id="cancel-button" type="reset" onclick="toggleEditMode()" class="hidden">{{ __('Annulla') }}</x-secondary-button>
                         <x-primary-button id="save-button" type="button" class="hidden" onclick="savePhysiologicalHistoryUpdated()">{{ __('Salva') }}</x-primary-button>
                     @else
-                        <x-primary-button >
+                        <x-primary-button>
                             {{ __('Registra anamnesi') }}
                         </x-primary-button>
                     @endif

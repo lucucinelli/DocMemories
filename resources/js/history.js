@@ -1,4 +1,6 @@
 //---------------------------------------generic------------------------------------------------
+console.log("Generic Script Loaded");
+
 const tabs = document.querySelectorAll(".tab-btn");
 const contents = document.querySelectorAll(".contenuto");
 
@@ -31,6 +33,8 @@ tabs.forEach(tab => {
 });
 
 //-------------------------------------physiological history----------------------------------
+console.log("Physiological History Script Loaded");
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const physiologicalHistoryForm = document.getElementById('physiological-history-form');
@@ -106,20 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
             saveButton.classList.remove('hidden');
         }
     };
-
-    
-    if (physiologicalHistoryForm) {
-        physiologicalHistoryForm.addEventListener('submit', function() {
-            
-            formFields.forEach(field => {
-                if (field.type === 'input') {
-                    field.readOnly = true; 
-                } else {
-                    field.disabled = true; // Per i campi select
-                }
-            });
-        });
-    }
 
     
 });
