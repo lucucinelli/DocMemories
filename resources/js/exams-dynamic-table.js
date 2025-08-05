@@ -69,7 +69,7 @@ function appendExamRow(exam_id, exam_date, exam_type, exam_result, exam_note, tb
             <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 dark:text-blue-300 font-bold"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-            <button type="button" onclick="deleteExamRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+            <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-exam-deletion')" onclick="openDeleteExamModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -80,10 +80,14 @@ function appendExamRow(exam_id, exam_date, exam_type, exam_result, exam_note, tb
     document.getElementById('modExams').dispatchEvent(new CustomEvent('close', { bubbles: true }));
 }
 
+window.openDeleteExamModal = function(button) {
+    const exam_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    document.getElementById('exam_id').value = exam_id;
+}
 
 // Function to delete a row
-window.deleteExamRow = function(button) {
-    const exam_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+window.deleteExamRow = function() {
+    const exam_id = document.getElementById('exam_id').value
     fetch(`/deleteExam/${exam_id}`, {
         method: 'DELETE',
         headers: {
@@ -97,11 +101,12 @@ window.deleteExamRow = function(button) {
         }
         return response.ok;
     })
-    button.closest('tr').remove();
-}
-
-
-
+    const riga = document.querySelector(`input[name^="righe[${exam_id}]"]`);
+    riga.closest('tr').remove();
+    document.getElementById('exam_id').value = ""; 
+    // Chiudi la modale (dispatch evento Alpine)
+    
+};
 
 
 // Function to edit a row

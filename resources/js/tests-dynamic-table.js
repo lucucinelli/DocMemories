@@ -67,7 +67,7 @@ function appendTestRow(test_id, test_date, test_type, test_result, test_note, tb
             <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"><i class="bi bi-pencil"></i></button>
         </td>
         <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-            <button type="button" onclick="deleteTestRow(this)" class="text-red-600 hover:text-red-800 font-bold dark:text-red-300">✕</button>
+            <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-test-deletion')" onclick="openDeleteTestModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
                           
     `;
@@ -79,12 +79,14 @@ function appendTestRow(test_id, test_date, test_type, test_result, test_note, tb
     document.getElementById('modTests').dispatchEvent(new CustomEvent('close', { bubbles: true }));
 }
 
-
-
+window.openDeleteTestModal = function(button) {
+    const test_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    document.getElementById('test_id').value = test_id;
+}
 
 // Function to delete a row
-window.deleteTestRow = function(button) {
-    const test_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+window.deleteTestRow = function() {
+    const test_id = document.getElementById('test_id').value
     fetch(`/deleteTest/${test_id}`, {
         method: 'DELETE',
         headers: {
@@ -98,12 +100,12 @@ window.deleteTestRow = function(button) {
         }
         return response.ok;
     })
-    button.closest('tr').remove();
-}
-
-
-
-
+    const riga = document.querySelector(`input[name^="righe[${test_id}]"]`);
+    riga.closest('tr').remove();
+    document.getElementById('test_id').value = ""; 
+    // Chiudi la modale (dispatch evento Alpine)
+    
+};
 
 // Function to edit a row
 window.editTestRow = function(button) {

@@ -39,7 +39,7 @@
                                         <button type="button" onclick="editTestRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"><i class="bi bi-pencil"></i></button>
                                     </td>
                                     <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-                                        <button type="button" onclick="deleteTestRow(this)" class="text-red-600 hover:text-red-800 font-bold dark:text-red-300">✕</button>
+                                        <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-test-deletion')" onclick="openDeleteTestModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -92,6 +92,32 @@
                 </x-primary-button>
             </div>
         </form>
+    </div>
+</x-modal>
+
+<!-- modal for deleting test row -->
+<x-modal name="confirm-test-deletion" :show="$errors->testDeletion->isNotEmpty()" focusable>
+
+    <input type="hidden" id="test_id" value="">
+
+
+    <div class="p-6">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            {{ __('Sei sicuro di voler eliminare questo test?') }}
+        </h2>
+
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        {{ __('Una volta che il test è stato eliminato, tutte le sue risorse e i dati saranno permanentemente eliminati. Desideri procedere comunque?') }}
+    </p>
+
+    <div class="mt-6 flex justify-end">
+        <x-secondary-button x-on:click="$dispatch('close')">
+            {{ __('Annulla') }}
+        </x-secondary-button>
+
+        <x-danger-button class="ms-3" x-on:click="$dispatch('close')" onclick="deleteTestRow()">
+            {{ __('Cancella test') }}
+        </x-danger-button>
     </div>
 </x-modal>
 

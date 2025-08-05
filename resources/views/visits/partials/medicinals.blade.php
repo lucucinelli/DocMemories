@@ -39,7 +39,7 @@
                                         <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
                                     </td>
                                     <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-                                        <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+                                        <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-medicinal-deletion')" onclick="openDeleteMedicinalModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -91,6 +91,32 @@
                 </x-primary-button>
             </div>
         </form>
+    </div>
+</x-modal>
+
+<!-- modal for deleting medicinal row -->
+<x-modal name="confirm-medicinal-deletion" :show="$errors->medicinalDeletion->isNotEmpty()" focusable>
+
+    <input type="hidden" id="medicinal_id" value="">
+
+
+    <div class="p-6">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            {{ __('Sei sicuro di voler eliminare questo medicinale?') }}
+        </h2>
+
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        {{ __('Una volta che il medicinale è stato eliminato, tutte le sue risorse e i dati saranno permanentemente eliminati. Desideri procedere comunque?') }}
+    </p>
+
+    <div class="mt-6 flex justify-end">
+        <x-secondary-button x-on:click="$dispatch('close')">
+            {{ __('Annulla') }}
+        </x-secondary-button>
+
+        <x-danger-button class="ms-3" x-on:click="$dispatch('close')" onclick="deleteMedicinalRow()">
+            {{ __('Cancella medicinale') }}
+        </x-danger-button>
     </div>
 </x-modal>
 

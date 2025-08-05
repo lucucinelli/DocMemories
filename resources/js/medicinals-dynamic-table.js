@@ -65,7 +65,7 @@ function appendMedicinalRow(medicinal_id, med_name, med_quantity, med_usage, med
             <button type="button" onclick="editMedicinalRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
         </td>
         <td class="px-6 py-2 text-center before:content-['Rimuovi'] before:font-bold before:block sm:before:hidden">
-            <button type="button" onclick="deleteMedicinalRow(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
+            <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'confirm-medicinal-deletion')" onclick="openDeleteMedicinalModal(this)" class="text-red-600 hover:text-red-800 dark:text-red-300 font-bold">✕</button>
         </td>
     `;
     tbody.appendChild(newRow);
@@ -76,11 +76,14 @@ function appendMedicinalRow(medicinal_id, med_name, med_quantity, med_usage, med
     document.getElementById('modMedicinals').dispatchEvent(new CustomEvent('close', { bubbles: true }));
 }
 
+window.openDeleteMedicinalModal = function(button) {
+    const medicinal_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    document.getElementById('medicinal_id').value = medicinal_id;
+}
 
 // Function to delete a row
-window.deleteMedicinalRow = function(button) {
-    console.log('delete medicinal row');
-    const medicinal_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+window.deleteMedicinalRow = function() {
+    const medicinal_id = document.getElementById('medicinal_id').value
     fetch(`/deleteMedicinal/${medicinal_id}`, {
         method: 'DELETE',
         headers: {
@@ -94,8 +97,13 @@ window.deleteMedicinalRow = function(button) {
         }
         return response.ok;
     })
-    button.closest('tr').remove();
-}
+    const riga = document.querySelector(`input[name^="righe[${medicinal_id}]"]`);
+    riga.closest('tr').remove();
+    document.getElementById('medicinal_id').value = ""; 
+    // Chiudi la modale (dispatch evento Alpine)
+    
+};
+
 
 // Function to edit a row
 window.editMedicinalRow = function(button) {
