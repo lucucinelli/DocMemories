@@ -4,7 +4,6 @@
             <!-- Form for creating a new patient -->
             <form method="post" id="physiological-history-form" action="{{route('newPhysiologicalHistory', $patient->id) }}">
                 @csrf
-        
                 <div class="flex flex-col gap-3">
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                         {{ __('Informazioni fisiologiche') }}

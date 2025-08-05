@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Visit;
 use App\Models\Patient;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class VisitController extends Controller
 {
@@ -51,9 +52,18 @@ class VisitController extends Controller
     public function showVisits($patient_id = 0)
     {
         // Logic to list all visits
-        $visits = Auth::user()->visits; // Assuming you have a Visit model
+        $visits = DB::table('visits')
+                        ->select('visits.*', 'patients.name', 'patients.surname')
+                        ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                        ->where('user_id', '=', Auth::id())
+                        ->get();
         if ($patient_id != 0) {
-            $visits = $visits->where('patient_id', $patient_id);
+            $visits = DB::table('visits')
+                        ->select('visits.*', 'patients.name', 'patients.surname')
+                        ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                        ->where('user_id', '=', Auth::id())
+                        ->where('visits.patient_id', '=', $patient_id)
+                        ->get();
         }
         return view('visits.find', ['visits' => $visits]);
     }
@@ -86,16 +96,19 @@ class VisitController extends Controller
             return redirect()->route('showVisits'); // If search term is empty, redirect to show all visits
         } else {
             $searchTerm = trim($searchTerm); // Trim whitespace from the search term
-            $patients = Patient::whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
-            ->get();
-            $visits = Auth::user()->visits->whereIn('patient_id', $patients->pluck('id'))
-            ->orWhere('reason', 'LIKE', "%{$searchTerm}%")
-            ->orWhere('diagnosis', 'LIKE', "%{$searchTerm}%")
-            ->orWhere('reservation', 'LIKE', "%{$searchTerm}%")
-            ->get();
+            $visits = DB::table('visits')
+                        ->select('visits.*', 'patients.name', 'patients.surname')
+                        ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                        ->where('user_id', '=', Auth::id())
+                        ->where(function ($query) use ($searchTerm) {
+                            $query->where('reason', 'LIKE', "%{$searchTerm}%")
+                                ->orWhere('diagnosis', 'LIKE', "%{$searchTerm}%")
+                                ->orWhere('reservation', 'LIKE', "%{$searchTerm}%")
+                                ->orWhereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
+                                ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
+                                ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
+                                ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"]);
+                        })->get();
         }
         return view('visits.find', ['visits' => $visits]);
     }

@@ -44,7 +44,7 @@
                     </ol>
                     <div class="mt-6 flex flex-col gap-3" id="step-1">
                         <x-input-label  for="chart-type-stepper" :value="__('Seleziona il tipo di grafico dalla tendina')" />
-                        <x-select id="chart-type-stepper" class="block mt-1 w-full" name="chart-type-stepper" :options="['Linea' => 'line', 'Istogramma' => 'bar', 'Torta' => 'pie', 'Ciambella' => 'doughnut']" />
+                        <x-select id="chart-type-stepper" class="block mt-1 w-full" name="chart-type-stepper" :options="[ 'Torta' => 'pie', 'Istogramma' => 'bar', 'Ciambella' => 'doughnut','Linea' => 'line']" />
                         <div class="flex justify-end">
                             <x-primary-button type="button" class="mt-4 " id="next-step-1" onclick="showStep(2)">
                                 {{ __('Passo successivo') }}
@@ -97,7 +97,7 @@
                     </h2>
                     <div class="mt-6 flex flex-col gap-3">
                         <x-input-label  for="chart-type" :value="__('Seleziona il tipo di grafico dalla tendina')" />
-                        <x-select id="chart-type" class="block mt-1 w-full" name="chart-type" :options="['Linea' => 'line', 'Istogramma' => 'bar', 'Torta' => 'pie', 'Ciambella' => 'doughnut']" />
+                        <x-select id="chart-type" class="block mt-1 w-full" name="chart-type" :options="[ 'Torta' => 'pie', 'Istogramma' => 'bar', 'Ciambella' => 'doughnut', 'Linea' => 'line']" />
                         <x-input-label  for="chart-type" :value="__('Seleziona il periodo da analizzare')" />
                         <x-input-label  for="date_from" :value="__('Da')" />
                         <x-text-input id="date_from" class="block mt-1 w-full" type="date" name="date_from" autofocus  value="{{now()->format('Y') . '-01-01'}}" />

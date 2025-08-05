@@ -73,13 +73,13 @@
                                     @foreach ($visits as $visit)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $visit->patient->name }}
+                                                {{ $visit->patient->name ?? $visit->name }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $visit->patient->surname }}
+                                                {{ $visit->patient->surname ?? $visit->surname }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $visit->visit_date->format('d/m/Y') }}
+                                                {{ $visit->visit_date }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $visit->reason }}
@@ -105,8 +105,8 @@
         <div class= "block sm:hidden  mt-2 space-y-6">
             @foreach($visits as $visit)
                 <div class="ml-4 mr-4 bg-gray-300 dark:bg-gray-200 p-4 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-semibold">{{ $visit->patient->name }} {{ $visit->patient->surname }}</h3>
-                    <p>{{ __('Data: ') . $visit->visit_date->format('d/m/Y') }}</p>
+                    <h3 class="text-lg font-semibold">{{ $visit->patient->name ?? $visit->name }} {{ $visit->patient->surname ?? $visit->surname }}</h3>
+                    <p>{{ __('Data: ') . $visit->visit_date }}</p>
                     <p>{{ __('Motivo: ') . $visit->reason }}</p>
                     <p>{{ __('Prenotazione: ') . $visit->reservation }}</p>
                     <div class="mt-4 flex space-x-4">
