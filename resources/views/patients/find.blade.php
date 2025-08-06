@@ -3,6 +3,18 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Elenco dei pazienti') }}
         </h2>
+         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            @switch($patients->count())
+                @case(0)
+                    {{ __("Non hai pazienti registrati.") }}
+                    @break
+                @case(1)
+                    {{ __("Hai un paziente registrato.") }}
+                    @break
+                @default
+                    {{ __("Hai " . $patients->count() . " pazienti registrati.") }}
+            @endswitch
+        </p>
     </x-slot> 
     
     <div class="max-w-4xl mx-auto mt-10">
