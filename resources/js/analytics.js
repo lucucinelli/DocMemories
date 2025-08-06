@@ -1,5 +1,21 @@
 console.log('Analytics script loaded');
 let currentChart = null;
+let currentChartStepper = null;
+Chart.defaults.color = '#706E6E';
+Chart.defaults.font.family = 'Arial, sans-serif';
+Chart.defaults.font.size = 20;
+
+function stepperDefaults(){
+    document.getElementById('gender').checked = true; // Set default selection
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false; // Uncheck all checkboxes
+    });
+    document.getElementById('age-range').value = '%'; // Set default age range
+    document.getElementById('age-value-min').value = ''; // Clear minimum age input
+    document.getElementById('age-value-max').value = ''; // Clear maximum age input
+    document.getElementById('age-value').value = '';
+}
+stepperDefaults();
 
 window.showStep = function(step) {
     const step1 = document.getElementById('step-1');
@@ -73,10 +89,7 @@ showStep(1);
 /*------------------------------------------stepper----------------------------------------------- */
 
 /*--------------step 2 -----------------*/
-document.getElementById('gender').checked = true; // Set default selection
-document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-    checkbox.checked = false; // Uncheck all checkboxes
-});
+
 document.getElementById('date_from-stepper').type = 'date';
 document.getElementById('date_from-stepper').value = new Date().getFullYear() + '-01-01';
 document.getElementById('date_to-stepper').type = 'date';
@@ -94,11 +107,9 @@ document.getElementById('gender').addEventListener('change', function() {
     document.getElementById('date_from-stepper').value = new Date().getFullYear() + '-01-01';
     document.getElementById('date_to-stepper').type = 'date';
     document.getElementById('date_to-stepper').value = new Date().toISOString().split('T')[0];
-})
+});
 
 /*--------------step 3 - ages ------------ */
-
-document.getElementById('age-range').value = '%';
 
 document.getElementById('age-range').addEventListener('change', function() {
     const age_select = document.getElementById('age-range').value;
@@ -119,6 +130,33 @@ document.getElementById('age-range').addEventListener('change', function() {
             document.getElementById('maggiore-minore').classList.add('hidden');
             document.getElementById('compreso').classList.add('hidden');
     }
+});
+
+
+/*--------------step 3 - create chart -----------------*/
+console.log('Create your chart');
+
+const formStepper = document.getElementById('analytics-form-stepper').addEventListener('submit', function(event) {
+    event.preventDefault(); // avoid the reload of the page
+    const formData = new FormData(this);
+
+    fetch('/analytics/persChart', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        let title = "Grafico personalizzato";
+        createChartStepper(data.type, data.labels, data.counts, title);
+    });
 });
 /*------------------------------------------question-1----------------------------------------------- */
 document.getElementById('question-1').addEventListener('click', function() {
@@ -234,11 +272,7 @@ function createChart(type, label, datasets, title){
     if (currentChart) {
         currentChart.destroy();
     }
-
     
-    Chart.defaults.color = '#706E6E';
-    Chart.defaults.font.family = 'Arial, sans-serif';
-    Chart.defaults.font.size = 20;
 
     const config = {
         type: type,
@@ -299,4 +333,78 @@ function createChart(type, label, datasets, title){
     };
 
     currentChart = new Chart(ctx, config );
+}
+
+function createChartStepper(type, label, datasets, title){
+    document.getElementById('analytics-chart-container-stepper').classList.remove('hidden');
+    var display = true;
+    if (type == 'bar' || type == 'line') {
+        display = false;
+    }
+
+    const ctx = document.getElementById('analytics-chart-stepper').getContext('2d');
+
+    if (currentChartStepper) {
+        currentChartStepper.destroy();
+    }
+
+    const config = {
+        type: type,
+        data: {
+            labels: label,
+            datasets: [{
+                label: 'Pazienti',
+                data: datasets,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                ],
+                fill: type === 'line' || type === 'bar' ? true : false,
+                borderWidth: 1,
+                hoverBorderWidth: 2,
+                hoverBorderColor: '#000000'
+            }]
+        },
+        options: {  
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    font: {
+                        size: 24,
+                        weight: 'bold',
+                    },
+                },
+                legend: {
+                    display: display,
+                    position: 'right',
+                },
+                datalabels: {
+                    formatter: ((value, context) => {
+                        const totalSum = context.dataset.data.reduce((acc, val) => {return acc + val}, 0);
+                        const percentage = ((value / totalSum) * 100).toFixed(2);
+                        return `${percentage}%`;
+                    }),
+                }
+                
+            },
+            scales: type === 'pie' || type === 'doughnut' ? {} : {
+                y: {
+                    beginAtZero: true
+                }
+            },
+        },
+        plugins: type === 'pie' || type === 'doughnut' ? [ChartDataLabels] : []
+
+    };
+
+    currentChartStepper = new Chart(ctx, config );
 }

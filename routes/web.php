@@ -112,4 +112,5 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/analytics/countOfPatients', [AnalyticsController::class, 'numberOfPatients'])->name('analytics.countOfPatients'); // Get number of patients
     Route::post('/analytics/patology', [AnalyticsController::class, 'analyzedPatology'])->name('analytics.patology'); // Get patology data
+    Route::post('/analytics/persChart', [AnalyticsController::class, 'persChart'])->name('analytics.persChart'); // Get age data
 });
