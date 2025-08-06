@@ -366,7 +366,8 @@ function createChartStepper(type, label, datasets, title){
     if (type == 'bar' || type == 'line') {
         display = false;
     }
-
+    // Controlla se il tipo di grafico è torta o ciambella per configurare la legenda
+    var displayLegend = (type !== 'pie' && type !== 'doughnut');
     const ctx = document.getElementById('analytics-chart-stepper').getContext('2d');
 
     if (currentChartStepper) {
@@ -412,13 +413,15 @@ function createChartStepper(type, label, datasets, title){
                     display: display,
                     position: 'right',
                 },
+                 // Configura il plugin datalabels solo per i tipi di grafico supportati
                 datalabels: {
-                    formatter: ((value, context) => {
-                        const totalSum = context.dataset.data.reduce((acc, val) => {return acc + val}, 0);
-                        const percentage = ((value / totalSum) * 100).toFixed(2);
+                    display: type === 'pie' || type === 'doughnut',
+                    formatter: (value, context) => {
+                        const totalSum = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                        const percentage = totalSum > 0 ? ((value / totalSum) * 100).toFixed(2) : 0;
                         return `${percentage}%`;
-                    }),
-                }
+                    },
+                },
                 
             },
             scales: type === 'pie' || type === 'doughnut' ? {} : {

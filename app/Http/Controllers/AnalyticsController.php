@@ -165,7 +165,7 @@ class AnalyticsController extends Controller
         $pazienti = $pazienti->get();
 
         if($radio == 'year'){
-            $labels = $pazienti->pluck('year');
+            $labels = $pazienti->pluck('year')->map(fn($year) => (string)$year);
         }else{
             $labels = $pazienti->pluck('gender');
         }
