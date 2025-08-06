@@ -103,7 +103,8 @@ class AnalyticsController extends Controller
                 ->join('visits', 'patients.id', '=', 'visits.patient_id')
                 ->where('user_id', $userId)
                 ->whereBetween('visit_date', [$date_from, $date_to])
-                ->groupBy('gender');
+                ->groupBy('gender')
+                ->orderBy('gender','desc');
         }
 
         // selezione per età
@@ -192,70 +193,3 @@ class AnalyticsController extends Controller
         return $birthYear . "-01-01";
     }
 }
-
-
-/*
-
-$user_id = Auth::user()->id;
-        $type = $incomingData['chart-type-stepper'];
-        $radio = $incomingData['groupBy'];
-        $age = $incomingData['age-range'];
-        if ($radio == 'year'){
-            $date_from = $incomingData['date_from-stepper'] . '-01-01';
-            $date_to = $incomingData['date_to-stepper'] . '-01-01';
-            $query1 = DB::table('visits')
-                ->select(DB::raw('YEAR(visits.visit_date) as year'),DB::raw('count(DISTINCT patients.id) as total'))
-                ->join('patients', 'visits.patient_id', '=', 'patients.id')
-                ->where('visits.user_id', '=', $user_id)
-                ->whereBetween('visits.visit_date', [$date_from, $date_to]);
-        } else {
-            $date_from = $incomingData['date_from-stepper'];
-            $date_to = $incomingData['date_to-stepper'];
-            $query1 = DB::table('visits')
-                ->select('patients.gender', DB::raw('count(*) as total'))
-                ->join('patients', 'visits.patient_id', '=', 'patients.id')
-                ->where('visits.user_id', '=', $user_id)
-                ->whereBetween('visits.visit_date', [$date_from, $date_to]);
-        }
-
-        // selezione per età
-        if ($age == 'compreso'){
-            $min_age = $incomingData['age-value-min'];
-            $min_date = self::toDate($min_age);
-            $max_age = $incomingData['age-value-max'];
-            $max_date = self::toDate($max_age);
-            $query2 = $query1->whereBetween('patients.birthdate', [$min_date, $max_date]);
-        } elseif ($age == '>'){
-            $min_age = $incomingData['age-value'];
-            $minore = self::toDate($min_age);
-            $query2 = $query1->where('patients.birthdate', '<=', $minore);
-        } elseif ($age == '<') {
-            $max_age = $incomingData['age-value'];
-            $maggiore = self::toDate($max_age);
-            $query2 = $query1->where('patients.birthdate', '<=', $maggiore);
-        } else{
-            $query2 = $query1;
-        }
-
-        $allergy = $incomingData['allergy'] ?? [];
-        $venom = $incomingData['venom'] ?? [];
-        $medicine = $incomingData['medicine'] ?? [];
-        $dermatitis = $incomingData['dermatitis'] ?? [];
-
-        $query3 = $query2->where(function ($queryAppoggio) use ($allergy,$venom,$medicine,$dermatitis) {
-            if (!empty($allergy)) {
-                $queryAppoggio->whereIn('visits.diagnosis', $allergy);
-            }
-            if (!empty($venom)) {
-                $queryAppoggio->orWhereIn('visits.diagnosis', $venom);
-            }
-            if (!empty($medicine)) {
-                $queryAppoggio->orWhereIn('visits.diagnosis', $medicine);
-            }
-            if (!empty($dermatitis)) {
-                $queryAppoggio->orWhereIn('visits.diagnosis', $dermatitis);
-            }
-        });
-
-
-        */
