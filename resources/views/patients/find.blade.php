@@ -92,7 +92,15 @@
                                     @endforeach
                                 @endif
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="8" class="px-6 py-4">
+                                            {{ $patients->links() }}
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
+                            
                         </div>
                     </div>
                 </div>
@@ -113,6 +121,13 @@
                         </div>
                     </div>
                 @endforeach
+                <tfoot>
+                    <tr>
+                        <td colspan="8" class="px-6 py-4">
+                            {{ $patients->links() }}
+                        </td>
+                    </tr>
+                </tfoot>
             </div>
         </div>
     </div>    

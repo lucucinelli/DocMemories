@@ -56,14 +56,14 @@ class VisitController extends Controller
                         ->select('visits.*', 'patients.name', 'patients.surname')
                         ->join('patients', 'visits.patient_id', '=', 'patients.id')
                         ->where('user_id', '=', Auth::id())
-                        ->get();
+                        ->paginate(10);
         if ($patient_id != 0) {
             $visits = DB::table('visits')
                         ->select('visits.*', 'patients.name', 'patients.surname')
                         ->join('patients', 'visits.patient_id', '=', 'patients.id')
                         ->where('user_id', '=', Auth::id())
                         ->where('visits.patient_id', '=', $patient_id)
-                        ->get();
+                        ->paginate(10);
         }
         return view('visits.find', ['visits' => $visits]);
     }
@@ -108,7 +108,7 @@ class VisitController extends Controller
                                 ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
                                 ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
                                 ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"]);
-                        })->get();
+                        })->paginate(10)->appends(['search' => $searchTerm]); // Search for visits by reason, diagnosis, reservation, or patient name
         }
         return view('visits.find', ['visits' => $visits]);
     }

@@ -48,7 +48,7 @@ class PatientController extends Controller
 
     public function showPatients()
     {
-        $patients = Patient::all(); // Retrieve all patients from the database
+        $patients = Patient::orderBy('surname')->paginate(10); // Retrieve all patients from the database
         return view('patients.find', ['patients' => $patients]); // Return the view with the list of patients
     }
 
@@ -73,7 +73,8 @@ class PatientController extends Controller
             ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(gender, 'aschio') LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(gender, 'emmina') LIKE ?", ["%{$searchTerm}%"])
-            ->get();
+            ->paginate(10)
+            ->appends(['search' => $searchTerm]); // Search for patients by
         }
         return view('patients.find', ['patients' => $patients]);
     }
