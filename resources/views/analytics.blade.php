@@ -52,6 +52,31 @@
                         </div>
                     </div>
                     <div class="mt-6 flex flex-col gap-3" id="step-2">
+                        <x-input-label  for="subtitle2" :value="__('Scegli come raggruppare i dati')" />
+                        <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <div class="flex my-2">
+                                    <div class="flex items-center ps-3 h-5">
+                                        <input id="gender" name="groupBy" aria-describedby="helper-radio-text" type="radio" value="gender" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </div>
+                                    <div class="ms-2 text-sm">
+                                        <label for="helper-radio" class="text-base font-medium text-gray-900 dark:text-gray-300"> {{ __('Genere') }}</label>
+                                        <p id="helper-radio-text" class="text-md font-normal text-gray-500 dark:text-gray-300"> Potrai analizzare i dati facendo la distinzione tra 'Uomo', 'Donna' e 'Altro'. </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <div class="flex">
+                                    <div class="flex items-center ps-3 h-5">
+                                        <input id="year" name="groupBy" aria-describedby="helper-radio-text" type="radio" value="year" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </div>
+                                    <div class="ms-2 text-sm">
+                                        <label for="helper-radio" class="text-base font-medium text-gray-900 dark:text-gray-300"> {{__('Anno')}} </label>
+                                        <p id="helper-radio-text" class="text-md font-normal text-gray-500 dark:text-gray-300"> Potrai mettere a confronto i dati per anno. </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                             {{ __("Seleziona il periodo da analizzare") }}
                         </p>
@@ -69,33 +94,177 @@
                         </div>
                     </div>
                     <div class="mt-6 flex flex-col gap-3 " id="step-3">
-                        <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Identification</h3>
-                        <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="vue-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="vue-checkbox-list" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vue JS</label>
-                                </div>
-                            </li>
-                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="react-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="react-checkbox-list" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">React</label>
-                                </div>
-                            </li>
-                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="angular-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="angular-checkbox-list" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Angular</label>
-                                </div>
-                            </li>
-                            <li class="w-full dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input id="laravel-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="laravel-checkbox-list" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Laravel</label>
-                                </div>
-                            </li>
-                        </ul>
+                        <x-input-label  for="subtitle3" :value="__('Range di età')" />
+                        <x-select id="age-range" class="block mt-1 w-full" name="age-range" :options="[ 'non specificato' => '%', 'compreso' => 'compreso', 'maggiore di' => '>', 'minore di' => '<']" />
+                        <div id="compreso" class="hidden ml-20">
+                            <x-input-label  for="age-value-min" :value="__('Età minima')" />
+                            <x-text-input id="age-value-min" class="block mt-1 w-full" type="number" name="age-value-min" min="1" />
+                            <x-input-label  for="age-value-max" :value="__('Età massima')" />
+                            <x-text-input id="age-value-max" class="block mt-1 w-full" type="number" name="age-value-max" min="1" />
+                        </div>
+                        <div id="maggiore-minore" class="hidden ml-20">
+                            <x-input-label  for="age-value" :value="__('Età')" />
+                            <x-text-input id="age-value" class="block mt-1 w-full" type="number" name="age-value" min="1" />
+                        </div>
+                        <div class="grid md:grid-cols-2 md:gap-6">
+                            <div class="group">
+                                <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Allergie')}} </h3>
+                                <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="group">
+                                <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Allergie da farmaci')}} </h3>
+                                <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="aspirina" name="medicine" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Aspirina </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="antibiotici" name="medicine" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Antibiotici </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 md:gap-6">
+                            <div class="group">
+                                <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Veleno di imenotteri')}} </h3>
+                                <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="ape" name="venom" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Ape </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="vespa" name="venom" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Vespa </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="polistes dominulus" name="venom" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Polistes Dominulus </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="vespa cabro" name="venom" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Vespa Cabro </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="group">
+                                <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Dermatiti')}} </h3>
+                                <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="nichel" name="dermatitis" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Nichel </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="irritativa" name="dermatitis" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Irritativa </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full dark:border-gray-600">
+                                        <div class="flex items-center ps-3 py-3">
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="altro" name="dermatitis" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Altro </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
                         <div class="flex justify-between">
                             <x-secondary-button class="mt-4" id="prev-step-3" onclick="showStep(2)">
@@ -193,5 +362,6 @@
 </x-app-layout>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
 @vite('resources/js/analytics.js')
 

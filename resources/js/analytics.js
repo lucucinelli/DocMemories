@@ -70,7 +70,56 @@ window.showStep = function(step) {
 
 showStep(1);
 
+/*------------------------------------------stepper----------------------------------------------- */
 
+/*--------------step 2 -----------------*/
+document.getElementById('gender').checked = true; // Set default selection
+document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    checkbox.checked = false; // Uncheck all checkboxes
+});
+document.getElementById('date_from-stepper').type = 'date';
+document.getElementById('date_from-stepper').value = new Date().getFullYear() + '-01-01';
+document.getElementById('date_to-stepper').type = 'date';
+document.getElementById('date_to-stepper').value = new Date().toISOString().split('T')[0];
+
+document.getElementById('year').addEventListener('change', function() {
+    document.getElementById('date_from-stepper').type = 'number';
+    document.getElementById('date_from-stepper').value = new Date().getFullYear()-3;
+    document.getElementById('date_to-stepper').type = 'number';
+    document.getElementById('date_to-stepper').value = new Date().getFullYear();
+});
+
+document.getElementById('gender').addEventListener('change', function() {
+    document.getElementById('date_from-stepper').type = 'date';
+    document.getElementById('date_from-stepper').value = new Date().getFullYear() + '-01-01';
+    document.getElementById('date_to-stepper').type = 'date';
+    document.getElementById('date_to-stepper').value = new Date().toISOString().split('T')[0];
+})
+
+/*--------------step 3 - ages ------------ */
+
+document.getElementById('age-range').value = '%';
+
+document.getElementById('age-range').addEventListener('change', function() {
+    const age_select = document.getElementById('age-range').value;
+    switch (age_select){
+        case "compreso":
+            document.getElementById('maggiore-minore').classList.add('hidden');
+            document.getElementById('compreso').classList.remove('hidden');
+            break;
+        case ">":
+            document.getElementById('compreso').classList.add('hidden');
+            document.getElementById('maggiore-minore').classList.remove('hidden');
+            break;
+        case "<":
+            document.getElementById('compreso').classList.add('hidden');
+            document.getElementById('maggiore-minore').classList.remove('hidden');
+            break;
+        default:
+            document.getElementById('maggiore-minore').classList.add('hidden');
+            document.getElementById('compreso').classList.add('hidden');
+    }
+});
 /*------------------------------------------question-1----------------------------------------------- */
 document.getElementById('question-1').addEventListener('click', function() {
     const errorMessage = document.getElementById('error-message');
