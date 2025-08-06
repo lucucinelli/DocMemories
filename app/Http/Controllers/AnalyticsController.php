@@ -93,7 +93,8 @@ class AnalyticsController extends Controller
                 ->join('visits', 'patients.id', '=', 'visits.patient_id')
                 ->where('user_id', $userId)
                 ->whereBetween('visit_date', [$date_from, $date_to])
-                ->groupBy('year');
+                ->groupBy('year')
+                ->orderBy('year', 'asc');
         } else {
             $date_from = $incomingData['date_from-stepper'];
             $date_to = $incomingData['date_to-stepper'];
