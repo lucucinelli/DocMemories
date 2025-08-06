@@ -17,6 +17,21 @@ function stepperDefaults(){
 }
 stepperDefaults();
 
+document.getElementById('prev-step-3').addEventListener('click', function (){
+    document.getElementById('error-message-stepper').classList.add("hidden");
+});
+
+window.resetCheckbox = function(){
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false; // Uncheck all checkboxes
+    });
+    document.getElementById('age-range').selectedIndex = 0;
+    document.getElementById('age-range').dispatchEvent(new Event('change'));
+    document.getElementById('age-value-min').value = ''; // Clear minimum age input
+    document.getElementById('age-value-max').value = ''; // Clear maximum age input
+    document.getElementById('age-value').value = '';
+}
+
 window.showStep = function(step) {
     const step1 = document.getElementById('step-1');
     const step2 = document.getElementById('step-2');
@@ -138,6 +153,7 @@ console.log('Create your chart');
 
 const formStepper = document.getElementById('analytics-form-stepper').addEventListener('submit', function(event) {
     event.preventDefault(); // avoid the reload of the page
+    const errorMessage = document.getElementById('error-message-stepper');
     const formData = new FormData(this);
 
     fetch('/analytics/persChart', {
@@ -154,8 +170,17 @@ const formStepper = document.getElementById('analytics-form-stepper').addEventLi
         return response.json();
     })
     .then(data => {
-        let title = "Grafico personalizzato";
-        createChartStepper(data.type, data.labels, data.counts, title);
+        if (data.message === 'empty') {
+            console.log('No data available for the selected period.');
+            errorMessage.classList.remove('hidden');
+            if (currentChartStepper) {
+                currentChartStepper.destroy();
+            }
+        } else {
+            errorMessage.classList.add('hidden');
+            let title = "Grafico personalizzato";
+            createChartStepper(data.type, data.labels, data.counts, title);
+        }
     });
 });
 /*------------------------------------------question-1----------------------------------------------- */

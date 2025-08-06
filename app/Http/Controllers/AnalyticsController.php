@@ -82,7 +82,121 @@ class AnalyticsController extends Controller
             'dermatitis' => ['array', 'nullable'],
         ]);
 
-        $user_id = Auth::user()->id;
+        $userId = Auth::id();
+        $type = $incomingData['chart-type-stepper'];
+        $radio = $incomingData['groupBy'];
+         if ($radio == 'year'){
+            $date_from = $incomingData['date_from-stepper'] . '-01-01';
+            $date_to = $incomingData['date_to-stepper'] . '-12-31';
+            $pazienti = DB::table('patients')
+                ->select(DB::raw('YEAR(visits.visit_date) as year'), DB::raw('count(DISTINCT patients.id) as total'))
+                ->join('visits', 'patients.id', '=', 'visits.patient_id')
+                ->where('user_id', $userId)
+                ->whereBetween('visit_date', [$date_from, $date_to])
+                ->groupBy('year');
+        } else {
+            $date_from = $incomingData['date_from-stepper'];
+            $date_to = $incomingData['date_to-stepper'];
+            //pazienti ragguppati per sesso
+            $pazienti = DB::table('patients')
+                ->select('gender', DB::raw('count(DISTINCT patients.id) as total'))
+                ->join('visits', 'patients.id', '=', 'visits.patient_id')
+                ->where('user_id', $userId)
+                ->whereBetween('visit_date', [$date_from, $date_to])
+                ->groupBy('gender');
+        }
+
+        // selezione per età
+        if ($incomingData['age-range'] == 'compreso'){
+            $min_age = $incomingData['age-value-min'];
+            $max_age = $incomingData['age-value-max'];
+            $min_date = self::toDate($min_age, true);
+            $max_date = self::toDate($max_age);
+            $pazienti = $pazienti->whereBetween('patients.birthdate', [$max_date, $min_date]);
+        } elseif ($incomingData['age-range'] == '>'){
+            $min_age = $incomingData['age-value'];
+            $minore = self::toDate($min_age, true);
+            $pazienti = $pazienti->where('patients.birthdate', '<=', $minore);
+        } elseif ($incomingData['age-range'] == '<') {
+            $max_age = $incomingData['age-value'];
+            $maggiore = self::toDate($max_age);
+            $pazienti = $pazienti->where('patients.birthdate', '>=', $maggiore);
+        } else{
+            $pazienti = $pazienti;
+        }
+        // selezione per checkbox
+        $allergy = $incomingData['allergy'] ?? [];
+        $venom = $incomingData['venom'] ?? [];
+        $medicine = $incomingData['medicine'] ?? [];
+        $dermatitis = $incomingData['dermatitis'] ?? [];
+
+        $pazienti = $pazienti->where(function ($queryAppoggio) use ($allergy,$venom,$medicine,$dermatitis) {
+            if (!empty($allergy)) {
+                $queryAppoggio->orWhere(function($q) use ($allergy) {
+                    foreach ($allergy as $item) {
+                        $q->orWhere('visits.diagnosis', 'like', "%{$item}%");
+                    }
+                });
+            }
+            if (!empty($venom)) {
+                $queryAppoggio->orWhere(function($q) use ($venom) {
+                    foreach ($venom as $item) {
+                        $q->orWhere('visits.diagnosis', 'like', "%{$item}%");
+                    }
+                });
+            }
+            if (!empty($medicine)) {
+                $queryAppoggio->orWhere(function($q) use ($medicine) {
+                    foreach ($medicine as $item) {
+                        $q->orWhere('visits.diagnosis', 'like', "%{$item}%");
+                    }
+                });
+            }
+            if (!empty($dermatitis)) {
+                $queryAppoggio->orWhere(function($q) use ($dermatitis) {
+                    foreach ($dermatitis as $item) {
+                        $q->orWhere('visits.diagnosis', 'like', "%{$item}%");
+                    }
+                });
+            }
+        });
+        $pazienti = $pazienti->get();
+
+        if($radio == 'year'){
+            $labels = $pazienti->pluck('year');
+        }else{
+            $labels = $pazienti->pluck('gender');
+        }
+        $counts = $pazienti->pluck('total');
+
+        if ($counts->isEmpty()){
+            $message = "empty";
+        } else {
+            $message = "not empty";
+        }
+        return response()->json([
+            'message'=> $message,
+            'type' => $type,
+            'labels' => $labels,
+            'counts' => $counts,
+        ]);
+    }
+
+    static function toDate($age, $max = false){
+        $year = (integer) date('Y');
+        $birthYear = $year - $age;
+        $birthYear = (string) $birthYear;
+        if ($max) {
+            return $birthYear . "-12-31";
+        }
+        return $birthYear . "-01-01";
+    }
+}
+
+
+/*
+
+$user_id = Auth::user()->id;
         $type = $incomingData['chart-type-stepper'];
         $radio = $incomingData['groupBy'];
         $age = $incomingData['age-range'];
@@ -143,28 +257,5 @@ class AnalyticsController extends Controller
             }
         });
 
-        if ($radio == 'year'){
-            $query4 = $query3->groupBy(DB::raw('YEAR(visits.visit_date)'))->orderBy('year', 'asc');
-            $result = $query4->get();
-            $labels = $result->pluck('year');
-        } else {
-            $query4 = $query3->groupBy('patients.gender');
-            $result = $query4->get();
-            $labels = $result->pluck('gender');
-        }
 
-        
-        $counts = $result->pluck('total');
-
-        return response()->json([
-            'type' => $type,
-            'labels' => $labels,
-            'counts' => $counts,
-        ]);
-    }
-
-    static function toDate($age){
-        $birthYear = date('Y') - $age;
-        return "$birthYear-01-01";
-    }
-}
+        */
