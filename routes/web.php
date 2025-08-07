@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/deletePatient/{patient}', [PatientController::class, 'deletePatient'])->name('deletePatient'); // Delete an existing patient
 
     Route::get('/newPatient', [PatientController::class, 'newPatientForm'])->name('newPatientForm'); // Show form to create a new patient
+    Route::get('/exportPatients', [PatientController::class, 'exportPatients'])->name('exportPatients'); // Export patients to CSV
 });
 /**--------------------------------------------------------- VISITS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
@@ -113,3 +114,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/analytics/patology', [AnalyticsController::class, 'analyzedPatology'])->name('analytics.patology'); // Get patology data
     Route::post('/analytics/persChart', [AnalyticsController::class, 'persChart'])->name('analytics.persChart'); // Get age data
 });
+
+

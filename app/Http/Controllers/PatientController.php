@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use App\Exports\PatientsExport;
 
+use Maatwebsite\Excel\Facades\Excel;
 use function PHPUnit\Framework\isEmpty;
+use Illuminate\Container\Attributes\Auth;
 
 class PatientController extends Controller
 {
@@ -112,5 +114,15 @@ class PatientController extends Controller
     {
         $patient->delete(); // Delete the patient from the database
         return redirect()->route('showPatients')->with('status', __('patient-deleted'));
+    }
+
+    public function exportPatients(){
+        return Excel::download(new PatientsExport(), 'patients.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="patients.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }
