@@ -19,6 +19,7 @@ export default defineConfig({
                 'resources/js/history.js',
                 'resources/js/access.js',
                 'resources/js/analytics.js',
+                'resources/js/dashboard-report.js',
             ],
             refresh: true, // enables automatic page refresh when files change, it only works in dev mode
         }),
