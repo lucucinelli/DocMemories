@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Exports\ExamExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExamController extends Controller
 {
@@ -49,5 +51,15 @@ class ExamController extends Controller
     {
         $exam->delete();
         return response()->json(['message' => 'Exam deleted successfully'], 200);
+    }
+    
+    public function exportExams(){
+        return Excel::download(new ExamExport(), 'exams.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="exams.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\NextPathologicalHistory;
+use App\Exports\NextPathologicalHistoryExport;
 
 class NextPathologicalHistoryController extends Controller
 {
@@ -60,5 +62,15 @@ class NextPathologicalHistoryController extends Controller
         $nextHistory->delete();
 
         return response()->json(['message' => 'Next pathological history deleted successfully.'], 200);
+    }
+
+    public function exportNextPathologicalHistories(){
+        return Excel::download(new NextPathologicalHistoryExport(), 'next_pathological_histories.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="next_pathological_histories.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }

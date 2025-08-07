@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicinal;
 use App\Models\Visit;
+use App\Models\Medicinal;
 use Illuminate\Http\Request;
+use App\Exports\MedicinalExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MedicinalController extends Controller
 {
@@ -50,5 +52,15 @@ class MedicinalController extends Controller
     {
         $medicinal->delete();
         return response()->json(['message' => 'Medicinal deleted successfully'], 200);
+    }
+
+    public function exportMedicinals(){
+        return Excel::download(new MedicinalExport(), 'medicinals.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="medicinals.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }
