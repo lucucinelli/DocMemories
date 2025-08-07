@@ -22,4 +22,17 @@ class RemotePathologicalHistryExport implements FromCollection, WithHeadings, Wi
             'use_bom' => true,
         ];
     }
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'date',
+            'type',
+            'description',
+            'note',
+            'patient_id',
+            'Created_At',
+            'Updated_At',
+        ];
+    }
 }

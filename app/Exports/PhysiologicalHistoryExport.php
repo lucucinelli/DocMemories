@@ -22,4 +22,20 @@ class PhysiologicalHistoryExport implements FromCollection, WithHeadings, WithCu
             'use_bom' => true,
         ];
     }
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'birth',
+            'atopy',
+            'nursing',
+            'diet',
+            'habits',
+            'period',
+            'period_regularity',
+            'patient_id',
+            'Created_At',
+            'Updated_At',
+        ];
+    }
 }

@@ -22,4 +22,19 @@ class VisitsExport implements FromCollection, WithHeadings, WithCustomCsvSetting
             'use_bom' => true,
         ];
     }
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'visit_date',
+            'reason',
+            'diagnosis',
+            'reservation',
+            'note',
+            'user_id',
+            'patient_id',
+            'Created_At',
+            'Updated_At',
+        ];
+    }
 }

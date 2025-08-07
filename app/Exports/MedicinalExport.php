@@ -22,4 +22,17 @@ class MedicinalExport implements FromCollection, WithHeadings, WithCustomCsvSett
             'use_bom' => true,
         ];
     }
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'name',
+            'quantity',
+            'usage',
+            'period',
+            'visit_id',
+            'Created_At',
+            'Updated_At'
+        ];
+    }
 }

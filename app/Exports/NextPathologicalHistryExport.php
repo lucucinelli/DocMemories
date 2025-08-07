@@ -22,4 +22,19 @@ class NextPathologicalHistryExport implements FromCollection, WithHeadings, With
             'use_bom' => true,
         ];
     }
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'date',
+            'type',
+            'name',
+            'cause',
+            'effect',
+            'note',
+            'patient_id',
+            'Created_At',
+            'Updated_At',
+        ];
+    }
 }

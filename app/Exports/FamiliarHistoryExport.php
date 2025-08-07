@@ -22,4 +22,16 @@ class FamiliarHistoryExport implements FromCollection, WithHeadings, WithCustomC
             'use_bom' => true,
         ];
     }
+    public function headings(): array
+    {
+        return [
+            'ID',
+            'allergy',
+            'relative',
+            'note',
+            'patient_id',
+            'Created_At',
+            'Updated_At',
+        ];
+    }
 }
