@@ -126,5 +126,3 @@
         </div>
     </div>
 </div>
-
-@vite('resources/js/dashboard-report.js')

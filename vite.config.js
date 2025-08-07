@@ -20,6 +20,8 @@ export default defineConfig({
                 'resources/js/access.js',
                 'resources/js/analytics.js',
                 'resources/js/dashboard-report.js',
+                'resources/js/dashboard-export.js',
+                'resources/js/block-notes.js',
             ],
             refresh: true, // enables automatic page refresh when files change, it only works in dev mode
         }),

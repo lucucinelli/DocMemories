@@ -59,24 +59,28 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/newVisit/{patient}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
     Route::match(['GET', 'POST'],'/searchVisits', [VisitController::class, 'searchVisits'])->name('searchVisits'); // Search for visits
+    Route::get('/exportVisits', [VisitController::class, 'exportVisits'])->name('exportVisits'); // Export visits to CSV
 });
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::post('/createMedicinal/{visit}', [MedicinalController::class, 'newMedicinal'])->name('newMedicinal'); // Create a new medicinal
     Route::put('/editMedicinal/{medicinal}', [MedicinalController::class, 'editMedicinal'])->name('editMedicinal'); // Edit an existing medicinal
     Route::delete('/deleteMedicinal/{medicinal}', [MedicinalController::class, 'deleteMedicinal'])->name('deleteMedicinal'); // Delete an existing medicinal
+    Route::get('/exportMedicinals', [MedicinalController::class, 'exportMedicinals'])->name('exportMedicinals'); // Export medicinals to CSV
 });
 /**--------------------------------------------------------- TESTS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::post('/createTest/{visit}', [TestController::class, 'newTest'])->name('newTest'); // Create a new test
     Route::put('/editTest/{test}', [TestController::class, 'editTest'])->name('editTest'); // Edit an existing test
     Route::delete('/deleteTest/{test}', [TestController::class, 'deleteTest'])->name('deleteTest'); // Delete an existing test
+    Route::get('/exportTests', [TestController::class, 'exportTests'])->name('exportTests'); // Export tests to CSV
 });
 /**--------------------------------------------------------- EXAMS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::post('/createExam/{visit}', [ExamController::class, 'newExam'])->name('newExam'); // Create a new exam
     Route::put('/editExam/{exam}', [ExamController::class, 'editExam'])->name('editExam'); // Edit an existing exam
     Route::delete('/deleteExam/{exam}', [ExamController::class, 'deleteExam'])->name('deleteExam'); // Delete an existing exam
+    Route::get('/exportExams', [ExamController::class, 'exportExams'])->name('exportExams'); // Export exams to CSV
 });
 /**--------------------------------------------------------- HISTORIES CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
@@ -88,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/createFamiliarHistory/{patient}', [FamiliarHistoryController::class, 'newFamiliarHistory'])->name('newFamiliarHistory'); // Create a new familiar history
     Route::put('/editFamiliarHistory/{familiarHistory}', [FamiliarHistoryController::class, 'editFamiliarHistory'])->name('editFamiliarHistory'); // Edit an existing familiar history
     Route::delete('/deleteFamiliarHistory/{familiarHistory}', [FamiliarHistoryController::class, 'deleteFamiliarHistory'])->name('deleteFamiliarHistory'); // Delete an existing familiar history
+    Route::get('/exportFamiliarHistories', [FamiliarHistoryController::class, 'exportFamiliarHistories'])->name('exportFamiliarHistories'); // Export familiar histories to CSV
 });
 
 /**--------------------------------------------------------- REMOTE PATHOLOGICAL HISTORIES -------------------------------------------------------------- */
@@ -95,18 +100,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/createRemotePathologicalHistory/{patient}', [RemotePathologicalHistoryController::class, 'newRemotePathologicalHistory'])->name('newRemotePathologicalHistory'); // Create a new remote pathological history
     Route::put('/editRemotePathologicalHistory/{remotePathologicalHistory}', [RemotePathologicalHistoryController::class, 'editRemotePathologicalHistory'])->name('editRemotePathologicalHistory'); // Edit an existing remote pathological history
     Route::delete('/deleteRemotePathologicalHistory/{remotePathologicalHistory}', [RemotePathologicalHistoryController::class, 'deleteRemotePathologicalHistory'])->name('deleteRemotePathologicalHistory'); // Delete an existing remote pathological history
+    Route::get('/exportRemotePathologicalHistories', [RemotePathologicalHistoryController::class, 'exportRemotePathologicalHistories'])->name('exportRemotePathologicalHistories'); // Export pathological histories to CSV
 });
 /**--------------------------------------------------------- NEXT PATHOLOGICAL HISTORIES -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::post('/createNextPathologicalHistory/{patient}', [NextPathologicalHistoryController::class, 'newNextPathologicalHistory'])->name('newNextPathologicalHistory'); // Create a new next pathological history
     Route::put('/editNextPathologicalHistory/{nextPathologicalHistory}', [NextPathologicalHistoryController::class, 'editNextPathologicalHistory'])->name('editNextPathologicalHistory'); // Edit an existing next pathological history
     Route::delete('/deleteNextPathologicalHistory/{nextPathologicalHistory}', [NextPathologicalHistoryController::class, 'deleteNextPathologicalHistory'])->name('deleteNextPathologicalHistory'); // Delete an existing next pathological history
+    Route::get('/exportNextPathologicalHistories', [NextPathologicalHistoryController::class, 'exportNextPathologicalHistories'])->name('exportNextPathologicalHistories'); // Export next pathological histories to CSV
 });
 /**--------------------------------------------------------- PHYSIOLOGICAL HISTORIES -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::get('/isPhysiologicalHistorySet/{patient}', [PhysiologicalHistoryController::class, 'isPhysiologicalHistorySet'])->name('isPhysiologicalHistorySet'); // Check if physiological history is set
     Route::post('/createPhysiologicalHistory/{patient}', [PhysiologicalHistoryController::class, 'newPhysiologicalHistory'])->name('newPhysiologicalHistory'); // Create a new physiological history
     Route::put('/editPhysiologicalHistory/{patient}', [PhysiologicalHistoryController::class, 'editPhysiologicalHistory'])->name('editPhysiologicalHistory'); // Edit an existing physiological history
+    Route::get('/exportPhysiologicalHistories', [PhysiologicalHistoryController::class, 'exportPhysiologicalHistories'])->name('exportPhysiologicalHistories'); // Export physiological histories to CSV
 });
 /**--------------------------------------------------------- ANALYTICS  -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
