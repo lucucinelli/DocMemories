@@ -86,7 +86,7 @@
                                                 {{ $patient->birthdate->format('d/m/Y') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $patient->gender === 'M' ? 'Maschio' : 'Femmina' }}
+                                                {{ $patient->gender === 'M' ? 'Maschio' : ($patient->gender === 'F' ? 'Femmina' : 'Altro') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $patient->telephone }}

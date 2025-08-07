@@ -111,90 +111,6 @@
                             </div>
                             <div class="grid md:grid-cols-2 md:gap-6">
                                 <div class="group">
-                                    <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Allergie')}} </h3>
-                                    <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="allergia1" name="allergy[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="allergia2" name="allergy[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="allergia3" name="allergy[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="w-full dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="allergia4" name="allergy[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="group">
-                                    <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Allergie da farmaci')}} </h3>
-                                    <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="aspirina" name="medicine[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Aspirina </span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="antibiotici" name="medicine[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Antibiotici </span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="farmaco3" name="medicine[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="w-full dark:border-gray-600">
-                                            <div class="flex items-center ps-3 py-3">
-                                                <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="farmaco4" name="medicine[]" class="sr-only peer">
-                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 md:gap-6">
-                                <div class="group">
                                     <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Veleno di imenotteri')}} </h3>
                                     <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                         <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
@@ -236,6 +152,49 @@
                                     </ul>
                                 </div>
                                 <div class="group">
+                                    <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Allergie da farmaci')}} </h3>
+                                    <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="aspirina" name="medicine[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Aspirina </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="antibiotici" name="medicine[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Antibiotici </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="betalattamici" name="medicine[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Betalattamici</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="cefalosporine" name="medicine[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Cefalosporine</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 md:gap-6">
+                                 <div class="group">
                                     <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Dermatiti')}} </h3>
                                     <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                         <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
@@ -259,15 +218,140 @@
                                         <li class="w-full dark:border-gray-600">
                                             <div class="flex items-center ps-3 py-3">
                                                 <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="altro" name="dermatitis[]" class="sr-only peer">
+                                                    <input type="checkbox" value="cobalto cloruro" name="dermatitis[]" class="sr-only peer">
                                                     <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Altro </span>
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Cobalto cloruro </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="parafenilendiammina" name="dermatitis[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Parafenilendiammina</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="orticaria" name="dermatitis[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Orticaria</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="angioedema" name="dermatitis[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Angioedema</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="mastocitosi" name="dermatitis[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Mastocitosi</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="varicosa" name="dermatitis[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Varicosa</span>
                                                 </label>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+                                <div class="group">
+                                    <h3 class="mt-5 mb-2 block font-medium text-md text-gray-700 dark:text-gray-300"> {{__('Varie')}} </h3>
+                                    <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="rinite" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Rinite</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="asma" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Asma</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="congiuntivite" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Congiutivite</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="poliposi nasale" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Poliposi nasale</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="latte" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Latte</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="uova" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Uova</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="pesce" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Pesce</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="frutta secca" name="allergy[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Frutta secca</span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                               
+                                
                             </div>
+                            
                             <div class="flex justify-between">
                                 <x-secondary-button class="mt-4" id="prev-step-3" onclick="showStep(2)">
                                     {{ __('Indietro') }}
