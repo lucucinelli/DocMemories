@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Visit;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Exports\VisitsExport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VisitController extends Controller
 {
@@ -111,5 +113,14 @@ class VisitController extends Controller
                         })->paginate(10)->appends(['search' => $searchTerm]); // Search for visits by reason, diagnosis, reservation, or patient name
         }
         return view('visits.find', ['visits' => $visits]);
+    }
+    public function exportVisits(){
+        return Excel::download(new VisitsExport(), 'visits.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="visits.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }

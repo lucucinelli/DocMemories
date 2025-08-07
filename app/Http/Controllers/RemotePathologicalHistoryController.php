@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use App\Models\RemotePathologicalHistory;
+use App\Exports\RemotePathologicalHistoryExport;
 
 class RemotePathologicalHistoryController extends Controller
 {
@@ -52,5 +54,15 @@ class RemotePathologicalHistoryController extends Controller
         $remoteHistory->delete();
 
         return response()->json(['message' => 'Remote pathological history deleted successfully.'], 200);
+    }
+
+    public function exportRemotePathologicalHistories(){
+        return Excel::download(new RemotePathologicalHistoryExport(), 'remote_pathological_histories.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="remote_pathological_histories.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }

@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\AllergyTest;
 use Illuminate\Http\Request;
+use App\Exports\AllergyTestExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TestController extends Controller
 {
@@ -48,5 +51,14 @@ class TestController extends Controller
     {
         $test->delete();
         return response()->json(['message' => 'Test deleted successfully'], 200);
+    }
+    public function exportTests(){
+        return Excel::download(new AllergyTestExport(), 'patients.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="patients.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }

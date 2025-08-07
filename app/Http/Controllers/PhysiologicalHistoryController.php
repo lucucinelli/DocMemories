@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
-use App\Models\PhysiologicalHistory;
 use Illuminate\Http\Request;
+use App\Models\PhysiologicalHistory;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PhysiologicalHistoryExport;
 
 class PhysiologicalHistoryController extends Controller
 {
@@ -47,5 +49,14 @@ class PhysiologicalHistoryController extends Controller
     {
         $physiologicalHistory = $patient->physiologicalHistory()->get()->first();
         return response()->json(['success' => !is_null($physiologicalHistory)]);
+    }
+    public function exportPhysiologicalHistories(){
+        return Excel::download(new PhysiologicalHistoryExport(), 'physiological_histories.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="physiological_histories.csv"',
+            'Content-Transfer-Encoding' => 'binary',
+            'charset' => 'UTF-8',
+            'Content-Encoding' => 'UTF-8',
+        ]);
     }
 }
