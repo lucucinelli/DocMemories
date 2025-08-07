@@ -53,9 +53,9 @@ class TestController extends Controller
         return response()->json(['message' => 'Test deleted successfully'], 200);
     }
     public function exportTests(){
-        return Excel::download(new AllergyTestExport(), 'patients.csv', \Maatwebsite\Excel\Excel::CSV, [
+        return Excel::download(new AllergyTestExport(), 'tests.csv', \Maatwebsite\Excel\Excel::CSV, [
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="patients.csv"',
+            'Content-Disposition' => 'attachment; filename="tests.csv"',
             'Content-Transfer-Encoding' => 'binary',
             'charset' => 'UTF-8',
             'Content-Encoding' => 'UTF-8',
