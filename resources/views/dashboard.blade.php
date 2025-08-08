@@ -39,7 +39,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M8 6H21M8 12H21M8 18H21M3 6H3.01M3 12H3.01M3 18H3.01" />
                                 </svg>
-                                <h2 class="text-lg font-semibold tracking-wide">Note personali</h2>
+                                <h2 class="text-lg font-semibold tracking-wide"> Promemoria </h2>
                             </div>
                             <button onclick="clearNotes()" class="text-base font-medium hover:underline hover:text-red-200"><i class="bi bi-trash3-fill"></i> Cancella</button>
                         </div>
