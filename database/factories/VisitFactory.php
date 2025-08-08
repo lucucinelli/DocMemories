@@ -16,18 +16,47 @@ class VisitFactory extends Factory
      */
     public function definition(): array
     {
-        $diagnosi = [
+        $farmaci = [
+            'aspirina',
+            'antibiotici',
+            'betalattamici',
+            'cefalsporine',
+            ''
+        ];
+        $veleni = [
             'vespa',
-            'mal di testa',
-            'influenza',
-            'raffreddore',
-            'dolore alla schiena'
+            'vespa Cabro',
+            'ape',
+            'polistes dominulus',
+            ''
+        ];
+        $diagdermatitiosi = [
+            'nichel',
+            'irritativva',
+            'cobalto cloruro',
+            'parafenilendiammina',
+            'orticaria',
+            'angioedema',
+            'mastocitosi',
+            'varicosi',
+            ''
+        ];
+        $varie = [
+            'rinite',
+            'asma',
+            'congiuntivite',
+            'poliposi nasale',
+            'latte',
+            'uova',
+            'pesce',
+            'frutta secca',
+            ''
         ];
         return [
             'visit_date' => $this->faker->date(),
             'reason' => $this->faker->sentence(),
-            'diagnosis' => $this->faker->randomElement($diagnosi),
-            'reservation' => $this->faker->sentence(),
+            'diagnosis' => $this->faker->randomElement($farmaci) . ' ' . $this->faker->randomElement($veleni) . ' ' . $this->faker->randomElement($diagdermatitiosi) . ' ' . $this->faker->randomElement($varie),
+            'reservation' => $this->faker->randomElement(['Istituzionale','Intramoenia']),
             'note' => $this->faker->paragraph(),
             'user_id' => $this->faker->randomElement(\App\Models\User::pluck('id')),
             'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
