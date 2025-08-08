@@ -20,7 +20,7 @@ class PatientFactory extends Factory
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
             'birthdate' => $this->faker->date(),
-            'gender' => $this->faker->randomElement(['M', 'F', 'Non specificato']),
+            'gender' => $this->faker->randomElement(['M', 'F', 'non specificato']),
             'birthplace' => $this->faker->city(),
             'tax_code' => $this->faker->unique()->regexify('^[A-Z]{6}[0-9]{2}[A-EHLMPR-T][0-9]{2}[A-Z][0-9]{3}[A-Z]$'),
             'marital_status' => $this->faker->randomElement(['Single', 'Married', 'Divorced']),
