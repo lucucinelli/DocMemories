@@ -17,7 +17,11 @@ class MedicinalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word(),
+            'quantity' => $this->faker->randomNumber(),
+            'usage' => $this->faker->word(),
+            'period' => $this->faker->numberBetween(1, 30),
+            'visit_id' => $this->faker->randomElement(\App\Models\Visit::pluck('id')),
         ];
     }
 }

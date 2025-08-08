@@ -17,7 +17,13 @@ class NextPathologicalHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'date' => $this->faker->date(),
+            'type' => $this->faker->pickRandom(['respiratoria', 'dermatologica', 'alimentare', 'farmacologica', 'veleno di imenotteri']),
+            'name' => '',
+            'cause' => $this->faker->word(),
+            'effect' => $this->faker->word(),
+            'note' => $this->faker->sentence(),
+            'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
         ];
     }
 }

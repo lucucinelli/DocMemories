@@ -17,7 +17,14 @@ class PhysiologicalHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'birth' => $this->faker->word(),
+            'atopy' => $this->faker->boolean(),
+            'nursing' => $this->faker->word(),
+            'diet' => $this->faker->sentence(),
+            'habits' => $this->faker->sentence(),
+            'period' => $this->faker->word(),
+            'period_regularity' => $this->faker->word(),
+            'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
         ];
     }
 }

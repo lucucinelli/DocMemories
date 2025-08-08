@@ -17,7 +17,11 @@ class ExamFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'date' => $this->faker->date(),
+            'type' => $this->faker->word(),
+            'note' => $this->faker->sentence(),
+            'result' => $this->faker->word(),
+            'visit_id' => $this->faker->randomElement(\App\Models\Visit::pluck('id')),
         ];
     }
 }

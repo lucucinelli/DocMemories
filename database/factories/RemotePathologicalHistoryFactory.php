@@ -17,7 +17,11 @@ class RemotePathologicalHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'date' => $this->faker->date(),
+            'type' => $this->faker->randomElement(['intervento', 'malattia']),
+            'description' => $this->faker->sentence(),
+            'note' => $this->faker->sentence(),
+            'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
         ];
     }
 }

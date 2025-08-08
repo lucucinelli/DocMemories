@@ -17,7 +17,10 @@ class FamiliarHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'allergy' => $this->faker->word(),
+            'relative' => $this->faker->relative(),
+            'note' => $this->faker->sentence(),
+            'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
         ];
     }
 }
