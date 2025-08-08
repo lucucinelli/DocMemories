@@ -79,7 +79,7 @@
                                                 {{ $visit->patient->surname ?? $visit->surname }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $visit->visit_date }}
+                                                {{ (new DateTime($visit->visit_date))->format('d/m/Y') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $visit->reason }}
