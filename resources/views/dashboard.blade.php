@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <!-- Modal conferma -->
-                <div id="confirmModal" class="fixed flex inset-0 z-50 hidden bg-black bg-opacity-50 items-center justify-center">
+                <div id="confirmModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 items-center justify-center">
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg w-full max-w-md border dark:border-gray-700">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">Sei sicuro?</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-6">Questa azione cancellerà definitivamente le tue note salvate.</p>

@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Salvataggio automatico
 const notesField = document.getElementById('notes');
-const status = document.getElementById('saveStatus');
+
 
 notesField.addEventListener('input', () => {
+    const status = document.getElementById('saveStatus');
     localStorage.setItem('advanced_notes', notesField.value);
     status.classList.remove('hidden');
     clearTimeout(status._timeout);
@@ -21,10 +22,12 @@ notesField.addEventListener('input', () => {
 window.clearNotes = function() {
     // Mostra il popup personalizzato
     document.getElementById('confirmModal').classList.remove('hidden');
+    document.getElementById('confirmModal').classList.add('flex');
 }
 
 window.hideModal = function() {
   document.getElementById('confirmModal').classList.add('hidden');
+  document.getElementById('confirmModal').classList.remove('flex');
 }
 
 window.confirmClearNotes = function() {
