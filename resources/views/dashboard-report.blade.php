@@ -54,6 +54,24 @@
             </dl>
         </div>
         <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="visits-report" role="tabpanel" >
+            <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl font-extrabold">{{$dailyVisits}}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Visite giornaliere</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl font-extrabold">{{$weeklyVisits}}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Visite settimanali</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl font-extrabold">{{$monthlyVisits}}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Visite mensili</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl font-extrabold">{{$annualVisits}}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Visite annuali</dd>
+                </div>
+            </dl>
             <div class="mt-4 hidden" id="visits-report-error-message">
                 <h2 class="text-red-500 text-center font-medium"> Non ci sono dati da analizzare </h2>
             </div>
