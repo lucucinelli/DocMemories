@@ -20,6 +20,7 @@
 <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <div class="sm:hidden">
         <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-base font-medium rounded-t-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
+            <option value="" disabled> Seleziona un report </option>
             <option value="Patients">Pazienti</option>
             <option value="Visits">Visite</option>
             <option value="Reservations">Prenotazioni</option>
@@ -38,6 +39,11 @@
     </ul>
     <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
         <div class="p-4 bg-white hidden rounded-lg md:p-8 dark:bg-gray-800" id="patients-report" role="tabpanel">
+            <div class="flex justify-center">
+                <p class="mt-1  text-sm text-gray-600 dark:text-gray-400">
+                    {{ __("I valori numerici sottostanti sono stati calcolati a partire dal primo utilizzo dell'applicazione.") }}
+                </p>
+            </div>
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-3 dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
                     <dt class="mb-2 text-3xl font-extrabold">{{ $m }}</dt>
@@ -52,8 +58,16 @@
                     <dd class="text-gray-500 dark:text-gray-400"><i class="bi bi-gender-neuter mr-2 text-gray-600 text-xl"></i> Non specificato</dd>
                 </div>
             </dl>
+            <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="patients-report-chart-container">
+                <canvas id="patients-report-chart" class="mt-6" ></canvas>
+            </div>
         </div>
         <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="visits-report" role="tabpanel" >
+            <div class="flex justify-center">
+                <p class="mt-1  text-sm text-gray-600 dark:text-gray-400">
+                    {{ __("I valori numerici sottostanti fanno riferimento all'anno corrente.") }}
+                </p>
+            </div>
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
                     <dt class="mb-2 text-3xl font-extrabold">{{$dailyVisits}}</dt>
@@ -72,9 +86,6 @@
                     <dd class="text-gray-500 dark:text-gray-400">Visite annuali</dd>
                 </div>
             </dl>
-            <div class="mt-4 hidden" id="visits-report-error-message">
-                <h2 class="text-red-500 text-center font-medium"> Non ci sono dati da analizzare </h2>
-            </div>
             <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="visits-report-chart-container">
                 <canvas id="visits-report-chart" class="mt-6" ></canvas>
             </div>
@@ -140,6 +151,18 @@
                             <span class="leading-tight">{{"annuali: $annualIntramoenia"}}</span>
                         </li>
                     </ul>
+                </div>
+            </dl>
+            <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-2 dark:text-white sm:p-8">
+                <div class="flex flex-col items-center justify-center">
+                    <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="reservationIs-report-chart-container">
+                        <canvas id="reservationIs-report-chart" class="mt-6" ></canvas>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="reservationIn-report-chart-container">
+                        <canvas id="reservationIn-report-chart" class="mt-6" ></canvas>
+                    </div>
                 </div>
             </dl>
         </div>

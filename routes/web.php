@@ -23,7 +23,8 @@ Route::get('/', function () {
 
 // dashboard and profile routes
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::post('/dashboard/chartVisits', [DashboardController::class, 'chartVisits'])->middleware(['auth', 'verified'])->name('dashboard.chartVisits');
+Route::post('/dashboard/chart', [DashboardController::class, 'chart'])->middleware(['auth', 'verified'])->name('dashboard.chart');
+Route::post('/dashboard/chartReservations', [DashboardController::class, 'chartReservations'])->middleware(['auth', 'verified'])->name('dashboard.chartReservations');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
