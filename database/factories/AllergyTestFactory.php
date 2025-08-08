@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,12 +17,14 @@ class AllergyTestFactory extends Factory
      */
     public function definition(): array
     {
+        $visitId = $this->faker->randomElement(\App\Models\Visit::pluck('id'));
+        $data = Visit::find($visitId)->visit_date;
         return [
-            'test_date' => $this->faker->date(),
+            'test_date' => $this->faker->dateTimeBetween($data, 'now')->format('Y-m-d'),
             'test_type' => $this->faker->word(),
             'test_result' => $this->faker->word(),
             'test_note' => $this->faker->sentence(),
-            'visit_id' => $this->faker->randomElement(\App\Models\Visit::pluck('id')),
+            'visit_id' => $visitId,
         ];
     }
 }

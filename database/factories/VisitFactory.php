@@ -25,7 +25,7 @@ class VisitFactory extends Factory
         ];
         $veleni = [
             'vespa',
-            'vespa Cabro',
+            'vespa cabro',
             'ape',
             'polistes dominulus',
             ''
@@ -53,7 +53,7 @@ class VisitFactory extends Factory
             ''
         ];
         return [
-            'visit_date' => $this->faker->date(),
+            'visit_date' => $this->faker->dateTimeBetween('1990-01-01', 'now')->format('Y-m-d'),
             'reason' => $this->faker->sentence(),
             'diagnosis' => $this->faker->randomElement($farmaci) . ' ' . $this->faker->randomElement($veleni) . ' ' . $this->faker->randomElement($diagdermatitiosi) . ' ' . $this->faker->randomElement($varie),
             'reservation' => $this->faker->randomElement(['Istituzionale','Intramoenia']),
