@@ -35,8 +35,8 @@
                     <dd class="text-gray-500 dark:text-gray-400"><i class="bi bi-gender-female mr-2 text-pink-600 text-xl"></i> Donne</dd>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{ $other }}</dt>
-                    <dd class="text-gray-500 dark:text-gray-400"><i class="bi bi-gender-neuter mr-2 text-gray-600 text-xl"></i> Altro</dd>
+                    <dt class="mb-2 text-3xl font-extrabold">{{ $notSpecified }}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400"><i class="bi bi-gender-neuter mr-2 text-gray-600 text-xl"></i> Non specificato</dd>
                 </div>
             </dl>
         </div>

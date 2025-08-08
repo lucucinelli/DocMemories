@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
         $m = Patient::where('gender','M')->count();
         $f = Patient::where('gender','F')->count();
-        $other = Patient::where('gender','Altro')->count();
+        $notSpecified = Patient::where('gender','non specificato')->count();
 
         return view('dashboard', [
             'dailyVisits' => $dailyVisits,
@@ -43,7 +43,7 @@ class DashboardController extends Controller
             'annualIstituzionali' => $annualIstituzionali,
             'm' => $m,
             'f' => $f,
-            'other' => $other
+            'notSpecified' => $notSpecified
         ]
         );
     }

@@ -24,7 +24,7 @@ class PatientController extends Controller
             'name' => [ 'required', 'string', 'max:255'],
             'surname' => [ 'required', 'string', 'max:255'],
             'birthdate' => [ 'required', 'date'],
-            'gender' => [ 'required', 'string', 'max:1'],
+            'gender' => [ 'required', 'string', 'max:20'],
             'birthplace' => [ 'required', 'string', 'max:100'],
             'tax_code' => [ 'required', 'string', 'min:16', 'max:16'],
             'marital_status' => [ 'required', 'string', 'max:50'],
@@ -75,6 +75,7 @@ class PatientController extends Controller
             ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(gender, 'aschio') LIKE ?", ["%{$searchTerm}%"])
             ->orWhereRaw("CONCAT(gender, 'emmina') LIKE ?", ["%{$searchTerm}%"])
+            ->orWhereRaw("CONCAT(gender, 'specificato') LIKE ?", ["%{$searchTerm}%"])
             ->paginate(10)
             ->appends(['search' => $searchTerm]); // Search for patients by
         }
@@ -87,7 +88,7 @@ class PatientController extends Controller
             'name' => [ 'required', 'string', 'max:255'],
             'surname' => [ 'required', 'string', 'max:255'],
             'birthdate' => [ 'required', 'date'],
-            'gender' => [ 'required', 'string', 'max:1'],
+            'gender' => [ 'required', 'string', 'max:20'],
             'birthplace' => [ 'required', 'string', 'max:100'],
             'tax_code' => [ 'required', 'string', 'min:16', 'max:16'],
             'marital_status' => [ 'required', 'string', 'max:50'],
