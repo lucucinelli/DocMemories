@@ -35,7 +35,7 @@ class PatientFactory extends Factory
             'domicile_address' => $this->faker->streetAddress(),
             'domicile_street_number' => $this->faker->buildingNumber(),
             'domicile_zip_code' => $this->faker->regexify('^[0-9]{5}$'),
-            'telephone' => $this->faker->unique()->phoneNumber(),
+            'telephone' => $this->faker->unique()->numerify('3## #######'),
             'email' => $this->faker->unique()->safeEmail(),
             'occupation' => $this->faker->word(),
         ];
