@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use IntlDateFormatter;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -88,7 +90,7 @@ class DashboardController extends Controller
                 'datasets' => []
             ];
 
-            $genders = ['M' => 'Maschio', 'F' => 'Femmina', 'non specificato' => 'Non specificato'];
+            $genders = ['M' => 'Uomo', 'F' => 'Donna', 'non specificato' => 'Non specificato'];
 
             foreach ($genders as $genderCode => $genderLabel) {
                 $dataset = [
@@ -110,8 +112,77 @@ class DashboardController extends Controller
 
             return response()->json($data);
         }else{
-            return "";
+            $from = $reference . '-' . $from . '-01';
+            $to = $reference . '-' . $to . '-31';
+            $reportVisits = DB::table('visits')
+                ->select(DB::raw('MONTH(visit_date) as month'),'gender', DB::raw('COUNT(*) as total'))            
+                ->join('patients','patient_id','=','patients.id')
+                ->where('user_id','=',Auth::user()->id)
+                ->whereBetween('visit_date', [$from, $to])
+                ->groupBy('month','gender')
+                ->orderBy('month', 'asc')
+                ->orderBy('gender', 'asc')
+                ->get();
+
+            $grouped = [];
+
+            foreach ($reportVisits as $row) {
+                $grouped[$row->gender][$row->month] = $row->total;
+            }
+
+            $labels = collect($reportVisits)->pluck('month')->unique()->sort()->values();
+            
+            
+            $data = [
+                'labels' => $labels,
+                'datasets' => []
+            ];
+
+            $genders = ['M' => 'Uomo', 'F' => 'Donna', 'non specificato' => 'Non specificato'];
+
+            foreach ($genders as $genderCode => $genderLabel) {
+                $dataset = [
+                    'label' => $genderLabel,
+                    'data' => [],
+                    'backgroundColor' => match($genderCode) {
+                        'M' => 'rgba(54, 162, 235, 0.6)',
+                        'F' => 'rgba(255, 99, 132, 0.6)',
+                        default => 'rgba(201, 203, 207, 0.6)',
+                    },
+                ];
+
+                foreach ($labels as $month) {
+                    $dataset['data'][] = $grouped[$genderCode][$month] ?? 0;
+                }
+
+                $data['datasets'][] = $dataset;
+            }
+
+            $labels = $labels->map(function($month) {
+                return self::getMonthName($month);
+            });
+            $data['labels'] = $labels;
+            return response()->json($data);
         }
         
     }   
+
+    static function getMonthName($monthNumber) {
+        $months = [
+            1 => 'gennaio',
+            2 => 'febbraio',
+            3 => 'marzo',
+            4 => 'aprile',
+            5 => 'maggio',
+            6 => 'giugno',
+            7 => 'luglio',
+            8 => 'agosto',
+            9 => 'settembre',
+            10 => 'ottobre',
+            11 => 'novembre',
+            12 => 'dicembre'
+        ];
+        return $months[$monthNumber] ?? '';
+    }
 }
+

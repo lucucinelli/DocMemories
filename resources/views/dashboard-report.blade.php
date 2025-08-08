@@ -54,6 +54,11 @@
             </dl>
         </div>
         <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="visits-report" role="tabpanel" >
+            <div class="flex justify-center">
+                <p class="mt-1  text-sm text-gray-600 dark:text-gray-400">
+                    {{ __("I valori numerici sottostanti fanno riferimento all'anno corrente.") }}
+                </p>
+            </div>
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
                     <dt class="mb-2 text-3xl font-extrabold">{{$dailyVisits}}</dt>

@@ -114,7 +114,13 @@ function createChart(label, datasets){
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Visite per anno e genere'
+                        text: 'Visite per anno e genere',
+                        font: {
+                            size: 20,
+                            family: 'sans-serif',
+                            weight: 'bold',
+                            color: '#000'
+                        }
                     },
                     tooltip: {
                         mode: 'index',
