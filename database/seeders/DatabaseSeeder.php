@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Exports\ExamExport;
+use App\Models\FamiliarHistory;
 use App\Models\User;
+use App\Models\Visit;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +21,18 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        $this->call([
+            PatientSeeder::class,
+            VisitSeeder::class,
+            PhysiologicalHistorySeeder::class,
+            FamiliarHistorySeeder::class,
+            RemotePathologicalHistorySeeder::class,
+            NextPathologicalHistorySeeder::class,
+            AllergyTestSeeder::class,
+            MedicinalSeeder::class,
+            ExamSeeder::class,
         ]);
     }
 }
