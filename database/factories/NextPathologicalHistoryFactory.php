@@ -18,7 +18,7 @@ class NextPathologicalHistoryFactory extends Factory
     {
         return [
             'date' => $this->faker->date(),
-            'type' => $this->faker->pickRandom(['respiratoria', 'dermatologica', 'alimentare', 'farmacologica', 'veleno di imenotteri']),
+            'type' => $this->faker->randomElement(['respiratoria', 'dermatologica', 'alimentare', 'farmacologica', 'veleno di imenotteri']),
             'name' => '',
             'cause' => $this->faker->word(),
             'effect' => $this->faker->word(),
