@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 // dashboard and profile routes
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/dashboard/chartVisits', [DashboardController::class, 'chartVisits'])->middleware(['auth', 'verified'])->name('dashboard.chartVisits');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

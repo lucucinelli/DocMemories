@@ -1,9 +1,22 @@
 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
         <i class="mr-2 bi bi-clipboard2-data-fill"></i> {{ __('Reports') }} 
 </h2>
-<p class="mt-1 mb-5 text-sm text-gray-600 dark:text-gray-400">
-    {{ __("Clicca su 'Pazienti', 'Visite' o 'Prenotazioni' per visualizzare i report corrispondenti.") }}
+<p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+    {{ __("Scegli il periodo da analizzare, poi, clicca su 'Pazienti', 'Visite' o 'Prenotazioni' per visualizzare i report corrispondenti.") }}
 </p>
+
+<div class="flex flex-row my-2">
+    <x-select id="report-period" :options="[ 'Anni' => 'years', 'Mesi' => 'months']" />
+    <div id="years-range" class="px-3 flex justify-between gap-3">
+        <x-text-input id="from-year" placeholder="Da" type="number" />
+        <x-text-input id="to-year" placeholder="A" type="number" />
+    </div>
+    <div id="months-range" class="px-3 flex justify-between gap-3">
+        <x-select id="from-month" :options="[ 'Gennaio' => '01', 'Febbraio' => '02', 'Marzo' => '03', 'Aprile' => '04', 'Maggio' => '05', 'Giugno' => '06', 'Luglio' => '07', 'Agosto' => '08', 'Settembre' => '09', 'Ottobre' => '10', 'Novembre' => '11', 'Dicembre' => '12']" />
+        <x-select id="to-month" :options="[ 'Gennaio' => '01', 'Febbraio' => '02', 'Marzo' => '03', 'Aprile' => '04', 'Maggio' => '05', 'Giugno' => '06', 'Luglio' => '07', 'Agosto' => '08', 'Settembre' => '09', 'Ottobre' => '10', 'Novembre' => '11', 'Dicembre' => '12']" />
+        <x-text-input id="reference-year" placeholder="Anno di riferimento" type="number" />
+    </div>
+</div>
 <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <div class="sm:hidden">
         <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-base font-medium rounded-t-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
@@ -24,7 +37,7 @@
         </li>
     </ul>
     <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
-        <div class="p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="patients-report" role="tabpanel">
+        <div class="p-4 bg-white hidden rounded-lg md:p-8 dark:bg-gray-800" id="patients-report" role="tabpanel">
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-3 dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
                     <dt class="mb-2 text-3xl font-extrabold">{{ $m }}</dt>
@@ -41,24 +54,12 @@
             </dl>
         </div>
         <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="visits-report" role="tabpanel" >
-            <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
-                <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$dailyVisits}}</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">Visite giornaliere</dd>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$weeklyVisits}}</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">Visite settimanali</dd>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$monthlyVisits}}</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">Visite mensili</dd>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$annualVisits}}</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">Visite annuali</dd>
-                </div>
-            </dl>
+            <div class="mt-4 hidden" id="visits-report-error-message">
+                <h2 class="text-red-500 text-center font-medium"> Non ci sono dati da analizzare </h2>
+            </div>
+            <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="visits-report-chart-container">
+                <canvas id="visits-report-chart" class="mt-6" ></canvas>
+            </div>
         </div>
         <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800" id="reservations-report" role="tabpanel">
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-2 dark:text-white sm:p-8">
@@ -126,3 +127,5 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -47,4 +48,70 @@ class DashboardController extends Controller
         ]
         );
     }
+
+    public function chartVisits(Request $request){
+        $incomingData = $request->validate([
+            'type' => ['required'],
+            'from' => ['required'],
+            'to' => ['required'],
+            'reference' => ['nullable']
+        ]);
+
+        // Process the validated data
+        $from = $incomingData['from'];
+        $to = $incomingData['to'];
+        $reference = $incomingData['reference'];
+         
+        if($incomingData['type'] == 'years') {
+            $from = $from . '-01-01';
+            $to = $to . '-12-31';
+            $reportVisits = DB::table('visits')
+                ->select(DB::raw('YEAR(visit_date) as year'),'gender', DB::raw('COUNT(*) as total'))            
+                ->join('patients','patient_id','=','patients.id')
+                ->where('user_id','=',Auth::user()->id)
+                ->whereBetween('visit_date', [$from, $to])
+                ->groupBy('year','gender')
+                ->orderBy('year', 'asc')
+                ->orderBy('gender', 'asc')
+                ->get();
+
+            $grouped = [];
+
+            foreach ($reportVisits as $row) {
+                $grouped[$row->gender][$row->year] = $row->total;
+            }
+
+            $labels = collect($reportVisits)->pluck('year')->unique()->sort()->values();
+
+            $data = [
+                'labels' => $labels,
+                'datasets' => []
+            ];
+
+            $genders = ['M' => 'Maschio', 'F' => 'Femmina', 'non specificato' => 'Non specificato'];
+
+            foreach ($genders as $genderCode => $genderLabel) {
+                $dataset = [
+                    'label' => $genderLabel,
+                    'data' => [],
+                    'backgroundColor' => match($genderCode) {
+                        'M' => 'rgba(54, 162, 235, 0.6)',
+                        'F' => 'rgba(255, 99, 132, 0.6)',
+                        default => 'rgba(201, 203, 207, 0.6)',
+                    },
+                ];
+
+                foreach ($labels as $year) {
+                    $dataset['data'][] = $grouped[$genderCode][$year] ?? 0;
+                }
+
+                $data['datasets'][] = $dataset;
+            }
+
+            return response()->json($data);
+        }else{
+            return "";
+        }
+        
+    }   
 }
