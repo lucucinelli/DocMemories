@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://github.com/lucucinelli/DocMemories/blob/main/public/favicon.ico" alt="Build Status" width="20" height="20" align="middle">
+<img src="https://github.com/lucucinelli/DocMemories/blob/main/public/favicon.ico" alt="Build Status" width="100" height="100" align="middle">
 
 
 ## About Laravel
