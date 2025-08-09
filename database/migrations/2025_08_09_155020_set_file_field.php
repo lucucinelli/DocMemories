@@ -10,6 +10,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // it makes the file field larger to accommodate larger files
     public function up(): void
     {
         DB::statement('ALTER TABLE exams MODIFY file MEDIUMBLOB NULL');
