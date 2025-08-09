@@ -15,42 +15,42 @@ function newExamRow() {
     const exam_type = document.getElementById('exam_type').value;
     const exam_result = document.getElementById('exam_result').value;
     const exam_note = document.getElementById('exam_note').value;
-    const pathSegments = window.location.pathname.split('/'); // URL
+    const exam_file = document.getElementById('exam_file') ? document.getElementById('exam_file').files[0] : null;
+
+    const pathSegments = window.location.pathname.split('/');
     const visit_id = pathSegments[2]; 
-    console.log('save exam related to the visit with visit_id:', visit_id);
+
+    let formData = new FormData();
+    formData.append('exam_date', exam_date);
+    formData.append('exam_type', exam_type);
+    formData.append('exam_result', exam_result);
+    formData.append('exam_note', exam_note);
+    if (exam_file) {
+        formData.append('exam_file', exam_file);
+    }
+
     fetch(`/createExam/${visit_id}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
-        body: JSON.stringify({
-            exam_date,
-            exam_type,
-            exam_result,
-            exam_note
-        })
+        body: formData
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Request error');
-        }
+        if (!response.ok) throw new Error('Request error');
         return response.json();
     })
     .then(data => {
-        console.log('Server response:', data);
-        // Only if the response is ok, then add the row to the table:
-        appendExamRow(data.id, exam_date, exam_type, exam_result, exam_note, tbody, newRow);
+        appendExamRow(data.id, exam_date, exam_type, exam_result, exam_note, tbody, newRow, data.has_file);
+        document.getElementById('exam_file').value = '';
     })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    .catch(error => console.error('Error:', error));
 }
 
 
 
 
-function appendExamRow(exam_id, exam_date, exam_type, exam_result, exam_note, tbody, newRow) {
+function appendExamRow(exam_id, exam_date, exam_type, exam_result, exam_note, tbody, newRow, has_file) {
     newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Nome'] before:font-bold before:block sm:before:hidden">
@@ -64,6 +64,14 @@ function appendExamRow(exam_id, exam_date, exam_type, exam_result, exam_note, tb
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
             <textarea name="righe[${exam_id}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${exam_note}</textarea>
+        </td>
+        <td class="px-6 py-2 text-center before:content-['File'] before:font-bold before:block sm:before:hidden">
+            ${has_file 
+                ? `<a href="/viewExamFile/${exam_id}" target="_blank" class="text-white hover:underline"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
+                   <button type="button" onclick="replaceExamFile(${exam_id})" class="ml-2 text-blue-600"><i class="bi bi-arrow-repeat"></i></button>
+                   <button type="button" onclick="deleteExamFile(${exam_id})" class="ml-2 text-red-600"><i class="bi bi-trash3"></i></button>`
+                : `<button type="button" onclick="uploadExamFile(${exam_id})" class="text-gray-600 dark:text-gray-300"><i class="bi bi-paperclip"></i></button>`
+            }
         </td>
         <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
             <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 dark:text-blue-300 font-bold"> <i class="bi bi-pencil"></i> </button>
@@ -179,3 +187,83 @@ window.saveExamRow = function(button) {
     button.setAttribute('onclick', 'editExamRow(this)');
 }
 
+window.replaceExamFile = function(exam_id) {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.pdf,.jpg,.jpeg,.png';
+    input.onchange = function() {
+        let file = input.files[0];
+        if (!file) return;
+        let formData = new FormData();
+        formData.append('exam_file', file);
+        fetch(`/replaceExamFile/${exam_id}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        }).then(res => {
+            if (res.ok) {
+                alert('File aggiornato con successo');
+                updateFileCell(exam_id, true);
+            }
+        });
+    };
+    input.click();
+};
+
+window.deleteExamFile = function(exam_id) {
+    if (!confirm("Vuoi davvero cancellare il file?")) return;
+    fetch(`/deleteExamFile/${exam_id}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    }).then(res => {
+        if (res.ok) {
+            alert('File eliminato');
+            updateFileCell(exam_id, false);
+        }
+    });
+};
+
+window.uploadExamFile = function(exam_id) {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.pdf,.jpg,.jpeg,.png';
+    input.onchange = function() {
+        let file = input.files[0];
+        if (!file) return;
+        let formData = new FormData();
+        formData.append('exam_file', file);
+        fetch(`/uploadExamFile/${exam_id}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        }).then(res => {
+            if (res.ok) {
+                alert('File caricato con successo');
+                updateFileCell(exam_id, true);
+            }
+        });
+    };
+    input.click();
+};
+
+function updateFileCell(exam_id, hasFile) {
+    const row = document.querySelector(`input[name="righe[${exam_id}][exam_date]"]`).closest('tr');
+    const fileCell = row.querySelector('td:nth-child(5)'); // 5ª colonna "File"
+    if (!fileCell) return;
+
+    if (hasFile) {
+        fileCell.innerHTML = `
+            <a href="/viewExamFile/${exam_id}" target="_blank" class="text-white hover:underline"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
+            <button type="button" onclick="replaceExamFile(${exam_id})" class="ml-2 text-blue-600"><i class="bi bi-arrow-repeat"></i></button>
+            <button type="button" onclick="deleteExamFile(${exam_id})" class="ml-2 text-red-600"><i class="bi bi-trash3"></i></button>
+        `;
+    } else {
+        fileCell.innerHTML = `<button type="button" onclick="uploadExamFile(${exam_id})" class="text-gray-600 dark:text-gray-300"><i class="bi bi-paperclip"></i></button>`;
+    }
+}

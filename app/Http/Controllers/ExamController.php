@@ -16,6 +16,7 @@ class ExamController extends Controller
             'exam_type' => ['required', 'string', 'max:255'],
             'exam_result' => ['required', 'string', 'max:255'],
             'exam_note' => ['nullable', 'string', 'max:1000'],
+            'exam_file' => ['nullable', 'file', 'mimes:pdf,jpeg,jpg,png,gif,bmp,svg,webp'],
         ]);
 
         $exam = new Exam();
@@ -24,9 +25,20 @@ class ExamController extends Controller
         $exam->result = $incomingData['exam_result'];
         $exam->note = $incomingData['exam_note'];
         $exam->visit_id = $visit;
+
+        if ($request->hasFile('exam_file')) {
+            $exam->file = file_get_contents($request->file('exam_file')->getRealPath());
+            $exam->file_mime = $request->file('exam_file')->getMimeType();
+        }
+
         $exam->save();
 
-        return response()->json(['message' => 'Exam created successfully', 'exam' => $exam, 'id' => $exam->id], 201);
+        return response()->json([
+            'message' => 'Exam created successfully',
+            'exam' => $exam,
+            'id' => $exam->id,
+            'has_file' => ($exam->file ? true : false),
+        ], 201);
     }
 
     public function editExam(Request $request, Exam $exam)
@@ -61,5 +73,55 @@ class ExamController extends Controller
             'charset' => 'UTF-8',
             'Content-Encoding' => 'UTF-8',
         ]);
+    }
+
+    public function viewExamFile(Exam $exam)
+    {
+        if (!$exam->file) {
+            return response()->json(['message' => 'No file found'], 404);
+        }
+
+        return response($exam->file)
+            ->header('Content-Type', $exam->file_mime)
+            ->header('Content-Disposition', 'inline; filename="exam_file_' . $exam->id . '"');
+    }
+
+    public function uploadExamFile(Request $request, Exam $exam)
+    {
+        $request->validate([
+            'exam_file' => ['required', 'file', 'mimes:pdf,jpeg,jpg,png,gif,bmp,svg,webp'],
+        ]);
+
+        if ($exam->file) {
+            return response()->json(['message' => 'File already exists. Use replace instead.'], 400);
+        }
+
+        $exam->file = file_get_contents($request->file('exam_file')->getRealPath());
+        $exam->file_mime = $request->file('exam_file')->getMimeType();
+        $exam->save();
+
+        return response()->json(['message' => 'File uploaded successfully'], 200);
+    }
+
+    public function replaceExamFile(Request $request, Exam $exam)
+    {
+        $request->validate([
+            'exam_file' => ['required', 'file', 'mimes:pdf,jpeg,jpg,png,gif,bmp,svg,webp'],
+        ]);
+
+        $exam->file = file_get_contents($request->file('exam_file')->getRealPath());
+        $exam->file_mime = $request->file('exam_file')->getMimeType();
+        $exam->save();
+
+        return response()->json(['message' => 'File replaced successfully'], 200);
+    }
+
+    public function deleteExamFile(Exam $exam)
+    {
+        $exam->file = null;
+        $exam->file_mime = null;
+        $exam->save();
+
+        return response()->json(['message' => 'File deleted successfully'], 200);
     }
 }

@@ -91,6 +91,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/editExam/{exam}', [ExamController::class, 'editExam'])->name('editExam'); // Edit an existing exam
     Route::delete('/deleteExam/{exam}', [ExamController::class, 'deleteExam'])->name('deleteExam'); // Delete an existing exam
     Route::get('/exportExams', [ExamController::class, 'exportExams'])->name('exportExams'); // Export exams to CSV
+
+    // Exam file management
+    Route::get('/viewExamFile/{exam}', [ExamController::class, 'viewExamFile'])->name('viewExamFile'); // View the file of an exam
+    Route::post('/uploadExamFile/{exam}', [ExamController::class, 'uploadExamFile'])->name('uploadExamFile'); // Upload a file for an exam
+    Route::post('/replaceExamFile/{exam}', [ExamController::class, 'replaceExamFile'])->name('replaceExamFile'); // Replace the file of an exam
+    Route::delete('/deleteExamFile/{exam}', [ExamController::class, 'deleteExamFile'])->name('deleteExamFile'); // Delete the file of an exam
 });
 /**--------------------------------------------------------- HISTORIES CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {

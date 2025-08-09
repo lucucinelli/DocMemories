@@ -12,10 +12,13 @@ class Exam extends Model
     protected $fillable = [
         'date',
         'type',
-        'note',
         'result',
+        'file',
+        'note',
         'visit_id',
     ];
+
+    protected $hidden = ['file'];
 
     public function visit()
     {

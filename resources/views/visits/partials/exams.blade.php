@@ -15,6 +15,7 @@
                             <th scope="col" class="px-6 py-3">{{ __('Tipo') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Esito') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Nota') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('File') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Modifica') }}</th>
                             <th scope="col" class="px-6 py-3">{{ __('Rimuovi') }}</th>
                         </tr>
@@ -34,6 +35,15 @@
                                     </td>
                                     <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
                                         <textarea name="righe[{{ $exam->id }}][exam_note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>{{ $exam->note }}</textarea>
+                                    </td>
+                                    <td class="px-6 py-2 text-center before:content-['File'] before:font-bold before:block sm:before:hidden">
+                                        @if ($exam->file)
+                                            <a href="{{ route('viewExamFile', $exam->id) }}" target="_blank" class="text-white hover:underline"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
+                                            <button type="button" onclick="replaceExamFile({{ $exam->id }})" class="ml-2 text-blue-600"><i class="bi bi-arrow-repeat"></i></button>
+                                            <button type="button" onclick="deleteExamFile({{ $exam->id }})" class="ml-2 text-red-600"><i class="bi bi-trash3"></i></button>
+                                        @else
+                                            <button type="button" onclick="uploadExamFile({{ $exam->id }})" class="text-gray-600 dark:text-gray-300"><i class="bi bi-paperclip"></i></button>
+                                        @endif
                                     </td>
                                     <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
                                         <button type="button" onclick="editExamRow(this)" class="text-blue-600 hover:text-blue-800 dark:text-blue-300 font-bold"> <i class="bi bi-pencil"></i> </button>
@@ -79,6 +89,8 @@
                 <x-input-label for="nota" :value="__('Nota')" />
                 <x-text-input id="exam_note" class="block mt-1 w-full" type="text" name="nota" />  
                 <x-input-error :messages="$errors->get('nota')" class="mt-2" />
+                <x-input-label for="exam_file" :value="__('File allegato (PDF o immagine)')" />
+                <input id="exam_file" name="exam_file" type="file" accept=".pdf,.jpg,.jpeg,.png" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
             </div>
 
             <div class="mt-6 flex justify-end">

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('result')->default('in attesa');
             $table->text('note')->nullable();
+            $table->binary('file')->nullable();
+            $table->string('file_mime', 255)->nullable();
             $table->foreignId('visit_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
