@@ -13,6 +13,6 @@ class RemotePathologicalHistorySeeder extends Seeder
      */
     public function run(): void
     {
-        RemotePathologicalHistory::factory()->count(100)->create();
+        RemotePathologicalHistory::factory()->count(300)->create();
     }
 }

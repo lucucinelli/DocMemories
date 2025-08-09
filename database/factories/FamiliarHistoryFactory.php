@@ -18,7 +18,7 @@ class FamiliarHistoryFactory extends Factory
     {
         return [
             'allergy' => $this->faker->word(),
-            'relative' => $this->faker->randomElement(['mother', 'father', 'sibling', 'grandparent']),
+            'relative' => $this->faker->randomElement(['madre', 'padre', 'fratello', 'nonno', 'sorella', 'nonna', 'parente lontano']),
             'note' => $this->faker->sentence(),
             'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
         ];

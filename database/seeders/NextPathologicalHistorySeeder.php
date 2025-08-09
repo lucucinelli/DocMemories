@@ -13,6 +13,6 @@ class NextPathologicalHistorySeeder extends Seeder
      */
     public function run(): void
     {
-        NextPathologicalHistory::factory()->count(100)->create();
+        NextPathologicalHistory::factory()->count(300)->create();
     }
 }

@@ -13,6 +13,6 @@ class FamiliarHistorySeeder extends Seeder
      */
     public function run(): void
     {
-        FamiliarHistory::factory()->count(100)->create();
+        FamiliarHistory::factory()->count(300)->create();
     }
 }

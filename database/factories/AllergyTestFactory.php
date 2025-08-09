@@ -36,10 +36,16 @@ class AllergyTestFactory extends Factory
             'TEO', 
             'TSA'
         ];
+        $result = [
+            '+',
+            '++',
+            '+++',
+            '++++'
+        ];
         return [
             'test_date' => $this->faker->dateTimeBetween($data, 'now')->format('Y-m-d'),
             'test_type' => $this->faker->randomElement($tests),
-            'test_result' => $this->faker->word(),
+            'test_result' => $this->faker->randomElement($result),
             'test_note' => $this->faker->sentence(),
             'visit_id' => $visitId,
         ];

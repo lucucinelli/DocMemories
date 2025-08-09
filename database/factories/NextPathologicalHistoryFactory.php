@@ -19,9 +19,10 @@ class NextPathologicalHistoryFactory extends Factory
     {
         $patientId = $this->faker->randomElement(\App\Models\Patient::pluck('id'));
         $data = Patient::find($patientId)->birthdate;
+        $type = ['respiratoria', 'dermatologica', 'alimentare', 'farmacologica', 'veleno di imenotteri'];
         return [
             'date' => $this->faker->dateTimeBetween($data, 'now')->format('Y-m-d'),
-            'type' => $this->faker->randomElement(['respiratoria', 'dermatologica', 'alimentare', 'farmacologica', 'veleno di imenotteri']),
+            'type' => $this->faker->randomElement($type),
             'name' => '',
             'cause' => $this->faker->word(),
             'effect' => $this->faker->word(),

@@ -20,7 +20,7 @@ class MedicinalFactory extends Factory
             'name' => $this->faker->word(),
             'quantity' => $this->faker->randomNumber(),
             'usage' => $this->faker->word(),
-            'period' => $this->faker->numberBetween(1, 30),
+            'period' => $this->faker->numberBetween(1, 30) . ' giorni',
             'visit_id' => $this->faker->randomElement(\App\Models\Visit::pluck('id')),
         ];
     }
