@@ -70,19 +70,19 @@
             </div>
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$dailyVisits}}</dt>
+                    <a href={{route('dailyReportVisits')}}><dt class="mb-2 text-3xl font-extrabold">{{$dailyVisits}}</dt></a>
                     <dd class="text-gray-500 dark:text-gray-400">Visite giornaliere</dd>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$weeklyVisits}}</dt>
+                    <a href={{route('weeklyReportVisits')}}><dt class="mb-2 text-3xl font-extrabold">{{$weeklyVisits}}</dt></a>
                     <dd class="text-gray-500 dark:text-gray-400">Visite settimanali</dd>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$monthlyVisits}}</dt>
+                    <a href={{route('monthlyReportVisits')}}><dt class="mb-2 text-3xl font-extrabold">{{$monthlyVisits}}</dt></a>
                     <dd class="text-gray-500 dark:text-gray-400">Visite mensili</dd>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                    <dt class="mb-2 text-3xl font-extrabold">{{$annualVisits}}</dt>
+                    <a href={{route('annualReportVisits')}}><dt class="mb-2 text-3xl font-extrabold">{{$annualVisits}}</dt></a>
                     <dd class="text-gray-500 dark:text-gray-400">Visite annuali</dd>
                 </div>
             </dl>
@@ -100,25 +100,25 @@
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"giornaliere: $dailyIstituzionali"}}</span>
+                            <a href=""><span class="leading-tight">{{"giornaliere: $dailyIstituzionali"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"settimanali: $weeklyIstituzionali"}}</span>
+                            <a href=""><span class="leading-tight">{{"settimanali: $weeklyIstituzionali"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"mensili: $monthlyIstituzionali"}}</span>
+                            <a href=""><span class="leading-tight">{{"mensili: $monthlyIstituzionali"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"annuali: $annualIstituzionali"}}</span>
+                            <a href=""><span class="leading-tight">{{"annuali: $annualIstituzionali"}}</span></a>
                         </li>
                     </ul>
                 </div>
@@ -130,25 +130,25 @@
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"giornaliere: $dailyIntramoenia"}}</span>
+                            <a href=""><span class="leading-tight">{{"giornaliere: $dailyIntramoenia"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"settimanali: $weeklyIntramoenia"}}</span>
+                            <a href=""><span class="leading-tight">{{"settimanali: $weeklyIntramoenia"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"mensili: $monthlyIntramoenia"}}</span>
+                            <a href=""><span class="leading-tight">{{"mensili: $monthlyIntramoenia"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <span class="leading-tight">{{"annuali: $annualIntramoenia"}}</span>
+                            <a href=""><span class="leading-tight">{{"annuali: $annualIntramoenia"}}</span></a>
                         </li>
                     </ul>
                 </div>

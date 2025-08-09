@@ -58,6 +58,7 @@ class VisitController extends Controller
                         ->select('visits.*', 'patients.name', 'patients.surname')
                         ->join('patients', 'visits.patient_id', '=', 'patients.id')
                         ->where('user_id', '=', Auth::id())
+                        ->orderBy('visit_date', 'desc')
                         ->paginate(10);
         if ($patient_id != 0) {
             $visits = DB::table('visits')
@@ -65,6 +66,7 @@ class VisitController extends Controller
                         ->join('patients', 'visits.patient_id', '=', 'patients.id')
                         ->where('user_id', '=', Auth::id())
                         ->where('visits.patient_id', '=', $patient_id)
+                        ->orderBy('visit_date', 'desc')
                         ->paginate(10);
         }
         return view('visits.find', ['visits' => $visits]);
@@ -110,7 +112,7 @@ class VisitController extends Controller
                                 ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
                                 ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
                                 ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"]);
-                        })->paginate(10)->appends(['search' => $searchTerm]); // Search for visits by reason, diagnosis, reservation, or patient name
+                        })->orderBy('visit_date','desc')->paginate(10)->appends(['search' => $searchTerm]); // Search for visits by reason, diagnosis, reservation, or patient name
         }
         return view('visits.find', ['visits' => $visits]);
     }
@@ -123,4 +125,50 @@ class VisitController extends Controller
             'Content-Encoding' => 'UTF-8',
         ]);
     }
+
+    public function dailyReportVisits(){
+        $daily_visits = DB::table('visits')
+            ->select('visits.*', 'patients.*')
+            ->join('patients', 'visits.patient_id', '=', 'patients.id')
+            ->where('user_id', '=', Auth::id())
+            ->where('visit_date', '=', now()->format('Y-m-d'))
+            ->paginate(10);
+        return view('visits.find', ['visits' => $daily_visits]);
+    }
+
+    public function weeklyReportVisits(){
+        $first_day_of_week = now()->subDays(7)->format('Y-m-d');
+        $weekly_visits = DB::table('visits')
+            ->select('visits.*', 'patients.*')
+            ->join('patients', 'visits.patient_id', '=', 'patients.id')
+            ->where('user_id', '=', Auth::id())
+            ->where('visit_date', '>=', $first_day_of_week)
+            ->where('visit_date', '<=', now()->format('Y-m-d'))
+            ->paginate(10);
+
+        return view('visits.find', ['visits' => $weekly_visits]);
+    }
+
+    public function monthlyReportVisits(){
+        $monthly_visits = DB::table('visits')
+            ->select('visits.*', 'patients.*')
+            ->join('patients', 'visits.patient_id', '=', 'patients.id')
+            ->where('user_id', '=', Auth::id())
+            ->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))
+            ->where('visit_date', '<=', now()->lastOfMonth()->format('Y-m-d'))
+            ->paginate(10);
+        return view('visits.find', ['visits' => $monthly_visits]);
+    }
+
+    public function annualReportVisits(){
+        $annual_visits = DB::table('visits')
+            ->select('visits.*', 'patients.*')
+            ->join('patients', 'visits.patient_id', '=', 'patients.id')
+            ->where('user_id', '=', Auth::id())
+            ->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))
+            ->where('visit_date', '<=', now()->lastOfYear()->format('Y-m-d'))
+            ->paginate(10);
+        return view('visits.find', ['visits' => $annual_visits]);
+    }
+
 }

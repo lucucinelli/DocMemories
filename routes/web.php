@@ -62,6 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/newVisit/{patient}', [VisitController::class, 'newVisitForm'])->name('newVisitForm'); // Show form to create a new visit for a patient
     Route::match(['GET', 'POST'],'/searchVisits', [VisitController::class, 'searchVisits'])->name('searchVisits'); // Search for visits
     Route::get('/exportVisits', [VisitController::class, 'exportVisits'])->name('exportVisits'); // Export visits to CSV
+    Route::get('/dailyReportVisits', [VisitController::class, 'dailyReportVisits'])->name('dailyReportVisits'); // Show visits report
+    Route::get('/weeklyReportVisits', [VisitController::class, 'weeklyReportVisits'])->name('weeklyReportVisits'); // Show visits report
+    Route::get('/monthlyReportVisits', [VisitController::class, 'monthlyReportVisits'])->name('monthlyReportVisits'); // Show visits report
+    Route::get('/annualReportVisits', [VisitController::class, 'annualReportVisits'])->name('annualReportVisits'); // Show visits report
 });
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
