@@ -30,7 +30,6 @@
 Before starting, make sure you have the following installed:
 
 - PHP (version 8.x or higher)
-- A web server (e.g. Apache)
 - A relational DBMS (e.g. MariaDB)
 - Composer
 - NodeJs
