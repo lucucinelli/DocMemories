@@ -9,17 +9,19 @@
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#the-perfect-site-for-every-reader)
 
-## ➤ A web app to help Doctors
+## ➤ A web app where health and innovation meet
 
-**DocMemories** is a web application designed to help doctors manage clinical data and generate functional statistics. Built with the Laravel framework, it provides a secure and efficient way to manage patient and visit information.
+**DocMemories** is designed for the healthcare sector and aims to digitalize clinical data while offering tools to extract valuable insights for medical research. Built with the Laravel framework, it provides a secure and efficient way to manage patient and visit information.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-features)
 
 ## ➤ Features
 
 - **User Authentication**: Secure login and registration for users.
-- 
+- **Patients Management**: Easily manage patient records and their histories.
+- **Visits Management**: Track and manage patient visits efficiently including also medicinals, exams and allergy tests.
 - **Search Functionality**: Quickly find documents using a powerful search feature.
+- **Statistics and Reporting**: Generate insights and reports based on patient and visit data.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-installation-guide)
 
@@ -79,6 +81,7 @@ php artisan serve
 This will start a local development server at `http://localhost:8000`.
 
 ### 5. Enjoy the application!
+Let's explore the features and capabilities of **DocMemories** and let us know your feedback about your experience!
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-notes)
 
