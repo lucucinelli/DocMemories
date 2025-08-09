@@ -187,6 +187,35 @@ window.saveExamRow = function(button) {
     button.setAttribute('onclick', 'editExamRow(this)');
 }
 
+
+
+// upload file 
+window.uploadExamFile = function(exam_id) {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.pdf,.jpg,.jpeg,.png';
+    input.onchange = function() {
+        let file = input.files[0];
+        if (!file) return;
+        let formData = new FormData();
+        formData.append('exam_file', file);
+        fetch(`/uploadExamFile/${exam_id}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        }).then(res => {
+            if (res.ok) {
+                alert('File caricato con successo');
+                updateFileCell(exam_id, true);
+            }
+        });
+    };
+    input.click();
+};
+
+// replace file and delete
 window.replaceExamFile = function(exam_id) {
     let input = document.createElement('input');
     input.type = 'file';
@@ -227,31 +256,7 @@ window.deleteExamFile = function(exam_id) {
     });
 };
 
-window.uploadExamFile = function(exam_id) {
-    let input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.pdf,.jpg,.jpeg,.png';
-    input.onchange = function() {
-        let file = input.files[0];
-        if (!file) return;
-        let formData = new FormData();
-        formData.append('exam_file', file);
-        fetch(`/uploadExamFile/${exam_id}`, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: formData
-        }).then(res => {
-            if (res.ok) {
-                alert('File caricato con successo');
-                updateFileCell(exam_id, true);
-            }
-        });
-    };
-    input.click();
-};
-
+// function that updates file's icons into the table according to the operation
 function updateFileCell(exam_id, hasFile) {
     const row = document.querySelector(`input[name="righe[${exam_id}][exam_date]"]`).closest('tr');
     const fileCell = row.querySelector('td:nth-child(5)'); // 5ª colonna "File"

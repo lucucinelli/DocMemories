@@ -75,12 +75,14 @@ class ExamController extends Controller
         ]);
     }
 
+    // file management
     public function viewExamFile(Exam $exam)
     {
         if (!$exam->file) {
             return response()->json(['message' => 'No file found'], 404);
         }
 
+        // create the packet to view the file on another web page ('target' attribute into the blade)
         return response($exam->file)
             ->header('Content-Type', $exam->file_mime)
             ->header('Content-Disposition', 'inline; filename="exam_file_' . $exam->id . '"');

@@ -18,6 +18,8 @@ class Exam extends Model
         'visit_id',
     ];
 
+    // in this way, the returned json object by the controller will not include the file content
+    // that's the reason why has_file is passed 
     protected $hidden = ['file'];
 
     public function visit()
