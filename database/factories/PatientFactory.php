@@ -16,14 +16,26 @@ class PatientFactory extends Factory
      */
     public function definition(): array
     {
+
+        $gender = $this->faker->randomElement(['M', 'F', 'non specificato']);
+        switch ($gender){
+            case 'M':
+                $name = $this->faker->firstName('male');
+                break;
+            case 'F':
+                $name = $this->faker->firstName('female');
+                break;
+            default:
+                $name = $this->faker->firstName();
+        }
         return [
-            'name' => $this->faker->firstName(),
+            'name' => $name,
             'surname' => $this->faker->lastName(),
-            'birthdate' => $this->faker->date(),
-            'gender' => $this->faker->randomElement(['M', 'F', 'non specificato']),
+            'birthdate' => $this->faker->date(max: now()->subDecades(1)),
+            'gender' => $gender,
             'birthplace' => $this->faker->city(),
             'tax_code' => $this->faker->unique()->regexify('^[A-Z]{6}[0-9]{2}[A-EHLMPR-T][0-9]{2}[A-Z][0-9]{3}[A-Z]$'),
-            'marital_status' => $this->faker->randomElement(['Single', 'Married', 'Divorced']),
+            'marital_status' => $this->faker->randomElement(['Single', 'Sposato', 'Divorziato']),
             'nationality' => $this->faker->country(),
             'city' => $this->faker->city(),
             'province' => $this->faker->regexify('^[A-Z]{2}$'),
