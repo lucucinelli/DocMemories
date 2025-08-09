@@ -9,17 +9,17 @@
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#the-perfect-site-for-every-reader)
 
-## ➤ The perfect site for every reader
+## ➤ A web app to help Doctors
 
-**DigitalPlot** is a web application developed for a university project. It allows users to write and read articles published by other users in a simple and accessible way.
+**DocMemories** is a web application designed to help doctors manage clinical data and generate functional statistics. Built with the Laravel framework, it provides a secure and efficient way to manage patient and visit information.
 
-In our application, there are four main types of users:
-- **BASIC**: This user can read up to eight articles, earn points for each article read, and purchase a subscription.
-- **READER**: This user can read all articles on the website. Additionally, he can write reviews, follow specific writers, and search for specific articles on the website.
-- **WRITER**: This user has the same features as the Reader, with an additional privilege: he can post, modify, and delete his own articles.
-- **ADMIN**: The Admin is the all-mighty user. He can manage every article on the website, and every article must be approved by him. He can also view log files and delete comments.
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-features)
 
+## ➤ Features
 
+- **User Authentication**: Secure login and registration for users.
+- 
+- **Search Functionality**: Quickly find documents using a powerful search feature.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-installation-guide)
 
@@ -31,61 +31,66 @@ Before starting, make sure you have the following installed:
 - A web server (e.g. Apache)
 - A relational DBMS (e.g. MariaDB)
 - Composer
+- NodeJs
 
 After downloading the repository to your device, follow these steps:
 
-### 1. Extract the folder
-Extract all the folder files into the document root of your server (e.g.: xampp/htdocs if you are using xampp)
+### 1. Enter the folder
+Navigate to the folder where you extracted the files (e.g.: xampp/htdocs/DocMemories if you are using xampp)
 
-### 2. Install dependencies
+### 2. Configure settings
+
+Add the `.env` file with all the necessary configuration.<br>
+You can use the `.env.example` file as a reference to create your own. Be sure to set: 
+- `DB_HOST`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASSWORD`
+- `MAIL_USERNAME`
+- `MAIL_PASSWORD`
+- `MAIL_FROM_ADDRESS`
+
+N.B. Make sure to close the `.env` file properly.
+
+### 3. Install dependencies
 
 Open your terminal in the document root folder and run:
 
 ```bash
 composer install
+npm install
 ```
 
-### 3. Configure database
-
-Edit the database settings in the following file:
-```
-/Progetto/Utility/config.php
-```
-Be sure to set your host, database name, username, and password properly.<br>
-
-### 4. Enjoy our application
-
-If you are using a local server be sure to:
-- Comment the line 26 of the file '.htaccess';
-- For linux/unix OS: grant Apache permission to read and write in the following directories: proxy, template_c, and Logs. Otherwise, the application will not function correctly.
+The installation process may take a few minutes. Once it's done, you can proceed to the next steps.
 
 ```bash
-sudo chmod -R 777 path-to/directory
+php artisan key:generate
+php artisan migrate --seed
+npm run build
+```
+### 4. Get Started
+
+To start the application, run the following command:
+
+```bash
+php artisan serve
 ```
 
-After that, start your local server (e.g. with php artisan serve if using Laravel, or configure Apache/Nginx) and access the application via your browser by typing the URL hostname/dbInit in order to populate properly your db (at the end, you will be redirected to the home). <br>
+This will start a local development server at `http://localhost:8000`.
 
-N.B. 
-- If you see an error about 'RuntimeReflectionService.php', go to the file 'vendor/doctrine/persistence/src/Persistence/Mapping/RuntimeReflectionService.php' and edit the line 36 as following:
-'public function getParentClasses(string $class): array';
-- The automatic redirect to HTTPS may not work in all browsers because the certificate is missing. However, if you click 'Proceed anyway', the redirect will still occur. Otherwise, to solve this problem comment the line 20-21-22 of the file 
-'.htaccess'.
-
-
+### 5. Enjoy the application!
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-notes)
 
 ## ➤ 📝 Notes
 
-This project is for academic purposes and not intended for production use.
-Contributions and feedback are welcome.
+This project is developed using the Laravel framework and is designed to be used as a learning tool. It is not intended for production use and should be used for educational purposes only.
 
 
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-authors)
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-author)
-
-## ➤ 👨🏻‍💻 Author
+## ➤ 👨🏻‍💻 Authors
 
 <a href="https://github.com/AndrewCostant">Andrea</a> – Engineering student <br>
 <a href="https://github.com/lucucinelli">Ludovica</a> – Engineering student <br>
