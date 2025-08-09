@@ -55,7 +55,23 @@ function appendTestRow(test_id, test_date, test_type, test_result, test_note, tb
             <input name="righe[${test_id}][test_date]" type="date" value="${test_date}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${test_id}][test_type]" value="${test_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
+            <select name="righe[${test_id}][test_type]" value="${test_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
+                <option value="PRICK: pollini" ${test_type === 'PRICK: pollini' ? 'selected' : ''}>PRICK: pollini</option>
+                <option value="PRICK: alimenti" ${test_type === 'PRICK: alimenti' ? 'selected' : ''}>PRICK: alimenti</option>
+                <option value="PRICK BY PRICK" ${test_type === 'PRICK BY PRICK' ? 'selected' : ''}>PRICK BY PRICK</option>
+                <option value="CUTI: farmaci" ${test_type === 'CUTI: farmaci' ? 'selected' : ''}>CUTI: farmaci</option>
+                <option value="CUTI: imenotteri" ${test_type === 'CUTI: imenotteri' ? 'selected' : ''}>CUTI: imenotteri</option>
+                <option value="CUTI: PPL/MDM" ${test_type === 'CUTI: PPL/MDM' ? 'selected' : ''}>CUTI: PPL/MDM</option>
+                <option value="PATCH TEST: sidapa" ${test_type === 'PATCH TEST: sidapa' ? 'selected' : ''}>PATCH TEST: sidapa</option>
+                <option value="PATCH TEST: metalli" ${test_type === 'PATCH TEST: metalli' ? 'selected' : ''}>PATCH TEST: metalli</option>
+                <option value="PATCH TEST: alimenti" ${test_type === 'PATCH TEST: alimenti' ? 'selected' : ''}>PATCH TEST: alimenti</option>
+                <option value="PATCH TEST: gomma" ${test_type === 'PATCH TEST: gomma' ? 'selected' : ''}>PATCH TEST: gomma</option>
+                <option value="PATCH TEST: parrucchiera" ${test_type === 'PATCH TEST: parrucchiera' ? 'selected' : ''}>PATCH TEST: parrucchiera</option>
+                <option value="PATCH TEST: farmaci" ${test_type === 'PATCH TEST: farmaci' ? 'selected' : ''}>PATCH TEST: farmaci</option>
+                <option value="PCT" ${test_type === 'PCT' ? 'selected' : ''}>PCT</option>
+                <option value="TEO" ${test_type === 'TEO' ? 'selected' : ''}>TEO</option>
+                <option value="TSA" ${test_type === 'TSA' ? 'selected' : ''}>TSA</option>
+            </select>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Esito'] before:font-bold before:block sm:before:hidden">
             <input name="righe[${test_id}][test_result]" value="${test_result}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
@@ -113,6 +129,9 @@ window.editTestRow = function(button) {
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = false;
     });
+    button.closest('tr').querySelectorAll('select').forEach(select => {
+        select.disabled = false;      
+    });
     button.closest('tr').querySelectorAll('textarea').forEach(textarea => {
         textarea.disabled = false;      
     });
@@ -130,7 +149,7 @@ window.editTestRow = function(button) {
 window.saveTestRow = function(button) {
     console.log('save updated test row');
     const new_test_date = button.closest('tr').querySelector('input[name^="righe["][name$="[test_date]"]').value;
-    const new_test_type = button.closest('tr').querySelector('input[name^="righe["][name$="[test_type]"]').value;
+    const new_test_type = button.closest('tr').querySelector('select[name^="righe["][name$="[test_type]"]').value;
     const new_test_result = button.closest('tr').querySelector('input[name^="righe["][name$="[test_result]"]').value;
     const new_test_note = button.closest('tr').querySelector('textarea[name^="righe["][name$="[test_note]"]').value;
     const test_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
@@ -163,6 +182,9 @@ window.saveTestRow = function(button) {
     // Disabilita tutti gli input nella riga
     button.closest('tr').querySelectorAll('input').forEach(input => {
         input.disabled = true;
+    });
+    button.closest('tr').querySelectorAll('select').forEach(select => {
+        select.disabled = true;      
     });
     button.closest('tr').querySelectorAll('textarea').forEach(textarea => {
         textarea.disabled = true;      

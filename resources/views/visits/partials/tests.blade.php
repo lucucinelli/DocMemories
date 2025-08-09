@@ -27,7 +27,23 @@
                                         <input name="righe[{{ $test->id }}][test_date]" type="date" value="{{ $test->test_date }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
-                                        <input name="righe[{{ $test->id }}][test_type]" value="{{ $test->test_type }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
+                                        <select name="righe[{{ $test->id }}][test_type]" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
+                                            <option value="PRICK: pollini" {{ $test->test_type === 'PRICK: pollini' ? 'selected' : '' }}>PRICK: pollini</option>
+                                            <option value="PRICK: alimenti" {{ $test->test_type === 'PRICK: alimenti' ? 'selected' : '' }}>PRICK: alimenti</option>
+                                            <option value="PRICK BY PRICK" {{ $test->test_type === 'PRICK BY PRICK' ? 'selected' : '' }}>PRICK BY PRICK</option>
+                                            <option value="CUTI: farmaci" {{ $test->test_type === 'CUTI: farmaci' ? 'selected' : '' }}>CUTI: farmaci</option>
+                                            <option value="CUTI: imenotteri" {{ $test->test_type === 'CUTI: imenotteri' ? 'selected' : '' }}>CUTI: imenotteri</option>
+                                            <option value="CUTI: PPL/MDM" {{ $test->test_type === 'CUTI: PPL/MDM' ? 'selected' : '' }}>CUTI: PPL/MDM</option>
+                                            <option value="PATCH TEST: sidapa" {{ $test->test_type === 'PATCH TEST: sidapa' ? 'selected' : '' }}>PATCH TEST: sidapa</option>
+                                            <option value="PATCH TEST: metalli" {{ $test->test_type === 'PATCH TEST: metalli' ? 'selected' : '' }}>PATCH TEST: metalli</option>
+                                            <option value="PATCH TEST: alimenti" {{ $test->test_type === 'PATCH TEST: alimenti' ? 'selected' : '' }}>PATCH TEST: alimenti</option>
+                                            <option value="PATCH TEST: gomma" {{ $test->test_type === 'PATCH TEST: gomma' ? 'selected' : '' }}>PATCH TEST: gomma</option>
+                                            <option value="PATCH TEST: parrucchiera" {{ $test->test_type === 'PATCH TEST: parrucchiera' ? 'selected' : '' }}>PATCH TEST: parrucchiera</option>
+                                            <option value="PATCH TEST: farmaci" {{ $test->test_type === 'PATCH TEST: farmaci' ? 'selected' : '' }}>PATCH TEST: farmaci</option>
+                                            <option value="PCT" {{ $test->test_type === 'PCT' ? 'selected' : '' }}>PCT</option>
+                                            <option value="TEO" {{ $test->test_type === 'TEO' ? 'selected' : '' }}>TEO</option>
+                                            <option value="TSA" {{ $test->test_type === 'TSA' ? 'selected' : '' }}>TSA</option>
+                                        </select>
                                     </td>
                                     <td class="px-6 py-2 dark:text-gray-500 before:content-['Esito'] before:font-bold before:block sm:before:hidden">
                                         <input name="righe[{{ $test->id }}][test_result]" value="{{ $test->test_result }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
@@ -72,7 +88,10 @@
                 <x-text-input id="test_date" class="block mt-1 w-full" type="date" name="data" required />
                 <x-input-error :messages="$errors->get('data')" class="mt-2" />
                 <x-input-label for="tipo" :value="__('Tipo')" />
-                <x-text-input id="test_type" class="block mt-1 w-full" type="text" name="tipo" required/>
+                <x-select id="test_type" class="block mt-1 w-full" :options="['PRICK: pollini' => 'PRICK: pollini', 'PRICK: alimenti' => 'PRICK: alimenti', 'PRICK BY PRICK' => 'PRICK BY PRICK', 
+                                                                            'CUTI: farmaci' => 'CUTI: farmaci', 'CUTI: imenotteri' => 'CUTI: imenotteri', 'CUTI: PPL/MDM' => 'CUTI: PPL/MDM', 
+                                                                            'PATCH TEST: sidapa' => 'PATCH TEST: sidapa', 'PATCH TEST: metalli' => 'PATCH TEST: metalli', 'PATCH TEST: alimenti' => 'PATCH TEST: alimenti', 'PATCH TEST: gomma' => 'PATCH TEST: gomma', 'PATCH TEST: parrucchiera' => 'PATCH TEST: parrucchiera', 'PATCH TEST: farmaci' => 'PATCH TEST: farmaci',
+                                                                            'PCT' => 'PCT', 'TEO' => 'TEO', 'TSA' => 'TSA' ]" name="tipo" required/>
                 <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
                 <x-input-label for="esito" :value="__('Esito')" />
                 <x-text-input id="test_result" class="block mt-1 w-full" type="text" name="esito" required />

@@ -19,9 +19,26 @@ class AllergyTestFactory extends Factory
     {
         $visitId = $this->faker->randomElement(\App\Models\Visit::pluck('id'));
         $data = Visit::find($visitId)->visit_date;
+        $tests = [
+            'PRICK: pollini', 
+            'PRICK: alimenti', 
+            'PRICK BY PRICK' , 
+            'CUTI: farmaci', 
+            'CUTI: imenotteri', 
+            'CUTI: PPL/MDM', 
+            'PATCH TEST: sidapa',
+            'PATCH TEST: metalli', 
+            'PATCH TEST: alimenti', 
+            'PATCH TEST: gomma', 
+            'PATCH TEST: parrucchiera', 
+            'PATCH TEST: farmaci',
+            'PCT',
+            'TEO', 
+            'TSA'
+        ];
         return [
             'test_date' => $this->faker->dateTimeBetween($data, 'now')->format('Y-m-d'),
-            'test_type' => $this->faker->word(),
+            'test_type' => $this->faker->randomElement($tests),
             'test_result' => $this->faker->word(),
             'test_note' => $this->faker->sentence(),
             'visit_id' => $visitId,
