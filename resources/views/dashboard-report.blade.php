@@ -100,25 +100,25 @@
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"giornaliere: $dailyIstituzionali"}}</span></a>
+                            <a href={{route('dailyReportReservations', 'institutionals')}}><span class="leading-tight">{{"giornaliere: $dailyIstituzionali"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"settimanali: $weeklyIstituzionali"}}</span></a>
+                            <a href={{route('weeklyReportReservations', 'institutionals')}}><span class="leading-tight">{{"settimanali: $weeklyIstituzionali"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"mensili: $monthlyIstituzionali"}}</span></a>
+                            <a href={{route('monthlyReportReservations', 'institutionals')}}><span class="leading-tight">{{"mensili: $monthlyIstituzionali"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"annuali: $annualIstituzionali"}}</span></a>
+                            <a href={{route('annualReportReservations', 'institutionals')}}><span class="leading-tight">{{"annuali: $annualIstituzionali"}}</span></a>
                         </li>
                     </ul>
                 </div>
@@ -130,25 +130,25 @@
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"giornaliere: $dailyIntramoenia"}}</span></a>
+                            <a href={{route('dailyReportReservations', 'intramoenia')}}><span class="leading-tight">{{"giornaliere: $dailyIntramoenia"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"settimanali: $weeklyIntramoenia"}}</span></a>
+                            <a href={{route('weeklyReportReservations', 'intramoenia')}}><span class="leading-tight">{{"settimanali: $weeklyIntramoenia"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"mensili: $monthlyIntramoenia"}}</span></a>
+                            <a href={{route('monthlyReportReservations', 'intramoenia')}}><span class="leading-tight">{{"mensili: $monthlyIntramoenia"}}</span></a>
                         </li>
                         <li class="flex space-x-2 rtl:space-x-reverse items-center">
                             <svg class="shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                             </svg>
-                            <a href=""><span class="leading-tight">{{"annuali: $annualIntramoenia"}}</span></a>
+                            <a href={{route('annualReportReservations', 'intramoenia')}}><span class="leading-tight">{{"annuali: $annualIntramoenia"}}</span></a>
                         </li>
                     </ul>
                 </div>

@@ -171,4 +171,100 @@ class VisitController extends Controller
         return view('visits.find', ['visits' => $annual_visits]);
     }
 
+    // reservations 
+    public function dailyReportReservations($type){
+        if ($type == 'institutionals') {
+            $daily_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Istituzionale')
+                ->where('visit_date', '=', now()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $daily_reservations]);
+        } else {
+            $daily_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Intramoenia')
+                ->where('visit_date', '=', now()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $daily_reservations]);
+        }
+    }
+
+    public function weeklyReportReservations($type){
+        $first_day_of_week = now()->subDays(7)->format('Y-m-d');
+        if ($type == 'institutionals') {
+            $weekly_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Istituzionale')
+                ->where('visit_date', '>=', $first_day_of_week)
+                ->where('visit_date', '<=', now()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $weekly_reservations]);
+        } else {
+            $weekly_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Intramoenia')
+                ->where('visit_date', '>=', $first_day_of_week)
+                ->where('visit_date', '<=', now()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $weekly_reservations]);
+        }
+    }
+
+    public function monthlyReportReservations($type){
+        if ($type == 'institutionals') {
+            $monthly_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Istituzionale')
+                ->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))
+                ->where('visit_date', '<=', now()->lastOfMonth()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $monthly_reservations]);
+        } else {
+            $monthly_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Intramoenia')
+                ->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))
+                ->where('visit_date', '<=', now()->lastOfMonth()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $monthly_reservations]);
+        }
+    }
+
+    public function annualReportReservations($type){
+        if ($type == 'institutionals') {
+            $annual_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Istituzionale')
+                ->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))
+                ->where('visit_date', '<=', now()->lastOfYear()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $annual_reservations]);
+        } else {
+            $annual_reservations = DB::table('visits')
+                ->select('visits.*', 'patients.*')
+                ->join('patients', 'visits.patient_id', '=', 'patients.id')
+                ->where('user_id', '=', Auth::id())
+                ->where('reservation', '=', 'Intramoenia')
+                ->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))
+                ->where('visit_date', '<=', now()->lastOfYear()->format('Y-m-d'))
+                ->paginate(10);
+            return view('visits.find', ['visits' => $annual_reservations]);
+        }
+    }
+
 }

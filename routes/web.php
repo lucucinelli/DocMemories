@@ -66,6 +66,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/weeklyReportVisits', [VisitController::class, 'weeklyReportVisits'])->name('weeklyReportVisits'); // Show visits report
     Route::get('/monthlyReportVisits', [VisitController::class, 'monthlyReportVisits'])->name('monthlyReportVisits'); // Show visits report
     Route::get('/annualReportVisits', [VisitController::class, 'annualReportVisits'])->name('annualReportVisits'); // Show visits report
+    Route::get('/dailyReportReservations/{type}', [VisitController::class, 'dailyReportReservations'])->name('dailyReportReservations'); // Show visits report
+    Route::get('/weeklyReportReservations/{type}', [VisitController::class, 'weeklyReportReservations'])->name('weeklyReportReservations'); // Show visits report
+    Route::get('/monthlyReportReservations/{type}', [VisitController::class, 'monthlyReportReservations'])->name('monthlyReportReservations'); // Show visits report
+    Route::get('/annualReportReservations/{type}', [VisitController::class, 'annualReportReservations'])->name('annualReportReservations'); // Show visits report
 });
 /**-------------------------------------------------------- MEDICINALS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
