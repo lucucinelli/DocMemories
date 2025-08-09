@@ -87,6 +87,5 @@ Contributions and feedback are welcome.
 
 ## ➤ 👨🏻‍💻 Author
 
-Andrea – Engineering student <br>
-Ludovica – Engineering student <br>
-Giulio – Engineering student
+<a href="https://github.com/AndrewCostant">Andrea</a> – Engineering student <br>
+<a href="https://github.com/lucucinelli">Ludovica</a> – Engineering student <br>
