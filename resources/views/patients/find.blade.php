@@ -86,7 +86,7 @@
                                                 {{ $patient->birthdate->format('d/m/Y') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $patient->gender === 'M' ? 'Maschio' : ($patient->gender === 'F' ? 'Femmina' : 'Non specificato') }}
+                                                {{ $patient->gender === 'M' ? 'Uomo' : ($patient->gender === 'F' ? 'Donna' : 'Non specificato') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $patient->telephone }}
@@ -124,7 +124,7 @@
                     <div class="ml-4 mr-4 bg-gray-300 dark:bg-gray-200 p-4 rounded-lg shadow-sm">
                         <h3 class="text-lg font-semibold">{{ $patient->name }} {{ $patient->surname }}</h3>
                         <p>{{ __('Data di nascita: ') . $patient->birthdate->format('d/m/Y') }}</p>
-                        <p>{{ __('Genere: ') .  ($patient->gender === 'M' ? 'Maschio' : ($patient->gender === 'F' ? 'Femmina' : 'Non specificato')) }}</p>
+                        <p>{{ __('Genere: ') .  ($patient->gender === 'M' ? 'Uomo' : ($patient->gender === 'F' ? 'Donna' : 'Non specificato')) }}</p>
                         <p>{{ __('Telefono: ') . $patient->telephone }}</p>
                         <p>{{ __('Email: ') . $patient->email }}</p>
                         <div class="mt-4 flex space-x-4">
