@@ -84,7 +84,7 @@ This will start a local development server at `http://localhost:8000`.
 
 ## ➤ 📝 Notes
 
-This project is developed using the Laravel framework and is designed to be used as a learning tool. It is not intended for production use and should be used for educational purposes only.
+This project is developed using the <a href="https://laravel.com/">Laravel framework</a> and is designed to be used as a learning tool. It is not intended for production use and should be used for educational purposes only.
 
 
 
