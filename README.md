@@ -1,10 +1,11 @@
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#docmemorie)
+
 
 <p align="center">
 <img src="https://github.com/lucucinelli/DocMemories/blob/main/public/favicon.ico" alt="Build Status" width="100" height="100" align="middle">
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#digitalplot)
 
-# ➤ DigitalPlot
+# ➤ DocMemorie
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#the-perfect-site-for-every-reader)
 
