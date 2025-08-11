@@ -820,4 +820,10 @@ window.cancelUpdatedNextHistoryRow = function() {
     document.getElementById('next_problem').value = ''; // Clear the input if not needed
     document.getElementById('next_problem').required = false; // Mark the input as not required
     document.getElementById('next_history_id').value = "";
+    document.getElementById('next_date').value = "";
+    document.getElementById('next_type').selectedIndex = 0;
+    document.getElementById('next_name').value = "";
+    document.getElementById('next_cause').value = "";
+    document.getElementById('next_effect').value = "";
+    document.getElementById('next_note').value = "";
 }
