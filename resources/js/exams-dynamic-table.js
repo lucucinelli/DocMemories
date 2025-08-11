@@ -207,10 +207,10 @@ window.uploadExamFile = function(exam_id) {
             body: formData
         }).then(res => {
             if (res.ok) {
-                alert('File caricato con successo');
+                showModal('File caricato con successo');
                 updateFileCell(exam_id, true);
             } else {
-                alert('Errore durante il caricamento del file: file troppo grande');
+                showModal('Errore durante il caricamento del file: file troppo grande');
             }
         });
     };
@@ -235,10 +235,10 @@ window.replaceExamFile = function(exam_id) {
             body: formData
         }).then(res => {
             if (res.ok) {
-                alert('File aggiornato con successo');
+                showModal('File aggiornato con successo');
                 updateFileCell(exam_id, true);
             } else {
-                alert('Errore durante il caricamento del file: file troppo grande');
+                showModal('Errore durante il caricamento del file: file troppo grande');
             }
         });
     };
@@ -246,7 +246,15 @@ window.replaceExamFile = function(exam_id) {
 };
 
 window.deleteExamFile = function(exam_id) {
-    if (!confirm("Vuoi davvero cancellare il file?")) return;
+    document.getElementById('ok-button').classList.add('hidden');
+    document.getElementById('proceed').classList.remove('hidden');
+    document.getElementById('cancel').classList.remove('hidden');
+    showModal("Vuoi davvero cancellare il file?")
+    document.getElementById('exam').value = exam_id;
+}
+
+window.deleteFile = function() {
+    const exam_id = document.getElementById('exam').value;
     fetch(`/deleteExamFile/${exam_id}`, {
         method: 'DELETE',
         headers: {
@@ -254,7 +262,8 @@ window.deleteExamFile = function(exam_id) {
         }
     }).then(res => {
         if (res.ok) {
-            alert('File eliminato');
+            hideModal();
+            showModal('File rimosso con successo');
             updateFileCell(exam_id, false);
         }
     });
@@ -274,5 +283,21 @@ function updateFileCell(exam_id, hasFile) {
         `;
     } else {
         fileCell.innerHTML = `<button type="button" onclick="uploadExamFile(${exam_id})" class="text-gray-600 dark:text-gray-300"><i class="bi bi-paperclip"></i></button>`;
+        document.getElementById('exam_id').value = ""; // Reset exam_id after deletion
     }
+}
+
+
+function showModal(message){
+  document.getElementById('confirmFile').classList.remove('hidden');
+  document.getElementById('confirmFile').classList.add('flex');
+  document.getElementById('confirmFileMessage').innerText = message;
+}
+
+window.hideModal = function() {
+    document.getElementById('confirmFile').classList.add('hidden');
+    document.getElementById('confirmFile').classList.remove('flex');
+    document.getElementById('ok-button').classList.remove('hidden');
+    document.getElementById('proceed').classList.add('hidden');
+    document.getElementById('cancel').classList.add('hidden');
 }

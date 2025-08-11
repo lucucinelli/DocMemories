@@ -64,6 +64,26 @@
             </div>
         </div>
     </div>
+    <!-- Modal conferma -->
+    <div id="confirmFile" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 items-center justify-center">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg w-full max-w-md border dark:border-gray-700">
+            <div class="flex flex-row">
+                <h3 class="text-gray-600 dark:text-gray-400 mb-6" id="confirmFileMessage"> </h3> 
+            </div>
+            <div class="flex justify-end gap-3">
+            <button id="ok-button" onclick="hideModal()" class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                Ok
+            </button>
+            <input type="hidden" id="exam" value="">
+            <button id="cancel"onclick="hideModal()" class="hidden px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                Annulla
+            </button>
+            <button id="proceed"onclick="deleteFile()" class="hidden px-4 py-2 rounded-md bg-red-600 dark:bg-red-400 text-white hover:bg-red-200 dark:hover:bg-red-200 transition">
+                Procedi
+            </button>
+            </div>
+        </div>
+    </div>
 </div>
 <x-modal name="new-exam-row" :show="$errors->userDeletion->isNotEmpty()" focusable>
     <div  class="p-6"  id="modExams">
@@ -133,6 +153,7 @@
 
 
 @vite('resources/js/exams-dynamic-table.js')
+
 
 
 
