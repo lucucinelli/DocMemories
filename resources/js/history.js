@@ -290,12 +290,13 @@ window.deleteFamiliarRow = function() {
         if (!response.ok) {
             throw new Error('Request error');
         }
+        const riga = document.querySelector(`input[name^="righe[${familiar_id}]"]`);
+        riga.closest('tr').remove();
+        document.getElementById('history_id').value = "";
+        cancelUpdatedFamiliarHistoryRow();
         return response.ok;
     })
-    const riga = document.querySelector(`input[name^="righe[${familiar_id}]"]`);
-    riga.closest('tr').remove();
-    document.getElementById('history_id').value = "";
-    cancelUpdatedFamiliarHistoryRow();
+    
 };
 
 window.editFamiliarHistoryRow = function(button) {
@@ -472,11 +473,13 @@ window.deleteRemoteRow = function() {
         if (!response.ok) {
             throw new Error('Request error');
         }
+        const riga = document.querySelector(`input[name^="righe[${remote_id}]"]`);
+        riga.closest('tr').remove();
+        document.getElementById('history_id').value = "";
+        cancelUpdatedRemoteHistoryRow();
         return response.ok;
     })
-    const riga = document.querySelector(`input[name^="righe[${remote_id}]"]`);
-    riga.closest('tr').remove();
-    document.getElementById('history_id').value = "";
+    
 };
 
 window.editRemoteHistoryRow = function(button) {
@@ -497,9 +500,7 @@ window.editRemoteHistoryRow = function(button) {
     cancelRemoteButton.classList.remove('hidden');
     const saveRemoteButton = document.getElementById('save-remote-history');
     saveRemoteButton.classList.remove('hidden');
-    button.closest('tr').querySelectorAll('button').forEach(button => {
-        button.disabled = true; // Disable all buttons in the row
-    });
+
 };
 
 
@@ -537,9 +538,7 @@ window.saveUpdatedRemoteHistoryRow = function(){
         row.querySelector('input[name^="righe["][name$="[type]"]').value = remote_type.value;
         row.querySelector('input[name^="righe["][name$="[description]"]').value = remote_description.value;
         row.querySelector('textarea[name^="righe["][name$="[note]"]').value = remote_note.value;
-        row.querySelectorAll('button').forEach(button => {
-            button.disabled = false; // Disable all buttons in the row
-        });
+
     })
     .then(() => {
         document.getElementById('remote_date').value = "";
@@ -561,11 +560,11 @@ window.cancelUpdatedRemoteHistoryRow = function() {
    document.getElementById('cancel-remote-history').classList.add('hidden');
    document.getElementById('save-remote-history').classList.add('hidden');
    document.getElementById('submit-remote-history').classList.remove('hidden');
-   const remote_history_id = document.getElementById('remote_history_id');
-   const row = document.querySelector(`input[name^="righe[${remote_history_id.value}]"]`).closest('tr');
-   row.querySelectorAll('button').forEach(button => {
-       button.disabled = false; // Enable all buttons in the row
-   });
+   document.getElementById('remote_history_id').value = "";
+   document.getElementById('remote_date').value = "";
+   document.getElementById('remote_type').selectedIndex = 0;
+   document.getElementById('remote_description').value = "";
+   document.getElementById('remote_note').value = "";
 }
 
 //-------------------------------------next history----------------------------------
@@ -694,12 +693,14 @@ window.deleteNextRow = function() {
         if (!response.ok) {
             throw new Error('Request error');
         }
+       
+        const riga = document.querySelector(`input[name^="righe[${next_id}]"]`);
+        riga.closest('tr').remove();
+        document.getElementById('history_id').value = "";
+        cancelUpdatedNextHistoryRow();
         return response.ok;
     })
-    const riga = document.querySelector(`input[name^="righe[${next_id}]"]`);
-    riga.closest('tr').remove();
-    document.getElementById('history_id').value = "";
-
+    
 };
 
 window.editNextHistoryRow = function(button) {
@@ -740,9 +741,6 @@ window.editNextHistoryRow = function(button) {
     cancelNextButton.classList.remove('hidden');
     const saveNextButton = document.getElementById('save-next-history');
     saveNextButton.classList.remove('hidden');
-    button.closest('tr').querySelectorAll('button').forEach(button => {
-        button.disabled = true; // Disable all buttons in the row
-    });
 };
 
 
@@ -789,9 +787,6 @@ window.saveUpdatedNextHistoryRow = function(){
         row.querySelector('input[name^="righe["][name$="[cause]"]').value = next_cause;
         row.querySelector('input[name^="righe["][name$="[effect]"]').value = next_effect;
         row.querySelector('textarea[name^="righe["][name$="[note]"]').value = next_note;
-        row.querySelectorAll('button').forEach(button => {
-            button.disabled = false; // Disable all buttons in the row
-        });
     })
     .then(() => {
         document.getElementById('next_date').value = "";
@@ -824,9 +819,5 @@ window.cancelUpdatedNextHistoryRow = function() {
     document.getElementById('next_problem-label').classList.replace('block', 'hidden');
     document.getElementById('next_problem').value = ''; // Clear the input if not needed
     document.getElementById('next_problem').required = false; // Mark the input as not required
-    const next_history_id = document.getElementById('next_history_id');
-    const row = document.querySelector(`input[name^="righe[${next_history_id.value}]"]`).closest('tr');
-    row.querySelectorAll('button').forEach(button => {
-        button.disabled = false; // Enable all buttons in the row
-    });
+    document.getElementById('next_history_id').value = "";
 }
