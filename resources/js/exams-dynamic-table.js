@@ -209,6 +209,8 @@ window.uploadExamFile = function(exam_id) {
             if (res.ok) {
                 alert('File caricato con successo');
                 updateFileCell(exam_id, true);
+            } else {
+                alert('Errore durante il caricamento del file: file troppo grande');
             }
         });
     };
@@ -235,6 +237,8 @@ window.replaceExamFile = function(exam_id) {
             if (res.ok) {
                 alert('File aggiornato con successo');
                 updateFileCell(exam_id, true);
+            } else {
+                alert('Errore durante il caricamento del file: file troppo grande');
             }
         });
     };
