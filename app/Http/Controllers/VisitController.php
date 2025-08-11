@@ -132,6 +132,7 @@ class VisitController extends Controller
             ->join('patients', 'visits.patient_id', '=', 'patients.id')
             ->where('user_id', '=', Auth::id())
             ->where('visit_date', '=', now()->format('Y-m-d'))
+            ->orderBy('visit_date', 'desc')
             ->paginate(10);
         return view('visits.find', ['visits' => $daily_visits]);
     }
@@ -144,6 +145,7 @@ class VisitController extends Controller
             ->where('user_id', '=', Auth::id())
             ->where('visit_date', '>=', $first_day_of_week)
             ->where('visit_date', '<=', now()->format('Y-m-d'))
+            ->orderBy('visit_date', 'desc')
             ->paginate(10);
 
         return view('visits.find', ['visits' => $weekly_visits]);
@@ -156,6 +158,7 @@ class VisitController extends Controller
             ->where('user_id', '=', Auth::id())
             ->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))
             ->where('visit_date', '<=', now()->lastOfMonth()->format('Y-m-d'))
+            ->orderBy('visit_date', 'desc')
             ->paginate(10);
         return view('visits.find', ['visits' => $monthly_visits]);
     }
@@ -167,6 +170,7 @@ class VisitController extends Controller
             ->where('user_id', '=', Auth::id())
             ->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))
             ->where('visit_date', '<=', now()->lastOfYear()->format('Y-m-d'))
+            ->orderBy('visit_date', 'desc')
             ->paginate(10);
         return view('visits.find', ['visits' => $annual_visits]);
     }
@@ -180,6 +184,7 @@ class VisitController extends Controller
                 ->where('user_id', '=', Auth::id())
                 ->where('reservation', '=', 'Istituzionale')
                 ->where('visit_date', '=', now()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $daily_reservations]);
         } else {
@@ -189,6 +194,7 @@ class VisitController extends Controller
                 ->where('user_id', '=', Auth::id())
                 ->where('reservation', '=', 'Intramoenia')
                 ->where('visit_date', '=', now()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $daily_reservations]);
         }
@@ -204,6 +210,7 @@ class VisitController extends Controller
                 ->where('reservation', '=', 'Istituzionale')
                 ->where('visit_date', '>=', $first_day_of_week)
                 ->where('visit_date', '<=', now()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $weekly_reservations]);
         } else {
@@ -214,6 +221,7 @@ class VisitController extends Controller
                 ->where('reservation', '=', 'Intramoenia')
                 ->where('visit_date', '>=', $first_day_of_week)
                 ->where('visit_date', '<=', now()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $weekly_reservations]);
         }
@@ -228,6 +236,7 @@ class VisitController extends Controller
                 ->where('reservation', '=', 'Istituzionale')
                 ->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))
                 ->where('visit_date', '<=', now()->lastOfMonth()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $monthly_reservations]);
         } else {
@@ -238,6 +247,7 @@ class VisitController extends Controller
                 ->where('reservation', '=', 'Intramoenia')
                 ->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))
                 ->where('visit_date', '<=', now()->lastOfMonth()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $monthly_reservations]);
         }
@@ -252,6 +262,7 @@ class VisitController extends Controller
                 ->where('reservation', '=', 'Istituzionale')
                 ->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))
                 ->where('visit_date', '<=', now()->lastOfYear()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $annual_reservations]);
         } else {
@@ -262,6 +273,7 @@ class VisitController extends Controller
                 ->where('reservation', '=', 'Intramoenia')
                 ->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))
                 ->where('visit_date', '<=', now()->lastOfYear()->format('Y-m-d'))
+                ->orderBy('visit_date', 'desc')
                 ->paginate(10);
             return view('visits.find', ['visits' => $annual_reservations]);
         }
