@@ -29,19 +29,19 @@
                             @auth
                                 <h1 class="mb-2 font-medium text-xl"> Bentornato in DocMemories </h1>
                                 <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A] text-lg"> La soluzione che fa per te, dove salute e innovazione si incontrano.</p>
-                                <x-secondary-button class="inline-block px-5 py-1.5"> 
-                                    <a href="{{ url('/dashboard') }}">
+                                <a href="{{ url('/dashboard') }}">
+                                    <x-secondary-button class="inline-block px-5 py-1.5"> 
                                         Vai alla dashboard
-                                    </a> 
                                 </x-secondary-button>
+                                </a> 
                             @else
                                 <h1 class="mb-1 font-medium text-xl"> Benvenuto in DocMemories </h1>
                                 <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A] text-lg"> La soluzione che fa per te, dove salute e innovazione si incontrano.</p>
-                                <x-primary-button type="button" class="inline-block px-5 py-1.5 mr-4">
-                                    <a href="{{ route('login') }}">
+                                <a href="{{ route('login') }}">
+                                    <x-primary-button type="button" class="inline-block px-5 py-1.5 mr-4">
                                         Accedi
-                                    </a>
-                                </x-primary-button>
+                                    </x-primary-button>
+                                </a>
                             @endauth
                         </nav>
                     @endif
