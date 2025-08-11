@@ -18,14 +18,14 @@ class AnalyticsController extends Controller
         ]);
         $userId = Auth::id();
         $results = DB::table('visits')
-            ->select('patients.gender', DB::raw('count(*) as total'))
+            ->select('patients.gender', DB::raw('count(DISTINCT patients.id) as total'))
             ->join('patients', 'visits.patient_id', '=', 'patients.id')
             ->where('visits.user_id', $userId)
             ->whereBetween('visits.visit_date', [$incomingData['fromDate'] ?? '1970-01-01', $incomingData['toDate'] ?? now()->format('Y-m-d')])
             ->groupBy('patients.gender')
             ->get();
 
-        $labels = $results->pluck('gender') ?? ['F', 'M', 'Altro'];
+        $labels = $results->pluck('gender') ?? ['F', 'M', 'non specificato'];
         $counts = $results->pluck('total') ?? [0, 0, 0];
 
         return response()->json([
@@ -39,16 +39,30 @@ class AnalyticsController extends Controller
         $incomingData = $request->validate([
             'fromDate' => ['date'],
             'toDate' => ['date'],
-            'patology' => ['string']
+            'patology' => ['string'],
         ]);
+        if ($incomingData['patology'] == 'alimenti') {
+            $values = ['%pesce%', '%latte%', '%uova%', '%frutta%'];
+        } elseif ($incomingData['patology'] == 'dermatite') {
+            $values = ['%irritativa%', '%nichel%', '%cobalto cloruro%', '%parafenilendiammina%', '%orticaria%', '%angioedema%', '%mastocitosi%', '%varicosa%'];     
+        } elseif ($incomingData['patology'] == 'imenotteri'){
+            $values = ['%veleno%', '%vespa%', '%cabro%', '%polistes%', '%dominulus%', '%ape%'];
+        } else {
+            $values = ['%' . $incomingData['patology'] . '%'];
+        }
         $userId = Auth::id();
         $results = DB::table('visits')
-            ->select('patients.gender', DB::raw('count(*) as total'))
+            ->select('patients.gender', DB::raw('count(DISTINCT patients.id) as total'))
             ->join('patients', 'visits.patient_id', '=', 'patients.id')
             ->where('visits.user_id', $userId)
-            ->where('visits.diagnosis', 'LIKE', '%' . $incomingData['patology'] . '%')
+            ->where(function($query) use ($values) {
+                foreach ($values as $value) {
+                    $query->orWhere('visits.diagnosis', 'LIKE', $value);
+                }
+            })
             ->whereBetween('visits.visit_date', [$incomingData['fromDate'] ?? '1970-01-01', $incomingData['toDate'] ?? now()->format('Y-m-d')])
             ->groupBy('patients.gender')
+            ->orderBy('patients.gender', 'asc')
             ->get();
 
         $labels = $results->pluck('gender');
@@ -105,7 +119,7 @@ class AnalyticsController extends Controller
                 ->where('user_id', $userId)
                 ->whereBetween('visit_date', [$date_from, $date_to])
                 ->groupBy('gender')
-                ->orderBy('gender','desc');
+                ->orderBy('gender','asc');
         }
 
         // selezione per età

@@ -17,7 +17,7 @@ class PatientFactory extends Factory
     public function definition(): array
     {
 
-        $gender = $this->faker->randomElement(['M', 'F', 'non specificato']);
+        $gender = $this->faker->randomElement(['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'non specificato']);
         switch ($gender){
             case 'M':
                 $name = $this->faker->firstName('male');

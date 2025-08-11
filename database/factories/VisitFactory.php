@@ -19,6 +19,7 @@ class VisitFactory extends Factory
         $farmaci = [
             'aspirina',
             'antibiotici',
+            'antinfiammatori',
             'betalattamici',
             'cefalsporine',
             ''
@@ -28,9 +29,10 @@ class VisitFactory extends Factory
             'vespa cabro',
             'ape',
             'polistes dominulus',
+            'veleno di imenotteri',
             ''
         ];
-        $diagdermatitiosi = [
+        $dermatitis = [
             'nichel',
             'irritativva',
             'cobalto cloruro',
@@ -50,12 +52,13 @@ class VisitFactory extends Factory
             'uova',
             'pesce',
             'frutta secca',
+            'alimenti',
             ''
         ];
         return [
             'visit_date' => $this->faker->dateTimeBetween('1990-01-01', 'now')->format('Y-m-d'),
             'reason' => $this->faker->sentence(),
-            'diagnosis' => $this->faker->randomElement($farmaci) . ' ' . $this->faker->randomElement($veleni) . ' ' . $this->faker->randomElement($diagdermatitiosi) . ' ' . $this->faker->randomElement($varie),
+            'diagnosis' => $this->faker->randomElement($farmaci) . ' ' . $this->faker->randomElement($veleni) . ' ' . $this->faker->randomElement($dermatitis) . ' ' . $this->faker->randomElement($varie),
             'reservation' => $this->faker->randomElement(['Istituzionale','Intramoenia']),
             'note' => $this->faker->paragraph(),
             'user_id' => $this->faker->randomElement(\App\Models\User::pluck('id')),

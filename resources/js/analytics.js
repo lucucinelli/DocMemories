@@ -234,10 +234,10 @@ document.getElementById('question-6').addEventListener('click', function() {
     Patology('dermatite', 'Quanti pazienti sono affetti da dermatite?');
 });
 document.getElementById('question-7').addEventListener('click', function() {
-    Patology('aliment', 'Quanti pazienti sono affetti da allergie alimentari?');
+    Patology('alimenti', 'Quanti pazienti sono affetti da allergie alimentari?');
 });
 document.getElementById('question-8').addEventListener('click', function() {
-    Patology('beta-lattamic', 'Quanti pazienti sono affetti da allergie al beta-lattamico?');
+    Patology('lattamic', 'Quanti pazienti sono affetti da allergie ai beta-lattamici?');
 });
 document.getElementById('question-9').addEventListener('click', function() {
     Patology('antibiotic', 'Quanti pazienti sono affetti da allergie agli antibiotici?');
@@ -265,7 +265,7 @@ function Patology(patology, title) {
             // any necessary data to send to the server
             fromDate: fromDate,
             toDate: toDate,
-            patology: patology
+            patology: patology,
         })
     })
     .then(response => response.json())
@@ -307,8 +307,8 @@ function createChart(type, label, datasets, title){
                 label: 'Pazienti',
                 data: datasets,
                 backgroundColor: [
-                    'rgba(54, 162, 235, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
                     'rgba(255, 206, 86, 0.5)',
                     'rgba(75, 192, 192, 0.5)',
                     'rgba(153, 102, 255, 0.5)',
@@ -382,8 +382,8 @@ function createChartStepper(type, label, datasets, title){
                 label: 'Pazienti',
                 data: datasets,
                 backgroundColor: [
-                    'rgba(54, 162, 235, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
                     'rgba(255, 206, 86, 0.5)',
                     'rgba(75, 192, 192, 0.5)',
                     'rgba(153, 102, 255, 0.5)',

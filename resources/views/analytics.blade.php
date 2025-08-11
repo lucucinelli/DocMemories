@@ -149,6 +149,15 @@
                                                 </label>
                                             </div>
                                         </li>
+                                        <li class="w-full dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="veleno" name="venom[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Altro </span>
+                                                </label>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="group">
@@ -175,9 +184,18 @@
                                         <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                             <div class="flex items-center ps-3 py-3">
                                                 <label class="inline-flex items-center cursor-pointer">
-                                                    <input type="checkbox" value="betalattamici" name="medicine[]" class="sr-only peer">
+                                                    <input type="checkbox" value="infiamma" name="medicine[]" class="sr-only peer">
                                                     <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Betalattamici</span>
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Antinfiammatori </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                            <div class="flex items-center ps-3 py-3">
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="lattamici" name="medicine[]" class="sr-only peer">
+                                                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-red-600"></div>                                        
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Beta-lattamici</span>
                                                 </label>
                                             </div>
                                         </li>
@@ -410,15 +428,15 @@
                             </li>
                             <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                 <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                <a id="question-5" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white" id="patology-5">congiuntivite</span>?</a>
+                                <a id="question-5" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white">congiuntivite</span>?</a>
                             </li>
                             <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                 <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                <a id="question-6" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white" id="patology-6">dermatite</span>?</a>
+                                <a id="question-6" href="#analytics-chart">Quanti pazienti hanno la <span class="font-semibold text-gray-900 dark:text-white">dermatite</span>?</a>
                             </li>
                             <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                 <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
-                                <a id="question-7" href="#analytics-chart">Quanti pazienti sono allergici ad <span class="font-semibold text-gray-900 dark:text-white" value="alimenti">alimenti</span>?</a>
+                                <a id="question-7" href="#analytics-chart">Quanti pazienti sono allergici ad <span class="font-semibold text-gray-900 dark:text-white">alimenti</span>?</a>
                             </li>
                             <li class="flex items-center space-x-3 rtl:space-x-reverse">
                                 <i class="bi bi-question-circle shrink-0 text-red-500 dark:text-red-400"></i>
