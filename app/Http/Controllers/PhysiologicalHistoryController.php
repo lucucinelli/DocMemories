@@ -24,7 +24,7 @@ class PhysiologicalHistoryController extends Controller
         $incomingData['patient_id'] = $patient->id;
 
         PhysiologicalHistory::create($incomingData);
-        return redirect()->route('showHistory', ['patient' => $patient->id])->with('success', 'Storia fisiologica creata con successo.');
+        return redirect()->route('showHistory', ['patient' => $patient->id])->with('status', __('history-updated'));
     }
 
     public function editPhysiologicalHistory(Request $request, Patient $patient)
@@ -42,7 +42,7 @@ class PhysiologicalHistoryController extends Controller
         $physiologicalHistory = $patient->physiologicalHistory()->get()->first();
         $physiologicalHistory->update($incomingData);
 
-        return response()->json(['success' => true, 'message' => 'Storia fisiologica aggiornata con successo.']);
+        return response()->json(['success' => true]);
     }
 
     public function isPhysiologicalHistorySet(Patient $patient)

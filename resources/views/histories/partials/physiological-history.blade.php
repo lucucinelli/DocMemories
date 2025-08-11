@@ -49,6 +49,16 @@
                         <x-secondary-button id="edit-button" onclick="toggleEditMode()">{{ __('Modifica') }}</x-secondary-button>
                         <x-secondary-button id="cancel-button" type="reset" onclick="toggleEditMode()" class="hidden">{{ __('Annulla') }}</x-secondary-button>
                         <x-primary-button id="save-button" type="button" class="hidden" onclick="savePhysiologicalHistoryUpdated()">{{ __('Salva') }}</x-primary-button>
+                        <p class="hidden  ml-2 text-sm text-green-600 dark:text-gray-400" id="message-physiological"> L'anamnesi è stata modificata correttamente.</p>
+                        @if (session('status') === 'history-updated')
+                            <p
+                                x-data="{ show: true }"
+                                x-show="show"
+                                x-transition
+                                x-init="setTimeout(() => show = false, 2000)"
+                                class="inline ml-2 text-sm text-green-600 dark:text-gray-400"
+                            >{{ __('L\'anamnesi è stata creata correttamente.') }}</p>
+                        @endif
                     @else
                         <x-primary-button>
                             {{ __('Registra anamnesi') }}

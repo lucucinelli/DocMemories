@@ -188,6 +188,10 @@ window.savePhysiologicalHistoryUpdated = function() {
         editButton.classList.remove('hidden');
         cancelButton.classList.add('hidden');
         saveButton.classList.add('hidden');
+        document.getElementById('message-physiological').classList.replace('hidden', 'inline');
+        setInterval(() => {
+            document.getElementById('message-physiological').classList.replace('inline', 'hidden');
+        }, 2000);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -291,6 +295,7 @@ window.deleteFamiliarRow = function() {
     const riga = document.querySelector(`input[name^="righe[${familiar_id}]"]`);
     riga.closest('tr').remove();
     document.getElementById('history_id').value = "";
+    cancelUpdatedFamiliarHistoryRow();
 };
 
 window.editFamiliarHistoryRow = function(button) {
@@ -309,9 +314,6 @@ window.editFamiliarHistoryRow = function(button) {
     cancelButton.classList.remove('hidden');
     const saveButton = document.getElementById('save-familiar-history');
     saveButton.classList.remove('hidden');
-    button.closest('tr').querySelectorAll('button').forEach(button => {
-        button.disabled = true; // Disable all buttons in the row
-    });
 };
 
 
@@ -346,9 +348,6 @@ window.saveUpdatedFamiliarHistoryRow = function(){
         row.querySelector('input[name^="righe["][name$="[allergy]"]').value = allergy.value;
         row.querySelector('input[name^="righe["][name$="[relative]"]').value = relative.value;
         row.querySelector('textarea[name^="righe["][name$="[note]"]').value = note.value;
-        row.querySelectorAll('button').forEach(button => {
-            button.disabled = false; // Disable all buttons in the row
-        });
     })
     .then(() => {
         document.getElementById('allergy').value = "";
@@ -369,11 +368,10 @@ window.cancelUpdatedFamiliarHistoryRow = function() {
    document.getElementById('cancel-familiar-history').classList.add('hidden');
    document.getElementById('save-familiar-history').classList.add('hidden');
    document.getElementById('submit-familiar-history').classList.remove('hidden');
-   const familiar_history_id = document.getElementById('familiar_history_id');
-   const row = document.querySelector(`input[name^="righe[${familiar_history_id.value}]"]`).closest('tr');
-   row.querySelectorAll('button').forEach(button => {
-       button.disabled = false; // Enable all buttons in the row
-   });
+   document.getElementById('allergy').value = "";
+   document.getElementById('relative').value = "";
+   document.getElementById('note').value = "";
+   document.getElementById('familiar_history_id').value = "";
 }
 
 

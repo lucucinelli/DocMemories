@@ -48,7 +48,7 @@ class VisitController extends Controller
         ]);
 
         $visit->update($incomingData);
-        return redirect()->route('showVisit', $visit->id)->with('status', __('visit-updated'));;
+        return redirect()->route('showVisit', $visit->id)->with('status', __('visit-updated'));
     }
 
     public function showVisits($patient_id = 0)
