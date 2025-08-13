@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -50,6 +51,8 @@ class PatientFactory extends Factory
             'telephone' => $this->faker->unique()->numerify('3## #######'),
             'email' => $this->faker->unique()->safeEmail(),
             'occupation' => $this->faker->word(),
+            'user_id' => $this->faker->randomElement(User::pluck('id')),
+
         ];
     }
 }

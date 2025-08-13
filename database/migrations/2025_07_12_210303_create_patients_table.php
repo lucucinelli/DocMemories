@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('email');
             $table->string('occupation')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

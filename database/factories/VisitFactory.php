@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +18,8 @@ class VisitFactory extends Factory
      */
     public function definition(): array
     {
+        $patient = $this->faker->randomElement(Patient::pluck('id'));
+        $patient = Patient::find($patient);
         $farmaci = [
             'aspirina',
             'antibiotici',
@@ -61,8 +65,8 @@ class VisitFactory extends Factory
             'diagnosis' => $this->faker->randomElement($farmaci) . ' ' . $this->faker->randomElement($veleni) . ' ' . $this->faker->randomElement($dermatitis) . ' ' . $this->faker->randomElement($varie),
             'reservation' => $this->faker->randomElement(['Istituzionale','Intramoenia']),
             'note' => $this->faker->paragraph(),
-            'user_id' => $this->faker->randomElement(\App\Models\User::pluck('id')),
-            'patient_id' => $this->faker->randomElement(\App\Models\Patient::pluck('id')),
+            'user_id' => $patient->user_id,
+            'patient_id' => $patient->id,
         ];
     }
 }
