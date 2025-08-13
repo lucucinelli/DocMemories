@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\RemotePathologicalHistory;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -14,7 +15,9 @@ class RemotePathologicalHistoryExport implements FromCollection, WithHeadings, W
     */
     public function collection()
     {
-        return RemotePathologicalHistory::all();
+        return RemotePathologicalHistory::select('remote_pathological_histories.*')
+            ->join('patients', 'remote_pathological_histories.patient_id', '=', 'patients.id')
+            ->where('patients.user_id', Auth::id())->get();
     }
     public function getCsvSettings(): array
     {

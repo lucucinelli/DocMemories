@@ -3,9 +3,10 @@
 namespace App\Exports;
 
 use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class PatientsExport implements FromCollection, WithHeadings, WithCustomCsvSettings
 {
@@ -14,7 +15,7 @@ class PatientsExport implements FromCollection, WithHeadings, WithCustomCsvSetti
     */
     public function collection()
     {
-        return Patient::all();
+        return Patient::where('user_id', Auth::id())->get();
     }
 
     public function headings(): array

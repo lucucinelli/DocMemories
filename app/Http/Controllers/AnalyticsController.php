@@ -105,7 +105,7 @@ class AnalyticsController extends Controller
             $pazienti = DB::table('patients')
                 ->select(DB::raw('YEAR(visits.visit_date) as year'), DB::raw('count(DISTINCT patients.id) as total'))
                 ->join('visits', 'patients.id', '=', 'visits.patient_id')
-                ->where('user_id', $userId)
+                ->where('visits.user_id', $userId)
                 ->whereBetween('visit_date', [$date_from, $date_to])
                 ->groupBy('year')
                 ->orderBy('year', 'asc');
@@ -116,7 +116,7 @@ class AnalyticsController extends Controller
             $pazienti = DB::table('patients')
                 ->select('gender', DB::raw('count(DISTINCT patients.id) as total'))
                 ->join('visits', 'patients.id', '=', 'visits.patient_id')
-                ->where('user_id', $userId)
+                ->where('visits.user_id', $userId)
                 ->whereBetween('visit_date', [$date_from, $date_to])
                 ->groupBy('gender')
                 ->orderBy('gender','asc');

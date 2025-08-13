@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+            
         ]);
 
 

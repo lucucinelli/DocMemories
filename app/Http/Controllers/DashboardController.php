@@ -27,9 +27,9 @@ class DashboardController extends Controller
         $monthlyIstituzionali = Auth::user()->visits->where('visit_date', '>=', now()->firstOfMonth()->format('Y-m-d'))->where('reservation', 'Istituzionale')->count();
         $annualIstituzionali = Auth::user()->visits->where('visit_date', '>=', now()->firstOfYear()->format('Y-m-d'))->where('reservation', 'Istituzionale')->count();
 
-        $m = Patient::where('gender','M')->count();
-        $f = Patient::where('gender','F')->count();
-        $notSpecified = Patient::where('gender','non specificato')->count();
+        $m = Patient::where('user_id', Auth::id())->where('gender','M')->count();
+        $f = Patient::where('user_id', Auth::id())->where('gender','F')->count();
+        $notSpecified = Patient::where('user_id', Auth::id())->where('gender','non specificato')->count();
 
         return view('dashboard', [
             'dailyVisits' => $dailyVisits,
@@ -80,7 +80,7 @@ class DashboardController extends Controller
             $report = DB::table('visits')
                 ->select(DB::raw('YEAR(' . $dateField . ') as year'),'gender', DB::raw($total))            
                 ->join('patients','patient_id','=','patients.id')
-                ->where('user_id','=',Auth::user()->id)
+                ->where('visits.user_id','=',Auth::user()->id)
                 ->whereBetween($dateField, [$from, $to])
                 ->groupBy('year','gender')
                 ->orderBy('year', 'asc')
@@ -127,7 +127,7 @@ class DashboardController extends Controller
             $report = DB::table('visits')
                 ->select(DB::raw('MONTH(' . $dateField . ') as month'),'gender', DB::raw($total))            
                 ->join('patients','patient_id','=','patients.id')
-                ->where('user_id','=',Auth::user()->id)
+                ->where('visits.user_id','=',Auth::user()->id)
                 ->whereBetween($dateField, [$from, $to])
                 ->groupBy('month','gender')
                 ->orderBy('month', 'asc')
@@ -197,7 +197,7 @@ class DashboardController extends Controller
             $reportIs = DB::table('visits')
                 ->select(DB::raw('YEAR(visit_date) as year'),'gender', DB::raw('COUNT(*) as total'))
                 ->join('patients','patient_id','=','patients.id')
-                ->where('user_id','=',Auth::user()->id)
+                ->where('visits.user_id','=',Auth::user()->id)
                 ->where('reservation', 'Istituzionale')
                 ->whereBetween('visit_date', [$from, $to])
                 ->groupBy('year','gender')
@@ -244,7 +244,7 @@ class DashboardController extends Controller
             $report = DB::table('visits')
                 ->select(DB::raw('MONTH(visit_date) as month'),'gender', DB::raw('COUNT(*) as total'))            
                 ->join('patients','patient_id','=','patients.id')
-                ->where('user_id','=',Auth::user()->id)
+                ->where('visits.user_id','=',Auth::user()->id)
                 ->where('reservation', 'Istituzionale')
                 ->whereBetween('visit_date', [$from, $to])
                 ->groupBy('month','gender')
@@ -298,7 +298,7 @@ class DashboardController extends Controller
             $reportIn = DB::table('visits')
                 ->select(DB::raw('YEAR(visit_date) as year'),'gender', DB::raw('COUNT(*) as total'))
                 ->join('patients','patient_id','=','patients.id')
-                ->where('user_id','=',Auth::user()->id)
+                ->where('visits.user_id','=',Auth::user()->id)
                 ->where('reservation', 'Intramoenia')
                 ->whereBetween('visit_date', [$from, $to])
                 ->groupBy('year','gender')
@@ -342,7 +342,7 @@ class DashboardController extends Controller
             $reportIn = DB::table('visits')
                 ->select(DB::raw('MONTH(visit_date) as month'),'gender', DB::raw('COUNT(*) as total'))            
                 ->join('patients','patient_id','=','patients.id')
-                ->where('user_id','=',Auth::user()->id)
+                ->where('visits.user_id','=',Auth::user()->id)
                 ->where('reservation', 'Intramoenia')
                 ->whereBetween('visit_date', [$from, $to])
                 ->groupBy('month','gender')

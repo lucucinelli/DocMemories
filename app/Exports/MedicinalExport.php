@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Medicinal;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
@@ -14,7 +15,9 @@ class MedicinalExport implements FromCollection, WithHeadings, WithCustomCsvSett
     */
     public function collection()
     {
-        return Medicinal::all();
+        return Medicinal::select('medicinals.*')
+            ->join('visits', 'medicinals.visit_id', '=', 'visits.id')
+            ->where('visits.user_id', Auth::id())->get();
     }
     public function getCsvSettings(): array
     {
