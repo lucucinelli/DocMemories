@@ -6,9 +6,9 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Exports\PatientsExport;
 
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use function PHPUnit\Framework\isEmpty;
-use Illuminate\Container\Attributes\Auth;
 
 class PatientController extends Controller
 {
@@ -43,14 +43,17 @@ class PatientController extends Controller
             'email' => [ 'required', 'email', 'max:255'],
             'occupation' => [ 'nullable', 'string', 'max:100'],
         ]);
-
+        $incomingData['user_id'] = Auth::id(); // Associate the patient with the authenticated user
         $patient = Patient::create($incomingData);
         return redirect()->route('showPatient', $patient->id);
     }
 
     public function showPatients()
     {
-        $patients = Patient::orderBy('surname')->paginate(10); // Retrieve all patients from the database
+        $patients = Patient::where('user_id', Auth::id())
+            ->orderBy('surname', 'asc')
+            ->paginate(10); // Get the authenticated user's patients, ordered by surname
+
         return view('patients.find', ['patients' => $patients]); // Return the view with the list of patients
     }
 
@@ -69,13 +72,16 @@ class PatientController extends Controller
             return redirect()->route('showPatients'); // If search term is empty, redirect to show all patients
         } else {
             $searchTerm = trim($searchTerm); // Trim whitespace from the search term
-            $patients = Patient::whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(gender, 'aschio') LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(gender, 'emmina') LIKE ?", ["%{$searchTerm}%"])
-            ->orWhereRaw("CONCAT(gender, 'specificato') LIKE ?", ["%{$searchTerm}%"])
+            $patients = Patient::where('user_id', Auth::id())
+            ->where(function ($query) use ($searchTerm) {
+                $query->whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["%{$searchTerm}%"])
+                        ->orWhereRaw("CONCAT(surname, ' ', name) LIKE ?", ["%{$searchTerm}%"])
+                        ->orWhereRaw("CONCAT(surname, name) LIKE ?", ["%{$searchTerm}%"])
+                        ->orWhereRaw("CONCAT(name, surname) LIKE ?", ["%{$searchTerm}%"])
+                        ->orWhereRaw("CONCAT(gender, 'aschio') LIKE ?", ["%{$searchTerm}%"])
+                        ->orWhereRaw("CONCAT(gender, 'emmina') LIKE ?", ["%{$searchTerm}%"])
+                        ->orWhereRaw("CONCAT(gender, 'specificato') LIKE ?", ["%{$searchTerm}%"]);
+            })
             ->paginate(10)
             ->appends(['search' => $searchTerm]); // Search for patients by
         }

@@ -57,14 +57,14 @@ class VisitController extends Controller
         $visits = DB::table('visits')
                         ->select('visits.*', 'patients.name', 'patients.surname')
                         ->join('patients', 'visits.patient_id', '=', 'patients.id')
-                        ->where('user_id', '=', Auth::id())
+                        ->where('visits.user_id', '=', Auth::id())
                         ->orderBy('visit_date', 'desc')
                         ->paginate(10);
         if ($patient_id != 0) {
             $visits = DB::table('visits')
                         ->select('visits.*', 'patients.name', 'patients.surname')
                         ->join('patients', 'visits.patient_id', '=', 'patients.id')
-                        ->where('user_id', '=', Auth::id())
+                        ->where('visits.user_id', '=', Auth::id())
                         ->where('visits.patient_id', '=', $patient_id)
                         ->orderBy('visit_date', 'desc')
                         ->paginate(10);

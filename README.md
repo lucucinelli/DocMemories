@@ -55,7 +55,10 @@ N.B. Make sure to close the `.env` file properly.
 
 ### 3. Install dependencies
 
+
+Before starting, ensure that you have enabled the following dependencies ```extension=zip``` ```extension=gd``` in your php.ini. <br><br>
 Open your terminal in the document root folder and run:
+
 
 ```bash
 composer install

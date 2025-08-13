@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\AllergyTest;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
@@ -14,7 +15,9 @@ class AllergyTestExport implements FromCollection, WithHeadings, WithCustomCsvSe
     */
     public function collection()
     {
-        return AllergyTest::all();
+        return AllergyTest::select('allergy_tests.*')
+                ->join('visits', 'allergy_tests.visit_id', '=', 'visits.id')
+                ->where('visits.user_id', Auth::id())->get();
     }
     public function getCsvSettings(): array
     {

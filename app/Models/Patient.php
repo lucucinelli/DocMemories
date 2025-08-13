@@ -31,13 +31,17 @@ class Patient extends Model
         'telephone',
         'email',
         'occupation',
-     
+        'user_id'
     ];
 
     protected $casts = [
         'birthdate' => 'date', // Dopo aver recuperato la data dal db la converte in un oggetto carbon per il quale è possibile utilizzare il metodo format()
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function visits()
     {
         return $this->hasMany(Visit::class, 'patient_id');
