@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
 });
 /**--------------------------------------------------------- VISITS CRUD -------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
-    Route::get('/visits/{patient?}', [VisitController::class, 'showVisits'])->name('showVisits')->middleware(CheckUser::class); // List all visits
+    Route::get('/visits/{patient?}', [VisitController::class, 'showVisits'])->name('showVisits'); // List all visits
     Route::get('/showVisits/{visit}', [VisitController::class, 'showVisit'])->name('showVisit');  // Show information about a specific visit
     Route::post('/createVisit/{patient}', [VisitController::class, 'newVisit'])->name('newVisit')->middleware(CheckUser::class); // Create a new visit for a patient
     Route::put('/editVisit/{visit}', [VisitController::class, 'editVisit'])->name('editVisit');  // Edit an existing visit
