@@ -5,13 +5,15 @@
     {{ __("Scegli il periodo da analizzare, poi, clicca su 'Pazienti', 'Visite' o 'Prenotazioni' per visualizzare i report corrispondenti.") }}
 </p>
 
-<div class="flex flex-row my-2">
+<div class="flex flex-col md:flex-row my-2 gap-4">
     <x-select id="report-period" :options="[ 'Anni' => 'years', 'Mesi' => 'months']" />
-    <div id="years-range" class="px-3 flex justify-between gap-3">
+    
+    <div id="years-range" class="px-3 flex flex-col md:flex-row justify-between gap-3">
         <x-text-input id="from-year" placeholder="Da" type="number" />
         <x-text-input id="to-year" placeholder="A" type="number" />
     </div>
-    <div id="months-range" class="px-3 flex justify-between gap-3">
+    
+    <div id="months-range" class="px-3 flex flex-col md:flex-row justify-between gap-3">
         <x-select id="from-month" :options="[ 'Gennaio' => '01', 'Febbraio' => '02', 'Marzo' => '03', 'Aprile' => '04', 'Maggio' => '05', 'Giugno' => '06', 'Luglio' => '07', 'Agosto' => '08', 'Settembre' => '09', 'Ottobre' => '10', 'Novembre' => '11', 'Dicembre' => '12']" />
         <x-select id="to-month" :options="[ 'Gennaio' => '01', 'Febbraio' => '02', 'Marzo' => '03', 'Aprile' => '04', 'Maggio' => '05', 'Giugno' => '06', 'Luglio' => '07', 'Agosto' => '08', 'Settembre' => '09', 'Ottobre' => '10', 'Novembre' => '11', 'Dicembre' => '12']" />
         <x-text-input id="reference-year" placeholder="Anno di riferimento" type="number" />

@@ -4,7 +4,7 @@
 <p class="mt-1 mb-5 text-sm text-gray-600 dark:text-gray-400">
     {{ __("Esporta i tuoi dati in .csv per averli sempre con te!") }}
 </p>
-<div class="flex flex-row gap-10 mt-3">
+<div class="flex flex-row gap-2 mt-3 mx-2">
     <x-select :label="__('Scegli il tipo di esportazione')" 
         :options="[
             'pazienti' => 'patients',
@@ -21,40 +21,40 @@
         id="export_file"
         class="mb-4"> </x-select>
     <div class="">
-        <a href="{{ route('exportPatients') }}" target="_blank" id="export_button_patients" class="inline-block px-4 py-2 text-sm bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportPatients') }}" target="_blank" id="export_button_patients" class="w-full sm:w-auto inline-block px-4 py-2 text-sm bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
-        <a href="{{ route('exportVisits') }}" target="_blank" id="export_button_visits" class=" px-4 py-2 text-sm hidden bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportVisits') }}" target="_blank" id="export_button_visits" class="w-full sm:w-auto px-4 py-2 text-sm hidden bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
-        <a href="{{ route('exportPhysiologicalHistories') }}" target="_blank" id="export_button_physiological_histories" class=" px-4 py-2 text-sm hidden bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportPhysiologicalHistories') }}" target="_blank" id="export_button_physiological_histories" class="w-full sm:w-auto px-4 py-2 text-sm hidden bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
-        <a href="{{ route('exportFamiliarHistories') }}" target="_blank" id="export_button_familiar_histories" class=" px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportFamiliarHistories') }}" target="_blank" id="export_button_familiar_histories" class="w-full sm:w-auto px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
-        <a href="{{ route('exportRemotePathologicalHistories') }}" target="_blank" id="export_button_remote_pathological_histories" class=" px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportRemotePathologicalHistories') }}" target="_blank" id="export_button_remote_pathological_histories" class="w-full sm:w-auto px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
-        <a href="{{ route('exportNextPathologicalHistories') }}" target="_blank" id="export_button_next_pathological_histories" class=" px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportNextPathologicalHistories') }}" target="_blank" id="export_button_next_pathological_histories" class="w-full sm:w-auto px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
         </button>
-        <a href="{{ route('exportMedicinals') }}" target="_blank" id="export_button_medicinals" class=" px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportMedicinals') }}" target="_blank" id="export_button_medicinals" class="w-full sm:w-auto px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}    
         </a>
-        <a href="{{ route('exportTests') }}" target="_blank" id="export_button_tests" class=" px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportTests') }}" target="_blank" id="export_button_tests" class="w-full sm:w-auto px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
-        <a href="{{ route('exportExams') }}" target="_blank" id="export_button_exams" class=" px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
+        <a href="{{ route('exportExams') }}" target="_blank" id="export_button_exams" class="w-full sm:w-auto px-4 py-2 text-sm hidden  bg-green-400 dark:bg-green-800 border border-green-300 dark:border-green-500 font-semibold rounded  transition text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-green-50 dark:hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25  ease-in-out duration-150">
             <i class="bi bi-file-earmark-arrow-down"></i>
             {{ __('Esporta') }}
         </a>
