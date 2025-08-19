@@ -32,7 +32,13 @@ document.getElementById('tabs').addEventListener('change', function() {
     document.getElementById('patients-report').classList.toggle('hidden', selectedValue !== 'Patients');
     document.getElementById('visits-report').classList.toggle('hidden', selectedValue !== 'Visits');
     document.getElementById('reservations-report').classList.toggle('hidden', selectedValue !== 'Reservations');
-    createChartReport(selectedValue.toLowerCase());
+    if( selectedValue !== 'Reservations'){
+        createChartReport(selectedValue.toLowerCase());
+    } else
+    {
+        createChartReportReservations();
+    }
+    
 });
 
 function resetReportFilters() {

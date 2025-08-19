@@ -72,6 +72,9 @@ class DashboardController extends Controller
         } elseif ($who == 'visits') {
             $total = 'COUNT(*) as total';
             $dateField = 'visit_date';
+        } elseif ($who == 'reservations') {
+            $total = 'COUNT(*) as total';
+            $dateField = 'reservation_date';
         }
 
         if($incomingData['type'] == 'years') {

@@ -46,7 +46,7 @@
                     {{ __("I valori numerici sottostanti sono stati calcolati a partire dal primo utilizzo dell'applicazione.") }}
                 </p>
             </div>
-            <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-3 dark:text-white sm:p-8">
+            <dl class="grid max-w-screen-xl grid-cols-2 gap-5 p-4 mx-auto text-gray-900 sm:grid-cols-2 xl:grid-cols-3 dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
                     <dt class="mb-2 text-3xl font-extrabold">{{ $m }}</dt>
                     <dd class="text-gray-500 dark:text-gray-400"><i class="bi bi-gender-male mr-2 text-blue-600 text-xl"></i> Uomini</dd>
@@ -155,7 +155,7 @@
                     </ul>
                 </div>
             </dl>
-            <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-2 dark:text-white sm:p-8">
+            <dl class="grid max-w-screen-xl grid-cols-1 sm:grid-cols-1 xl:grid-cols-2 gap-8 p-4 mx-auto text-gray-900  dark:text-white sm:p-8">
                 <div class="flex flex-col items-center justify-center">
                     <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="reservationIs-report-chart-container">
                         <canvas id="reservationIs-report-chart" class="mt-6" ></canvas>
