@@ -116,6 +116,7 @@ class VisitController extends Controller
         }
         return view('visits.find', ['visits' => $visits]);
     }
+    
     public function exportVisits(){
         return Excel::download(new VisitsExport(), 'visits.csv', \Maatwebsite\Excel\Excel::CSV, [
             'Content-Type' => 'text/csv',
