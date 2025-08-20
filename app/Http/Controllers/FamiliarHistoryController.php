@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\FamiliarHistory;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FamiliarHistoryExport;
+use App\Models\Patient;
 
 class FamiliarHistoryController extends Controller
 {
-    public function newFamiliarHistory(Request $request, $patientId)
+    public function newFamiliarHistory(Request $request, Patient $patient)
     {
         $incomingData = $request->validate([
             'allergy' => ['required', 'string', 'max:255'],
@@ -17,7 +18,7 @@ class FamiliarHistoryController extends Controller
             'note' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        $incomingData['patient_id'] = $patientId;
+        $incomingData['patient_id'] = $patient->id;
 
         $familiarHistory = FamiliarHistory::create($incomingData);
         

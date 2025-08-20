@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\RemotePathologicalHistory;
 use App\Exports\RemotePathologicalHistoryExport;
+use App\Models\Patient;
 
 class RemotePathologicalHistoryController extends Controller
 {
-    public function newRemotePathologicalHistory(Request $request, $patientId)
+    public function newRemotePathologicalHistory(Request $request, Patient $patient)
     {
         $incomingData = $request->validate([
             'remote_date' => ['required', 'string', 'max:255'],
@@ -23,7 +24,7 @@ class RemotePathologicalHistoryController extends Controller
         $remoteHistory->type = $incomingData['remote_type'];
         $remoteHistory->description = $incomingData['remote_description'];
         $remoteHistory->note = $incomingData['remote_note'];
-        $remoteHistory->patient_id = $patientId;
+        $remoteHistory->patient_id = $patient->id;
         $remoteHistory->save();
 
         return response()->json(['message' => 'Remote pathological history created successfully.', 'id' => $remoteHistory->id], 201);

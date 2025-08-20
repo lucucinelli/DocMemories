@@ -14,15 +14,10 @@ class CheckUser
     {
         // Recupero l'ultimo parametro dell'URL
         $patient = $request->route('patient'); // istanza di Patient
-        $id = $patient->id; // se vuoi l'id
-
-        // Trovo il paziente
-        $patient = Patient::find($id);
-
+        
         if (!$patient) {
             abort(404, 'Oggetto non trovato');
         }
-
 
         // Controllo l'ownership
         if ($patient->user_id !== Auth::id()) {

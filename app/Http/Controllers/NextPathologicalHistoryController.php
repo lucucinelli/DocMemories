@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\NextPathologicalHistory;
 use App\Exports\NextPathologicalHistoryExport;
+use App\Models\Patient;
 
 class NextPathologicalHistoryController extends Controller
 {
-  public function newNextPathologicalHistory(Request $request, $patientId)
+  public function newNextPathologicalHistory(Request $request, Patient $patient)
     {
         $incomingData = $request->validate([
             'next_date' => ['required', 'string', 'max:255'],
@@ -27,7 +28,7 @@ class NextPathologicalHistoryController extends Controller
         $nextHistory->cause = $incomingData['next_cause'];
         $nextHistory->effect = $incomingData['next_effect'];
         $nextHistory->note = $incomingData['next_note'];
-        $nextHistory->patient_id = $patientId;
+        $nextHistory->patient_id = $patient->id;
         $nextHistory->save();
 
         return response()->json(['message' => 'Next pathological history created successfully.', 'id' => $nextHistory->id], 201);
