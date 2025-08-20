@@ -15,7 +15,7 @@
                     <x-text-input id="birth" class="block mt-1 w-full anagrafica" type="text" name="birth"  autofocus value="{{ $physiologicalHistory->birth ?? '' }}" />
                     <x-input-error :messages="$errors->get('birth')" class="mt-2" />
                     <x-input-label for="atopy" :value="__('Atopia')" />
-                    <x-select id="atopy" class="block mt-1 w-full anagrafica" name="atopy"  autofocus :options="['No' => false, 'Sì' => true]" :selected="$physiologicalHistory->atopy ?? 'false'" disabled/>
+                    <x-select id="atopy" class="block mt-1 w-full anagrafica" name="atopy"  autofocus :options="['No' => 0, 'Sì' => 1]" :selected="$physiologicalHistory->atopy ?? false" disabled/>
                     <x-input-error :messages="$errors->get('atopy')" class="mt-2" />
                     <x-input-label for="nursing" :value="__('Allattamento')" />
                     <x-text-input id="nursing" class="block mt-1 w-full anagrafica" type="text" name="nursing"  autofocus value="{{ $physiologicalHistory->nursing ?? '' }}"/>
