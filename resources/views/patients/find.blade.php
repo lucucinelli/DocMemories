@@ -103,45 +103,44 @@
                                         </tr>
                                     @endforeach
                                 @endif
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="8" class="px-6 py-4">
-                                            {{ $patients->links() }}
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            
-                        </div>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" class="px-6 py-4">
+                                        {{ $patients->links() }}
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>    
                     </div>
                 </div>
             </div>
-            
-            {{-- Mobile view --}}
-            <div class= "block sm:hidden  mt-2 space-y-6">
-                @foreach($patients as $patient)
-                    <div class="ml-4 mr-4 bg-gray-300 dark:bg-gray-200 p-4 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold">{{ $patient->name }} {{ $patient->surname }}</h3>
-                        <p>{{ __('Data di nascita: ') . $patient->birthdate->format('d/m/Y') }}</p>
-                        <p>{{ __('Genere: ') .  ($patient->gender === 'M' ? 'Uomo' : ($patient->gender === 'F' ? 'Donna' : 'Non specificato')) }}</p>
-                        <p>{{ __('Telefono: ') . $patient->telephone }}</p>
-                        <p>{{ __('Email: ') . $patient->email }}</p>
-                        <div class="mt-4 flex space-x-4">
-                            <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
-                            <a href="{{ route('newVisitForm', $patient->id) }}" class="text-orange-600 hover:text-orange-800 dark:text-orange-600 dark:hover:text-orange-900">{{ __('Crea nuova visita') }}</a>
-                        </div>
-                    </div>
-                @endforeach
-                <tfoot>
-                    <tr>
-                        <td colspan="8" class="px-6 py-4">
-                            {{ $patients->links() }}
-                        </td>
-                    </tr>
-                </tfoot>
-            </div>
         </div>
+            
+        {{-- Mobile view --}}
+        <div class= "block sm:hidden  mt-2 space-y-6">
+            @foreach($patients as $patient)
+                <div class="ml-4 mr-4 bg-gray-300 dark:bg-gray-200 p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold">{{ $patient->name }} {{ $patient->surname }}</h3>
+                    <p>{{ __('Data di nascita: ') . $patient->birthdate->format('d/m/Y') }}</p>
+                    <p>{{ __('Genere: ') .  ($patient->gender === 'M' ? 'Uomo' : ($patient->gender === 'F' ? 'Donna' : 'Non specificato')) }}</p>
+                    <p>{{ __('Telefono: ') . $patient->telephone }}</p>
+                    <p>{{ __('Email: ') . $patient->email }}</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="{{ route('showPatient', $patient->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-600 dark:hover:text-blue-900">{{ __('Visualizza') }}</a>
+                        <a href="{{ route('newVisitForm', $patient->id) }}" class="text-orange-600 hover:text-orange-800 dark:text-orange-600 dark:hover:text-orange-900">{{ __('Crea nuova visita') }}</a>
+                    </div>
+                </div>
+            @endforeach
+            <tfoot>
+                <tr>
+                    <td colspan="8" class="px-6 py-4">
+                        {{ $patients->links() }}
+                    </td>
+                </tr>
+            </tfoot>
+        </div>
+        
     </div>    
 </x-app-layout>
 
