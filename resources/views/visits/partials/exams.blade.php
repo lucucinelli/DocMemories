@@ -100,16 +100,16 @@
                 <x-input-label for="data" :value="__('Data')" />
                 <x-text-input id="exam_date" class="block mt-1 w-full" type="date" name="data" required />
                 <x-input-error :messages="$errors->get('data')" class="mt-2" />
-                <x-input-label for="tipo" :value="__('Tipo')" />
+                <x-input-label for="tipo" :value="__('Tipo')" class="mt-2" />
                 <x-text-input id="exam_type" class="block mt-1 w-full" type="text" name="tipo" required />
                 <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
-                <x-input-label for="esito" :value="__('Esito')" />
+                <x-input-label for="esito" :value="__('Esito')" class="mt-2" />
                 <x-text-input id="exam_result" class="block mt-1 w-full" type="text" name="esito" />
                 <x-input-error :messages="$errors->get('esito')" class="mt-2" />
-                <x-input-label for="nota" :value="__('Nota')" />
+                <x-input-label for="nota" :value="__('Nota')" class="mt-2" />
                 <x-text-input id="exam_note" class="block mt-1 w-full" type="text" name="nota" />  
                 <x-input-error :messages="$errors->get('nota')" class="mt-2" />
-                <x-input-label for="exam_file" :value="__('File allegato (PDF o immagine)')" />
+                <x-input-label for="exam_file" :value="__('File allegato (PDF o immagine)')" class="mt-2" />
                 <input id="exam_file" name="exam_file" type="file" accept=".pdf,.jpg,.jpeg,.png" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
             </div>
 

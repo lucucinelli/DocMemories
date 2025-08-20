@@ -87,16 +87,16 @@
                 <x-input-label for="data" :value="__('Data')" />
                 <x-text-input id="test_date" class="block mt-1 w-full" type="date" name="data" required />
                 <x-input-error :messages="$errors->get('data')" class="mt-2" />
-                <x-input-label for="tipo" :value="__('Tipo')" />
+                <x-input-label for="tipo" :value="__('Tipo')" class="mt-2"/>
                 <x-select id="test_type" class="block mt-1 w-full" :options="['PRICK: pollini' => 'PRICK: pollini', 'PRICK: alimenti' => 'PRICK: alimenti', 'PRICK BY PRICK' => 'PRICK BY PRICK', 
                                                                             'CUTI: farmaci' => 'CUTI: farmaci', 'CUTI: imenotteri' => 'CUTI: imenotteri', 'CUTI: PPL/MDM' => 'CUTI: PPL/MDM', 
                                                                             'PATCH TEST: sidapa' => 'PATCH TEST: sidapa', 'PATCH TEST: metalli' => 'PATCH TEST: metalli', 'PATCH TEST: alimenti' => 'PATCH TEST: alimenti', 'PATCH TEST: gomma' => 'PATCH TEST: gomma', 'PATCH TEST: parrucchiera' => 'PATCH TEST: parrucchiera', 'PATCH TEST: farmaci' => 'PATCH TEST: farmaci',
                                                                             'PCT' => 'PCT', 'TEO' => 'TEO', 'TSA' => 'TSA' ]" name="tipo" required/>
                 <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
-                <x-input-label for="esito" :value="__('Esito')" />
+                <x-input-label for="esito" :value="__('Esito')" class="mt-2"/>
                 <x-text-input id="test_result" class="block mt-1 w-full" type="text" name="esito" required />
                 <x-input-error :messages="$errors->get('esito')" class="mt-2" />
-                <x-input-label for="nota" :value="__('Nota')" />
+                <x-input-label for="nota" :value="__('Nota')" class="mt-2"/>
                 <textarea id="test_note" rows="4" name="note" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 anagrafica" placeholder="Scrivi la tua nota qui..."> </textarea>
                 <x-input-error :messages="$errors->get('nota')" class="mt-2" />
             </div>

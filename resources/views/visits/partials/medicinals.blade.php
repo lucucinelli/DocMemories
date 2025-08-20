@@ -67,16 +67,16 @@
             </p>
 
             <div class="mt-4">
-                <x-input-label for="nome" :value="__('Nome')" />
+                <x-input-label for="nome" :value="__('Nome')"/>
                 <x-text-input id="medicinal_name" class="block mt-1 w-full" type="text" name="nome" required />
                 <x-input-error :messages="$errors->get('nome')" class="mt-2" />
-                <x-input-label for="qta" :value="__('Quantità')" />
+                <x-input-label for="qta" :value="__('Quantità')" class="mt-2"/>
                 <x-text-input id="medicinal_quantity" class="block mt-1 w-full" type="text" name="qta" />
                 <x-input-error :messages="$errors->get('qta')" class="mt-2" />
-                <x-input-label for="assunzione" :value="__('Assunzione')" />
+                <x-input-label for="assunzione" :value="__('Assunzione')" class="mt-2"/>
                 <x-text-input id="medicinal_usage" class="block mt-1 w-full" type="text" name="assunzione" required />
                 <x-input-error :messages="$errors->get('assunzione')" class="mt-2" />
-                <x-input-label for="periodo" :value="__('Periodo')" />
+                <x-input-label for="periodo" :value="__('Periodo')" class="mt-2"/>
                 <x-text-input id="medicinal_period" class="block mt-1 w-full" type="text" name="periodo" required />  
                 <x-input-error :messages="$errors->get('periodo')" class="mt-2" />
             </div>
