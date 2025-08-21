@@ -9,10 +9,10 @@
     <div class="backgroundImage" style="background-image: url('{{ asset('images/white2.jpg') }}');"> </div>
     <!-- Toggle Tabs -->
     <nav class="relative z-10 pt-2 px-4 max-w-md bg-red-500 dark:bg-red-600 flex space-x-8 border border-gray-300 rounded-t-lg">
-        <button class="pb-2 text-base font-medium text-black hover:text-blue-600 dark:hover:text-blue-200 dark:text-white border-b-2 border-transparent {{ $showRegister ? 'border-transparent text-gray-400' : 'text-blue-600 border-blue-600' }}" id="form1">
+        <button class="pb-2 text-base font-medium text-black hover:text-gray-200 dark:hover:text-blue-200 dark:text-white border-b-2 border-transparent {{ $showRegister ? 'border-transparent text-black border-black' : 'text-gray-200 dark:text-black' }}" id="form1">
             Login
         </button>
-        <button class="pb-2 text-base font-medium text-black hover:text-blue-600 dark:hover:text-blue-200 dark:text-white border-b-2 border-transparent {{ $showRegister ? 'text-blue-600 border-blue-600' : 'border-transparent text-gray-400' }}" id="form2">
+        <button class="pb-2 text-base font-medium text-black hover:text-black dark:hover:text-blue-200 dark:text-white border-b-2 border-transparent {{ $showRegister ? 'text-gray-200 dark:text-black' : 'border-transparent text-black border-black' }}" id="form2">
             Registrazione
         </button>
     </nav>

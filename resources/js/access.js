@@ -8,14 +8,19 @@ const form2Content = document.querySelector('.form2-content');
 
 function showForm(type) {
     if (type === 'register') {
-        register.classList.replace('text-gray-400', 'text-blue-600');
-        login.classList.replace('text-blue-600', 'text-gray-400');
-        
+        login.classList.replace('text-gray-200', 'text-black');
+        register.classList.replace('text-black', 'text-gray-200');
+        login.classList.replace('dark:text-black', 'dark:text-white');
+        register.classList.replace('dark:text-white', 'dark:text-black');
+
         form1Content.classList.add('hidden');
         form2Content.classList.remove('hidden');
     } else {
-        login.classList.replace('text-gray-400', 'text-blue-600');
-        register.classList.replace('text-blue-600', 'text-gray-400');
+        register.classList.replace('text-gray-200', 'text-black');
+        login.classList.replace('text-black', 'text-gray-200');
+        
+        login.classList.replace('dark:text-white', 'dark:text-black');
+        register.classList.replace('dark:text-black', 'dark:text-white');
 
         form2Content.classList.add('hidden');
         form1Content.classList.remove('hidden');
