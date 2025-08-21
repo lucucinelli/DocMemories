@@ -22,6 +22,9 @@ class AllergyTestExport implements FromCollection, WithHeadings, WithCustomCsvSe
     public function getCsvSettings(): array
     {
         return [
+            'delimiter' => ';',
+            'enclosure' => '"',
+            'line_ending' => "\r\n",
             'use_bom' => true,
         ];
     }

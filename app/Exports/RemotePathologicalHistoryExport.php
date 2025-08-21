@@ -22,6 +22,9 @@ class RemotePathologicalHistoryExport implements FromCollection, WithHeadings, W
     public function getCsvSettings(): array
     {
         return [
+            'delimiter' => ';',
+            'enclosure' => '"',
+            'line_ending' => "\r\n",
             'use_bom' => true,
         ];
     }

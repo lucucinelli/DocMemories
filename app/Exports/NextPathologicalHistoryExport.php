@@ -22,6 +22,9 @@ class NextPathologicalHistoryExport implements FromCollection, WithHeadings, Wit
     public function getCsvSettings(): array
     {
         return [
+            'delimiter' => ';',
+            'enclosure' => '"',
+            'line_ending' => "\r\n",
             'use_bom' => true,
         ];
     }

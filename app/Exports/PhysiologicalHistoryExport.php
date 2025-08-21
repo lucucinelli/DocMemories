@@ -22,6 +22,9 @@ class PhysiologicalHistoryExport implements FromCollection, WithHeadings, WithCu
     public function getCsvSettings(): array
     {
         return [
+            'delimiter' => ';',
+            'enclosure' => '"',
+            'line_ending' => "\r\n",
             'use_bom' => true,
         ];
     }
