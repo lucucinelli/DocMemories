@@ -387,7 +387,7 @@
                         <h2 class="text-red-500 text-center font-medium"> Non ci sono dati da analizzare </h2>
                     </div>
                     <div class="lg:w-2/3 lg:mx-auto sm:w-full sm:mx-0 hidden" id="analytics-chart-container-stepper">
-                        <canvas id="analytics-chart-stepper" class="mt-6 hidden"></canvas>
+                        <canvas id="analytics-chart-stepper" class="mt-6"></canvas>
                     </div>
                 </div>
             </div>
