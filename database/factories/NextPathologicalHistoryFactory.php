@@ -23,7 +23,7 @@ class NextPathologicalHistoryFactory extends Factory
         return [
             'date' => $this->faker->dateTimeBetween($data, 'now')->format('Y-m-d'),
             'type' => $this->faker->randomElement($type),
-            'name' => '',
+            'name' => $this->faker->word(),
             'cause' => $this->faker->word(),
             'effect' => $this->faker->word(),
             'note' => $this->faker->sentence(),
