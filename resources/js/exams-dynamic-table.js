@@ -220,10 +220,6 @@ window.uploadExamFile = function(exam_id) {
 // replace file and delete
 window.replaceExamFile = function(exam_id) {
     let input = document.createElement('input');
-    const new_file = document.getElementById('new-file');
-    const delete_file = document.getElementById('delete-file');
-    new_file.disabled = true;
-    delete_file.disabled = true;
     input.type = 'file';
     input.accept = '.pdf,.jpg,.jpeg,.png';
     input.onchange = function() {
@@ -240,13 +236,9 @@ window.replaceExamFile = function(exam_id) {
         }).then(res => {
             if (res.ok) {
                 showModal('File aggiornato con successo');
-                new_file.disabled = false;
-                delete_file.disabled = false;
                 updateFileCell(exam_id, true);
             } else {
                 showModal('Errore durante il caricamento del file: file troppo grande');
-                new_file.disabled = false;
-                delete_file.disabled = false;
             }
         });
     };

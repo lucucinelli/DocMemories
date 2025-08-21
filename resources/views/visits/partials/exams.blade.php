@@ -39,7 +39,7 @@
                                     <td class="px-6 py-2 text-center before:content-['File'] before:font-bold before:block sm:before:hidden">
                                         @if ($exam->file)
                                             <button id="new-file" type="button" onclick="window.open('{{ route('viewExamFile', $exam->id) }}', '_blank')" class="text-white hover:underline"><i class="bi bi-file-earmark-arrow-down-fill"></i></a></button>
-                                            <button type="button" onclick="replaceExamFile({{ $exam->id }})" class="ml-2 text-blue-600"><i class="bi bi-arrow-repeat"></i></button>
+                                            <button id="replace-file" type="button" onclick="replaceExamFile({{ $exam->id }})" class="ml-2 text-blue-600"><i class="bi bi-arrow-repeat"></i></button>
                                             <button id="delete-file" type="button" onclick="deleteExamFile({{ $exam->id }})" class="ml-2 text-red-600"><i class="bi bi-trash3"></i></button>
                                         @else
                                             <button type="button" onclick="uploadExamFile({{ $exam->id }})" class="text-gray-600 dark:text-gray-300"><i class="bi bi-paperclip"></i></button>
