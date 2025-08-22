@@ -6,13 +6,13 @@
          <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             @switch($patients->count())
                 @case(0)
-                    {{ __("Non hai pazienti registrati.") }}
+                    {{ __("Non ci sono pazienti da visualizzare.") }}
                     @break
                 @case(1)
-                    {{ __("Hai un paziente registrato.") }}
+                    {{ __("Hai un paziente da visualizzare.") }}
                     @break
                 @default
-                    {{ __("Hai " . $patients->count() . " pazienti registrati.") }}
+                    {{ __("Hai " . $patients->count() . " pazienti da visualizzare.") }}
             @endswitch
         </p>
     </x-slot> 

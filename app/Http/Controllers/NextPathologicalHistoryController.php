@@ -10,7 +10,7 @@ use App\Models\Patient;
 
 class NextPathologicalHistoryController extends Controller
 {
-  public function newNextPathologicalHistory(Request $request, Patient $patient)
+    public function newNextPathologicalHistory(Request $request, Patient $patient)
     {
         $incomingData = $request->validate([
             'next_date' => ['required', 'string', 'max:255'],

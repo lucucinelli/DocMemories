@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->string('type');
-            $table->string('result')->default('in attesa');
+            $table->string('result')->nullable();
             $table->text('note')->nullable();
             $table->binary('file')->nullable();
             $table->string('file_mime', 255)->nullable();

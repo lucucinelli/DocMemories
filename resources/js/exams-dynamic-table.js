@@ -188,6 +188,7 @@ window.saveExamRow = function(button) {
 }
 
 
+// --------------------------------------------- File management ------------------------------------------
 
 // upload file 
 window.uploadExamFile = function(exam_id) {

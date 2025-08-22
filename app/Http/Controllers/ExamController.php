@@ -14,9 +14,9 @@ class ExamController extends Controller
         $incomingData = $request->validate([
             'exam_date' => ['required', 'date'],
             'exam_type' => ['required', 'string', 'max:255'],
-            'exam_result' => ['required', 'string', 'max:255'],
+            'exam_result' => ['nullable', 'string', 'max:255'],
             'exam_note' => ['nullable', 'string', 'max:1000'],
-            'exam_file' => ['nullable', 'file', 'mimes:pdf,jpeg,jpg,png,gif,bmp,svg,webp'],
+            'exam_file' => ['nullable', 'file', 'mimes:pdf,jpeg,jpg,png'],
         ]);
 
         $exam = new Exam();
@@ -46,7 +46,7 @@ class ExamController extends Controller
         $incomingData = $request->validate([
             'new_exam_date' => ['required', 'date'],
             'new_exam_type' => ['required', 'string', 'max:255'],
-            'new_exam_result' => ['required', 'string', 'max:255'],
+            'new_exam_result' => ['nullable', 'string', 'max:255'],
             'new_exam_note' => ['nullable', 'string', 'max:1000'],
         ]);
 
@@ -91,7 +91,7 @@ class ExamController extends Controller
     public function uploadExamFile(Request $request, Exam $exam)
     {
         $request->validate([
-            'exam_file' => ['required', 'file', 'mimes:pdf,jpeg,jpg,png,gif,bmp,svg,webp'],
+            'exam_file' => ['required', 'file', 'mimes:pdf,jpeg,jpg,png'],
         ]);
 
         if ($exam->file) {
@@ -108,7 +108,7 @@ class ExamController extends Controller
     public function replaceExamFile(Request $request, Exam $exam)
     {
         $request->validate([
-            'exam_file' => ['required', 'file', 'mimes:pdf,jpeg,jpg,png,gif,bmp,svg,webp'],
+            'exam_file' => ['required', 'file', 'mimes:pdf,jpeg,jpg,png'],
         ]);
 
         $exam->file = file_get_contents($request->file('exam_file')->getRealPath());

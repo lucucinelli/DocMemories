@@ -6,13 +6,13 @@
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             @switch($visits->count())
                 @case(0)
-                    {{ __("Non hai visite registrate.") }}
+                    {{ __("Non hai visite da visualizzare.") }}
                     @break
                 @case(1)
-                    {{ __("Hai una visita registrata.") }}
+                    {{ __("Hai una visita da visualizzare.") }}
                     @break
                 @default
-                    {{ __("Hai " . $visits->count() . " visite registrate.") }}
+                    {{ __("Hai " . $visits->count() . " visite da visualizzare.") }}
             @endswitch
         </p>
     </x-slot> 
