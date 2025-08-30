@@ -2,10 +2,24 @@ console.log("Exams Dynamic Table Script Loaded");
 
 
 document.getElementById('exam-form').addEventListener('submit', function(e) {
-            console.log('exam-form submit');    
-            e.preventDefault();
-            newExamRow();
-            console.log('nessuna richiesta inviata.');
+    e.preventDefault(); // blocco la submit "classica"
+    console.log('exam-form submit');
+
+    const fileInput = document.getElementById('exam_file');
+    const file = fileInput.files[0];
+    const filemessage = document.getElementById('file-error-message');
+
+    if (file && file.size > 1024 * 1024) { // > 1MB
+        filemessage.classList.remove('hidden');
+
+        setTimeout(() => { // meglio setTimeout che setInterval
+            filemessage.classList.add('hidden');
+        }, 3000);
+
+        return; // fermo qui! non continuo con newExamRow()
+    }
+    newExamRow();
+    console.log("Richiesta inviata");
 });
 
 function newExamRow() {

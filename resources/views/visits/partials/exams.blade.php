@@ -112,7 +112,9 @@
                 <x-input-label for="exam_file" :value="__('File allegato (PDF o immagine)')" class="mt-2" />
                 <input id="exam_file" name="exam_file" type="file" accept=".pdf,.jpg,.jpeg,.png" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
             </div>
-
+            <div class="hidden mt-2 justify-end" id="file-error-message">
+                <p class="text-md text-red-600 dark:text-red-400"> Il file è troppo grande (max 1MB). </p>
+            </div>
             <div class="mt-6 flex justify-end">
                 <x-secondary-button x-on:click="$dispatch('close')" id="cancel-button">
                     {{ __('Annulla') }}
