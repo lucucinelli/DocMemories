@@ -8,6 +8,7 @@ use App\Http\Controllers\VisitController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedicinalController; 
@@ -140,4 +141,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/analytics/persChart', [AnalyticsController::class, 'persChart'])->name('analytics.persChart'); // Get age data
 });
 
-
+/**--------------------------------------------------------- FEEDBACK  -------------------------------------------------------------- */
+Route::middleware('auth')->group(function () {
+    Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('feedback'); // Feedback 
+    Route::post('/sendFeedback', [FeedbackController::class, 'sendFeedback'])->name('sendFeedback'); // send mail
+});
