@@ -23,6 +23,7 @@ class FeedbackController extends Controller
         $user = User::find($user);
         Mail::to(['ludocuci04@gmail.com', 'andreacostantini03@gmail.com'])->send(new FeedbackMail($user, $data));
         // Here you can handle the feedback, e.g., save it to the database or send an email
-        return back()->with('success', 'Thank you for your feedback!');
+        return redirect()->route('feedback')->with('status', __('feedback-sent'));
     }
 }
+

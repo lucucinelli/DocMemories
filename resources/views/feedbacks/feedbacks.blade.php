@@ -26,10 +26,19 @@
                             <x-input-label for="note" :value="__('Tipo di feedback')" />
                             <textarea id="note" rows="4" name="note" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Scrivi il tuo feedback qui..."></textarea>
                             <x-input-error :messages="$errors->get('note')" class="mt-2" />
-                            <div>
-                                <x-primary-button id="submit-button" class="mt-4">
+                            <div class="flex items-center gap-6">
+                                <x-primary-button id="submit-button" class="mt-4 hidden">
                                     {{ __('Invia') }}
                                 </x-primary-button>
+                                @if (session('status') === 'feedback-sent')
+                                    <p
+                                        x-data="{ show: true }"
+                                        x-show="show"
+                                        x-transition
+                                        x-init="setTimeout(() => show = false, 2000)"
+                                        class="text-sm text-green-600 dark:text-gray-400"
+                                    >{{ __('Il feedback è stato inviato.') }}</p>
+                                @endif
                             </div>
                         </div>
                     </form>
@@ -39,13 +48,4 @@
     </div>
 </x-app-layout>
 
-<script> 
-    document.addEventListener('DOMContentLoaded', function () {
-        const note = document.getElementById('note');
-        if (note.value.trim() === '') {
-            document.getElementById('submit-button').disabled = true;
-        } else {
-            document.getElementById('submit-button').disabled = false;
-        }
-    });
-</script>
+@vite('resources/js/feedback.js')
