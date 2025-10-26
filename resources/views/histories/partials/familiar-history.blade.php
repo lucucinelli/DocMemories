@@ -54,13 +54,13 @@
                             @foreach ($familiar_histories as $familiar_history)
                                 <tr class="bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none">
                                     <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
-                                        <input name="righe[{{ $familiar_history->id }}][allergy]" value="{{ $familiar_history->allergy }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
+                                        <input name="familiare[{{ $familiar_history->id }}][allergy]" value="{{ $familiar_history->allergy }}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class="px-6 py-2 dark:text-gray-500 before:content-['Esito'] before:font-bold before:block sm:before:hidden">
-                                        <input name="righe[{{ $familiar_history->id }}][relative]" value="{{ $familiar_history->relative}}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
+                                        <input name="familiare[{{ $familiar_history->id }}][relative]" value="{{ $familiar_history->relative}}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" disabled>
                                     </td>
                                     <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
-                                        <textarea name="righe[{{ $familiar_history->id }}][note]" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" rows="2" disabled>{{ $familiar_history->note }}</textarea>
+                                        <textarea name="familiare[{{ $familiar_history->id }}][note]" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-md shadow-sm" rows="2" disabled>{{ $familiar_history->note }}</textarea>
                                     </td>
                                     <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
                                         <button type="button" onclick="editFamiliarHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"><i class="bi bi-pencil"></i></button>

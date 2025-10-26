@@ -249,13 +249,13 @@ function appendFamiliarHistoryRow(familiarHistory_id, allergy, relative, note, t
     newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Allergia'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${familiarHistory_id}][allergy]" value="${allergy}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="familiare[${familiarHistory_id}][allergy]" value="${allergy}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Parente'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${familiarHistory_id}][relative]" value="${relative}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="familiare[${familiarHistory_id}][relative]" value="${relative}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
-            <textarea name="righe[${familiarHistory_id}][note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${note}</textarea>
+            <textarea name="familiare[${familiarHistory_id}][note]" class="border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${note}</textarea>
         </td>
         <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
             <button type="button" onclick="editFamiliarHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
@@ -271,7 +271,7 @@ function appendFamiliarHistoryRow(familiarHistory_id, allergy, relative, note, t
 }
 
 window.openDeleteFamiliarModal = function(button) {
-    const familiarHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    const familiarHistory_id = button.closest('tr').querySelector('input[name^="familiare["]').name.match(/\d+/)[0];
     document.getElementById('history_id').value = familiarHistory_id;
     document.getElementById('history_type').value = "familiar";
 }
@@ -290,7 +290,7 @@ window.deleteFamiliarRow = function() {
         if (!response.ok) {
             throw new Error('Request error');
         }
-        const riga = document.querySelector(`input[name^="righe[${familiar_id}]"]`);
+        const riga = document.querySelector(`input[name^="familiare[${familiar_id}]"]`);
         riga.closest('tr').remove();
         document.getElementById('history_id').value = "";
         cancelUpdatedFamiliarHistoryRow();
@@ -305,10 +305,10 @@ window.editFamiliarHistoryRow = function(button) {
     const relative = document.getElementById('relative');
     const note = document.getElementById('note');
     const familiar_history_id = document.getElementById('familiar_history_id');
-    allergy.value = button.closest('tr').querySelector('input[name^="righe["][name$="[allergy]"]').value;
-    relative.value = button.closest('tr').querySelector('input[name^="righe["][name$="[relative]"]').value;
-    note.value = button.closest('tr').querySelector('textarea[name^="righe["][name$="[note]"]').value;
-    familiar_history_id.value = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    allergy.value = button.closest('tr').querySelector('input[name^="familiare["][name$="[allergy]"]').value;
+    relative.value = button.closest('tr').querySelector('input[name^="familiare["][name$="[relative]"]').value;
+    note.value = button.closest('tr').querySelector('textarea[name^="familiare["][name$="[note]"]').value;
+    familiar_history_id.value = button.closest('tr').querySelector('input[name^="familiare["]').name.match(/\d+/)[0];
     const submitButton = document.getElementById('submit-familiar-history');
     submitButton.classList.add('hidden');
     const cancelButton = document.getElementById('cancel-familiar-history');
@@ -344,11 +344,12 @@ window.saveUpdatedFamiliarHistoryRow = function(){
     })
     .then(data => {
         console.log('Success:', data);
+        console.log('familiar_history_id.value:', familiar_history_id.value);
         // Update the table row with the new values
-        const row = document.querySelector(`input[name^="righe[${familiar_history_id.value}]"]`).closest('tr');
-        row.querySelector('input[name^="righe["][name$="[allergy]"]').value = allergy.value;
-        row.querySelector('input[name^="righe["][name$="[relative]"]').value = relative.value;
-        row.querySelector('textarea[name^="righe["][name$="[note]"]').value = note.value;
+        const row = document.querySelector(`input[name^="familiare[${familiar_history_id.value}]"]`).closest('tr');
+        row.querySelector('input[name^="familiare["][name$="[allergy]"]').value = allergy.value;
+        row.querySelector('input[name^="familiare["][name$="[relative]"]').value = relative.value;
+        row.querySelector('textarea[name^="familiare["][name$="[note]"]').value = note.value;
     })
     .then(() => {
         document.getElementById('allergy').value = "";
@@ -428,16 +429,16 @@ function appendRemoteHistoryRow(remoteHistory_id, remote_date, remote_type, remo
     newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Data'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${remoteHistory_id}][date]" value="${remote_date}" class="w-fullborder-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="remota[${remoteHistory_id}][date]" value="${remote_date}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${remoteHistory_id}][type]" value="${remote_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="remota[${remoteHistory_id}][type]" value="${remote_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Descrizione'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${remoteHistory_id}][description]" value="${remote_description}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="remota[${remoteHistory_id}][description]" value="${remote_description}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
-            <textarea name="righe[${remoteHistory_id}][note]" class=" border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${remote_note}</textarea>
+            <textarea name="remota[${remoteHistory_id}][note]" class=" border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${remote_note}</textarea>
         </td>
         <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden">
             <button type="button" onclick="editRemoteHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
@@ -454,7 +455,7 @@ function appendRemoteHistoryRow(remoteHistory_id, remote_date, remote_type, remo
 }
 
 window.openDeleteRemoteModal = function(button) {
-    const remoteHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    const remoteHistory_id = button.closest('tr').querySelector('input[name^="remota["]').name.match(/\d+/)[0];
     document.getElementById('history_id').value = remoteHistory_id;
     document.getElementById('history_type').value = "remote";
 }
@@ -473,7 +474,7 @@ window.deleteRemoteRow = function() {
         if (!response.ok) {
             throw new Error('Request error');
         }
-        const riga = document.querySelector(`input[name^="righe[${remote_id}]"]`);
+        const riga = document.querySelector(`input[name^="remota[${remote_id}]"]`);
         riga.closest('tr').remove();
         document.getElementById('history_id').value = "";
         cancelUpdatedRemoteHistoryRow();
@@ -489,11 +490,11 @@ window.editRemoteHistoryRow = function(button) {
     const remote_description = document.getElementById('remote_description');
     const remote_note = document.getElementById('remote_note');
     const remote_history_id = document.getElementById('remote_history_id');
-    remote_date.value = button.closest('tr').querySelector('input[name^="righe["][name$="[date]"]').value;
-    remote_type.value = button.closest('tr').querySelector('input[name^="righe["][name$="[type]"]').value;
-    remote_description.value = button.closest('tr').querySelector('input[name^="righe["][name$="[description]"]').value;
-    remote_note.value = button.closest('tr').querySelector('textarea[name^="righe["][name$="[note]"]').value;
-    remote_history_id.value = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    remote_date.value = button.closest('tr').querySelector('input[name^="remota["][name$="[date]"]').value;
+    remote_type.value = button.closest('tr').querySelector('input[name^="remota["][name$="[type]"]').value;
+    remote_description.value = button.closest('tr').querySelector('input[name^="remota["][name$="[description]"]').value;
+    remote_note.value = button.closest('tr').querySelector('textarea[name^="remota["][name$="[note]"]').value;
+    remote_history_id.value = button.closest('tr').querySelector('input[name^="remota["]').name.match(/\d+/)[0];
     const submitRemoteButton = document.getElementById('submit-remote-history');
     submitRemoteButton.classList.add('hidden');
     const cancelRemoteButton = document.getElementById('cancel-remote-history');
@@ -533,12 +534,14 @@ window.saveUpdatedRemoteHistoryRow = function(){
     .then(data => {
         console.log('Success:', data);
         // Update the table row with the new values
-        const row = document.querySelector(`input[name^="righe[${remote_history_id.value}]"]`).closest('tr');
-        row.querySelector('input[name^="righe["][name$="[date]"]').value = remote_date.value;
-        row.querySelector('input[name^="righe["][name$="[type]"]').value = remote_type.value;
-        row.querySelector('input[name^="righe["][name$="[description]"]').value = remote_description.value;
-        row.querySelector('textarea[name^="righe["][name$="[note]"]').value = remote_note.value;
-
+        console.log('remote_history_id.value:', remote_history_id.value);
+        const row = document.querySelector(`input[name^="remota[${remote_history_id.value}]"]`).closest('tr');
+        console.log('row incriminata1:', row.querySelector('input[name^="remota["][name$="[date]"]'));
+        row.querySelector('input[name^="remota["][name$="[date]"]').value = remote_date.value;
+        row.querySelector('input[name^="remota["][name$="[type]"]').value = remote_type.value;
+        row.querySelector('input[name^="remota["][name$="[description]"]').value = remote_description.value;
+        row.querySelector('textarea[name^="remota["][name$="[note]"]').value = remote_note.value;
+        
     })
     .then(() => {
         document.getElementById('remote_date').value = "";
@@ -639,22 +642,22 @@ function appendNextHistoryRow(nextHistory_id, next_date, next_type, next_name, n
     newRow.className = "bg-gray-300 dark:bg-gray-600 dark:border-gray-700 border-b border-gray-200 sm:table-row flex flex-col sm:flex-row sm:mb-0 mb-1 rounded-lg shadow-md sm:shadow-none";
     newRow.innerHTML = `
         <td scope="row" class="px-6 py-2 font-medium text-gray-600 dark:text-gray-900 before:content-['Data'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${nextHistory_id}][date]" value="${next_date}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="prossima[${nextHistory_id}][date]" value="${next_date}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Tipo'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${nextHistory_id}][type]" value="${next_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="prossima[${nextHistory_id}][type]" value="${next_type}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Nome'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${nextHistory_id}][name]" value="${next_name}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="prossima[${nextHistory_id}][name]" value="${next_name}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Causa'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${nextHistory_id}][cause]" value="${next_cause}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="prossima[${nextHistory_id}][cause]" value="${next_cause}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Effetto'] before:font-bold before:block sm:before:hidden">
-            <input name="righe[${nextHistory_id}][effect]" value="${next_effect}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
+            <input name="prossima[${nextHistory_id}][effect]" value="${next_effect}" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" disabled>
         </td>
         <td class="px-6 py-2 dark:text-gray-500 before:content-['Nota'] before:font-bold before:block sm:before:hidden">
-            <textarea name="righe[${nextHistory_id}][note]" class=" border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${next_note}</textarea>
+            <textarea name="prossima[${nextHistory_id}][note]" class=" border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full" rows="2" disabled>${next_note}</textarea>
         </td>
         <td class="px-6 py-2 text-center before:content-['Modifica'] before:font-bold before:block sm:before:hidden w-1/8">
             <button type="button" onclick="editNextHistoryRow(this)" class="text-blue-600 hover:text-blue-800 font-bold dark:text-blue-300"> <i class="bi bi-pencil"></i> </button>
@@ -674,7 +677,7 @@ function appendNextHistoryRow(nextHistory_id, next_date, next_type, next_name, n
 }
 
 window.openDeleteNextModal = function(button) {
-    const nextHistory_id = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    const nextHistory_id = button.closest('tr').querySelector('input[name^="prossima["]').name.match(/\d+/)[0];
     document.getElementById('history_id').value = nextHistory_id;
     document.getElementById('history_type').value = "next";
 }
@@ -694,7 +697,7 @@ window.deleteNextRow = function() {
             throw new Error('Request error');
         }
        
-        const riga = document.querySelector(`input[name^="righe[${next_id}]"]`);
+        const riga = document.querySelector(`input[name^="prossima[${next_id}]"]`);
         riga.closest('tr').remove();
         document.getElementById('history_id').value = "";
         cancelUpdatedNextHistoryRow();
@@ -715,10 +718,10 @@ window.editNextHistoryRow = function(button) {
     const next_note = document.getElementById('next_note');
     const next_history_id = document.getElementById('next_history_id');
     //set the values of the inputs to the values of the row being edited
-    next_date.value = button.closest('tr').querySelector('input[name^="righe["][name$="[date]"]').value;
+    next_date.value = button.closest('tr').querySelector('input[name^="prossima["][name$="[date]"]').value;
 
     const values = Array.from(next_type.options).map(option => option.value);
-    const appoggio = button.closest('tr').querySelector('input[name^="righe["][name$="[type]"]').value;
+    const appoggio = button.closest('tr').querySelector('input[name^="prossima["][name$="[type]"]').value;
     if (!values.includes(appoggio)){
         next_problem.value = appoggio;
         next_type.value = "ALTRO";
@@ -729,11 +732,11 @@ window.editNextHistoryRow = function(button) {
         next_problem.value = "";
         next_type.value = appoggio;
     }
-    next_name.value = button.closest('tr').querySelector('input[name^="righe["][name$="[name]"]').value;
-    next_cause.value = button.closest('tr').querySelector('input[name^="righe["][name$="[cause]"]').value;
-    next_effect.value = button.closest('tr').querySelector('input[name^="righe["][name$="[effect]"]').value;
-    next_note.value = button.closest('tr').querySelector('textarea[name^="righe["][name$="[note]"]').value;
-    next_history_id.value = button.closest('tr').querySelector('input[name^="righe["]').name.match(/\d+/)[0];
+    next_name.value = button.closest('tr').querySelector('input[name^="prossima["][name$="[name]"]').value;
+    next_cause.value = button.closest('tr').querySelector('input[name^="prossima["][name$="[cause]"]').value;
+    next_effect.value = button.closest('tr').querySelector('input[name^="prossima["][name$="[effect]"]').value;
+    next_note.value = button.closest('tr').querySelector('textarea[name^="prossima["][name$="[note]"]').value;
+    next_history_id.value = button.closest('tr').querySelector('input[name^="prossima["]').name.match(/\d+/)[0];
     // display the Annulla and Salva buttons; then hide the Submit button and disable all buttons in the row
     const submitNextButton = document.getElementById('submit-next-history');
     submitNextButton.classList.add('hidden');
@@ -780,13 +783,13 @@ window.saveUpdatedNextHistoryRow = function(){
     .then(data => {
         console.log('Success:', data);
         // Update the table row with the new values
-        const row = document.querySelector(`input[name^="righe[${next_history_id.value}]"]`).closest('tr');
-        row.querySelector('input[name^="righe["][name$="[date]"]').value = next_date;
-        row.querySelector('input[name^="righe["][name$="[type]"]').value = next_type;
-        row.querySelector('input[name^="righe["][name$="[name]"]').value = next_name;
-        row.querySelector('input[name^="righe["][name$="[cause]"]').value = next_cause;
-        row.querySelector('input[name^="righe["][name$="[effect]"]').value = next_effect;
-        row.querySelector('textarea[name^="righe["][name$="[note]"]').value = next_note;
+        const row = document.querySelector(`input[name^="prossima[${next_history_id.value}]"]`).closest('tr');
+        row.querySelector('input[name^="prossima["][name$="[date]"]').value = next_date;
+        row.querySelector('input[name^="prossima["][name$="[type]"]').value = next_type;
+        row.querySelector('input[name^="prossima["][name$="[name]"]').value = next_name;
+        row.querySelector('input[name^="prossima["][name$="[cause]"]').value = next_cause;
+        row.querySelector('input[name^="prossima["][name$="[effect]"]').value = next_effect;
+        row.querySelector('textarea[name^="prossima["][name$="[note]"]').value = next_note;
     })
     .then(() => {
         document.getElementById('next_date').value = "";
